@@ -1,0 +1,38 @@
+.header-banner {
+    width: 100%;
+    height: 250px; /* Ajusta la altura del rectángulo */
+    overflow: hidden;
+}
+
+.img-banner {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Evita que la imagen se deforme */
+    object-position: center;
+}
+/* Ajusta el alto del carrusel */
+.carousel-item {
+    height: 300px; /* Cambia este valor para hacerlo más chico (ej: 300px) */
+    background-color: #f0f0f0; /* Fondo por si la imagen es pequeña */
+}
+
+.carousel-item img {
+    height: 100%;
+    object-fit: cover; /* Esto evita que la imagen se estire feo */
+}
+
+/* Ajuste para las imágenes del catálogo */
+.img-producto {
+    width: 100%;    /* Que ocupe todo el ancho de la tarjeta */
+    height: 250px;  /* ESTO evita que sea alargada. Ajusta los px a tu gusto */
+    object-fit: contain; /* Esto hace que la imagen no se deforme ni se estire */
+    object-position: center;
+}
+
+.card {
+    transition: transform 0.3s; /* Efecto suave al pasar el mouse */
+}
+
+.card:hover {
+    transform: scale(1.04); /* Se agranda un poquito al pasar el mouse */
+}
