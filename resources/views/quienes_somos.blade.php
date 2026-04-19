@@ -1,5 +1,4 @@
 <section class="sobre-nosotros">
-
     <div class="container-fluid p-0">
         <div class="row g-0">
 
