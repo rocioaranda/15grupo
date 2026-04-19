@@ -5,21 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Principal</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    
     <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
     
 </head>
 
 <body>
-    <header class="header-banner">
+   <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="header-banner">
       <img src="{{ asset('img/logo1.jpeg') }}" alt="Banner Principal" class="img-banner">
-    </header>
-    
-    <main class="container mt-1">
+    </div>
+     <main class="container mt-3">
     </main>
-
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
+   <div class="container-fluid">
     <a class="navbar-brand" href="#">Navbar</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -27,20 +24,20 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" href="#">inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link" href="/quienes_somos">Sobre Nosotros</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
+            Según tu objetivo
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><a class="dropdown-item" href="#">Aumento de masa muscular y rendimiento</a></li>
+            <li><a class="dropdown-item" href="#">Definicion/quemar grasa</a></li>
+            <li><a class="dropdown-item" href="#">Salud y vitalidad</a></li>
+             <li><hr class="dropdown-divider"></li>
           </ul>
         </li>
         <li class="nav-item">
@@ -58,7 +55,7 @@
 
 <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
   <div class="carousel-inner">
-    <div class="carousel-item active" style="max heigh: 300px";>
+    <div class="carousel-item active" style="max-heigth: 300px";>
       <img src="{{ asset('img/carrusel1.png') }}" class="d-block w-100" alt="Promoción 1">
     </div>
     <div class="carousel-item" style="max heigh: 300px";>
