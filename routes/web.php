@@ -14,3 +14,7 @@ return view('contacto');
 });
 
 Route::post('/contacto', [ContactoController::class, 'procesar']);
+
+Route::get('/carrito', function () { 
+    return view('construccion'); 
+});
