@@ -1,52 +1,64 @@
 /* GLOBAL */
+/* CONFIGURACIÓN GENERAL */
 html, body {
-  height: 100%;
+    height: 100%;
 }
 
 body {
-  background-color: black;
-  font-family: Arial, Helvetica, sans-serif;
+    background-color: black; /* Fondo negro para toda la página */
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-/* HEADER */
+/* HEADER / BANNER */
 .header-banner {
-  width: 100%;
-  height: 250px;
-  overflow: hidden;
+    width: 100%;
+    height: 180px; 
+    background-color: black; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-bottom: 1px solid #333; /* línea que separa del menú */
 }
 
 .img-banner {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
+    max-width: 90%;        /* Para que el logo no toque los bordes */
+    max-height: 80%;       /* Altura máxima para que no se deforme */
+    object-fit: contain;   /* Mantiene la proporción del logo */
 }
 
 /* CARRUSEL */
 .carousel-item {
-  height: 300px;
-  background-color: #f0f0f0;
+    height: 400px;         /* alto del carrusel */
+    background-color: #111;
 }
 
 .carousel-item img {
-  height: 100%;
-  object-fit: cover;
+    height: 100%;
+    object-fit: cover;     /* La imagen del carrusel llena el espacio */
 }
 
-/* PRODUCTOS */
+/* CATÁLOGO DE PRODUCTOS */
 .img-producto {
-  width: 100%;
-  height: 250px;
-  object-fit: contain;
-  object-position: center;
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    padding: 10px;
+    background-color: white;
 }
 
 .card {
-  transition: transform 0.3s;
+    transition: transform 0.3s;
+    overflow: hidden;
 }
 
 .card:hover {
-  transform: scale(1.04);
+    transform: scale(1.03);
+}
+
+/* Títulos en blanco para que resalten sobre el fondo negro */
+h2 {
+    color: white;
 }
 
 /* ========================= */
@@ -169,6 +181,7 @@ p {
   margin-bottom: 20px;
 }
 
+<<<<<<< HEAD
 .btn-principal {
   background-color: #00c853;
   color: black;
@@ -178,3 +191,19 @@ p {
   border-radius: 5px;
 }
 /*termina estilos de quienes somos*/
+=======
+.contenido-texto p {
+  line-height: 1.6;
+}
+
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.form-control:focus {
+    background-color: #333 !important;
+    color: white;
+    border: 1px solid #198754;
+    box-shadow: none;
+}
+>>>>>>> 7b491c51294bd09fc40760747bf1ab93da314cd5
