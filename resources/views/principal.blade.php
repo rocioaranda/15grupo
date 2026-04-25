@@ -16,73 +16,19 @@
 
 <body>
 
-    <header class="header-banner">
-        <img src="{{ asset('img/logo1.jpeg') }}" alt="Banner Principal" class="img-banner">
-    </header>
-
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="menuPrincipal">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/quienes_somos">Sobre Nosotros</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Según tu objetivo
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Aumento de masa muscular</a></li>
-                            <li><a class="dropdown-item" href="#">Definición / Quemar grasa</a></li>
-                            <li><a class="dropdown-item" href="#">Salud y vitalidad</a></li>
-                        </ul>
-                    </li>
-
-                     <li class="nav-item">
-                <a class="nav-link" href="{{ url('/contacto') }}">Contacto</a>
-                </li>
-                
-                </ul>
-               
-                   
-                <form class="d-flex mx-auto my-2 my-lg-0" role="search" style="width: 40%; min-width: 250px;">
-                    <input class="form-control me-2 bg-dark text-white border-secondary" type="search" placeholder="¿Qué estás buscando?">
-                    <button class="btn btn-outline-success" type="submit">
-                        <i class="bi bi-search"></i>
-                    </button>
-                </form>
-
-              <div class="d-flex align-items-center gap-3">
-              @include('carrito') 
-             <div class="dropdown">
-              <button class="btn btn-outline-light border-0 p-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="bi bi-person-circle fs-4"></i>
-              </button>
-               <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" href="/login">Iniciar Sesión</a></li>
-            <li><a class="dropdown-item" href="/register">Crear Usuario</a></li> 
-          </ul>
-        </div>
-        </div>
-    </nav>
+  @include('partes.header')
+  @include('partes.navbar')
 
     <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="{{ asset('img/carrusel1.png') }}" class="d-block w-100" alt="Promoción 1">
+                <img src="{{ asset('img/carrousel/1.png') }}" class="d-block w-100" alt="Promoción 1">
             </div>
             <div class="carousel-item">
-                <img src="{{ asset('img/carrusel2.png') }}" class="d-block w-100" alt="Promoción 2">
+                <img src="{{ asset('img/carrousel/2.png') }}" class="d-block w-100" alt="Promoción 2">
             </div>
             <div class="carousel-item">
-                <img src="{{ asset('img/carrusel3.png') }}" class="d-block w-100" alt="Promoción 3">
+                <img src="{{ asset('img/carrousel/3.png') }}" class="d-block w-100" alt="Promoción 3">
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
@@ -105,7 +51,7 @@
                     <div class="card-body text-center">
                         <h5 class="card-title">WHEY PROTEIN DOYPACK - 2 LBS STAR NUTRITION</h5>
                         <p class="fw-bold fs-5 text-success">$45.000</p>
-                        <a href="#" class="btn btn-success w-100">Comprar</a>
+                        <a href="#" class="btn btn-success w-100" style="pointer-events: none; cursor: default;"> Comprar </a>
                     </div>
                 </div>
             </div>
@@ -127,7 +73,7 @@
                     <div class="card-body text-center">
                         <h5 class="card-title">PROTEINA 100% GOLD STANDARD WHEY - OPTIMUM NUTRITION</h5>
                         <p class="fw-bold fs-5 text-success">$85.500</p>
-                        <<a href="#" class="btn btn-success w-100">Comprar</a>
+                        <a href="#" class="btn btn-success w-100">Comprar</a>
                     </div>
                 </div>
             </div>
@@ -484,33 +430,8 @@
         </div>
     </main>
 
-
-   <footer>
-    <div class="container-fluid bg-dark p-5">
-        <div class="row text-center"> <div class="col">
-                <a href="{{ url('/') }}" class="text-decoration-none text-success fw-bold">Inicio</a>
-            </div>
-            <div class="col">
-                <a href="#" class="text-decoration-none text-success fw-bold">Términos y usos</a>
-            </div>
-            <div class="col">
-                <a href="{{ url('/contacto') }}" class="text-decoration-none text-success fw-bold">Contacto</a>
-            </div>
-
-            <div class="col">
-                <a href="#" class="text-decoration-none text-success fs-4 me-3"><i class="bi bi-instagram"></i>
-                <a href="#" class="text-decoration-none text-success fs-4 me-3"><i class="bi bi-facebook"></i></a>
-                <a href="#" class="text-decoration-none text-success fs-4 me-3"><i class="bi bi-whatsapp"></i></a>
-            </div>
-
-            <div class="col">
-                <i class="bi bi-envelope text-success fs-4 me-3"></i>
-                <i class="bi bi-geo-alt text-success fs-4"></i>
-            </div>
-
-        </div>
-    </div>
-</footer>
+@include('partes.footer')
+   
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>

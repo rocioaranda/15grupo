@@ -118,3 +118,9 @@ h2 {
     border: 1px solid #198754;
     box-shadow: none;
 }
+
+/* para bloquear funcion del boton */
+.boton-bloqueado {
+    pointer-events: none; /* bloquea cualquier clic */
+    cursor: default;     /* evita que el cursor cambie a la manito */
+}
