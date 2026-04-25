@@ -1,9 +1,6 @@
 <section class="sobre-nosotros">
-<<<<<<< HEAD
 <head>    
     <link rel="stylesheet" href="{{ asset('css/estilos.css') }}"></head> 
-=======
->>>>>>> 7b491c51294bd09fc40760747bf1ab93da314cd5
     <div class="container-fluid p-0">
         <div class="row g-0">
 

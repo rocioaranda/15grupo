@@ -9,7 +9,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-/* HEADER / BANNER */
+/*  HEADER / BANNER */
 .header-banner {
     width: 100%;
     height: 180px; 
@@ -181,7 +181,6 @@ p {
   margin-bottom: 20px;
 }
 
-<<<<<<< HEAD
 .btn-principal {
   background-color: #00c853;
   color: black;
@@ -191,19 +190,3 @@ p {
   border-radius: 5px;
 }
 /*termina estilos de quienes somos*/
-=======
-.contenido-texto p {
-  line-height: 1.6;
-}
-
-.form-control::placeholder {
-    color: rgba(255, 255, 255, 0.5);
-}
-
-.form-control:focus {
-    background-color: #333 !important;
-    color: white;
-    border: 1px solid #198754;
-    box-shadow: none;
-}
->>>>>>> 7b491c51294bd09fc40760747bf1ab93da314cd5
