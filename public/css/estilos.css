@@ -64,46 +64,134 @@ h2 {
 /* ========================= */
 /* SOBRE NOSOTROS */
 /* ========================= */
-
-.sobre-nosotros {
-  min-height: 100vh;
-}
-
-/* SOLO afecta esta sección */
-.sobre-nosotros .row {
-  margin: 0;
-}
-
-/* IZQUIERDA */
+/* Elemento real del HTML (estructura + imagen + animación,maneja imágenes y animación)*/
 .lado-izquierdo {
-  background: linear-gradient(135deg, #0f3d0f, #000000);
-  color: white;
-  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: rgb(7, 16, 8);
+  min-height: 50vh;
+  position: relative;
+  animation: cambiarImagen 10s infinite;
+}
+/* Capa extra generada por CSS (antes del contenido)
+   Se usa para efectos visuales como overlays(efectos visuales encima) */
+.lado-izquierdo::before {
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
 }
 
-.titulo-izquierdo {
-  font-size: 3rem;
-  font-weight: bold;
+
+@keyframes cambiarImagen {
+  0% {
+    background-image: url("../img/sobreNosotros/nosotros.png");
+  }
+  50% {
+    background-image: url("../img/sobreNosotros/sobreNosotros.png");
+  }
+  100% {
+    background-image: url("../img/sobreNosotros/nosotros.png");
+  }
 }
+/*TODO lo del texto*/
 
 /* DERECHA */
 .lado-derecho {
-  background: #f8f9fa;
+  background: linear-gradient(
+  to right,
+  rgba(0, 0, 0, 0.85),
+  rgba(0, 60, 0, 0.6)
+);
   min-height: 100vh;
   padding: 40px;
 }
 
 /* TEXTO */
 .contenido-texto {
+  background: linear-gradient(135deg, #000000, #012e1b);
+  padding: 60px 80px;
+  color:white;
+  max-width: 500px;
+  margin: auto;
+}
+.titulo-derecho {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #f8f7f7;
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.titulo-derecho::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #00c853;
+  margin-top: 8px;
+}
+
+.contenido-texto p {
   max-width: 500px;
   margin: auto;
 }
 
-.titulo-derecho {
+h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+p {
+  color: #cfcfcf;
+  line-height: 1.7;
+}
+ .origen-marca {
+  margin-top: 30px;
+  padding: 20px;
+  border-left: 4px solid #00c853;
+  background: rgba(0,0,0,0.05);
+  border-radius: 5px;
+}
+.origen-marca h3 {
+  margin-bottom: 10px;
+  color: #00c853;
+}
+.marca {
+  color: #00e676;
   font-weight: bold;
+  letter-spacing: 1px;
+}
+.hero-info {
+  color: white;
+  max-width: 500px;
+}
+
+.hero-info h1 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.hero-info p {
+  color: #cfcfcf;
   margin-bottom: 20px;
 }
 
+<<<<<<< HEAD
+.btn-principal {
+  background-color: #00c853;
+  color: black;
+  padding: 12px 25px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+}
+/*termina estilos de quienes somos*/
+=======
 .contenido-texto p {
   line-height: 1.6;
 }
@@ -118,9 +206,13 @@ h2 {
     border: 1px solid #198754;
     box-shadow: none;
 }
+<<<<<<< HEAD
 
 /* para bloquear funcion del boton */
 .boton-bloqueado {
     pointer-events: none; /* bloquea cualquier clic */
     cursor: default;     /* evita que el cursor cambie a la manito */
 }
+=======
+>>>>>>> 7b491c51294bd09fc40760747bf1ab93da314cd5
+>>>>>>> e1519dc059a352335a714d3bb90eb81f62ce3a6c
