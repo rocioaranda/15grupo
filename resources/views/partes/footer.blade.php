@@ -3,11 +3,13 @@
         <div class="row text-center"> <div class="col">
                 <a href="{{ url('/') }}" class="text-decoration-none text-success fw-bold">Inicio</a>
             </div>
-            <div class="col">
-                <a href="#" class="text-decoration-none text-success fw-bold">Términos y usos</a>
-            </div>
+        
             <div class="col">
                 <a href="{{ url('/contacto') }}" class="text-decoration-none text-success fw-bold">Contacto</a>
+            </div>
+
+             <div class="col">
+                <a href="{{ url('/terminos_condiciones') }}" class="text-decoration-none text-success fw-bold">Términos y condiciones</a>
             </div>
 
             <div class="col">

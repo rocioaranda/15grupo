@@ -29,13 +29,26 @@ body {
 
 /* CARRUSEL */
 .carousel-item {
-    height: 400px;         /* alto del carrusel */
-    background-color: #111;
+    width: 100%;
 }
 
 .carousel-item img {
-    height: 100%;
-    object-fit: cover;     /* La imagen del carrusel llena el espacio */
+    width: 100%;
+    height: auto;       /* El alto se ajusta proporcionalmente al ancho */
+    max-height: 500px;  /* Evita que en monitores gigantes se vea inmenso */
+    object-fit: contain; 
+    display: block;
+}
+
+/* Ajuste para celulares */
+@media (max-width: 768px) {
+    .carousel-item {
+        height: auto;   /*libera el alto en celu */
+    }
+    
+    .carousel-item img {
+        max-height: 250px; /* alto en el celu */
+    }
 }
 
 /* CATÁLOGO DE PRODUCTOS */
