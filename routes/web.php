@@ -18,3 +18,6 @@ Route::post('/contacto', [ContactoController::class, 'procesar']);
 Route::get('/carrito', function () { 
     return view('construccion'); 
 });
+Route::get('/comercializacion', function () {
+    return view('comercializacion');
+});

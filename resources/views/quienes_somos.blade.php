@@ -1,20 +1,10 @@
+@extends('layouts.app')
+
+@section('main')
+
 <section class="sobre-nosotros">
-<head>    
-    <link rel="stylesheet" href="{{ asset('css/estilos.css') }}"></head> 
-    <div class="container-fluid p-0">
-        <div class="row g-0">
-
-            <!-- LADO IZQUIERDO -->
-            <div class="col-md-6 lado-izquierdo d-flex align-items-center justify-content-center">
-                 <div class="hero-info text-center">
-        <h1>Transformá tu cuerpo con <span class="marca">EVOLVEX</span></h1>
-        
-        <p>
-            Suplementos y accesorios diseñados para llevar tu rendimiento al siguiente nivel.
-        </p>
-
-        <a href="#" class="btn-principal">Ver productos</a>
-    </div>
+     <div class="container">
+        <div class="row">
             <!-- LADO DERECHO -->
             <div class="col-md-6 lado-derecho d-flex align-items-center">
                 <div class="contenido-texto text-center">
@@ -44,5 +34,5 @@
 
         </div>
     </div>
-
 </section>
+@endsection

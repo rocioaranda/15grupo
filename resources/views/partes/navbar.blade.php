@@ -7,33 +7,36 @@
             <div class="collapse navbar-collapse" id="menuPrincipal">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Inicio</a>
+                        <a class="nav-link" href="/">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/quienes_somos">Sobre Nosotros</a>
+                        <a class="nav-link" href="/quienes_somos">Sobre Envolex</a>
                     </li>
                    <li class="nav-item dropdown">
                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Productos
                   </a>
-                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-               <li><a class="dropdown-item" href="#">Mostrar todos los productos</a></li>
-        
-             <li class="dropdown-submenu">
-              <a class="dropdown-item dropdown-toggle" href="#">Según tu objetivo</a>
-             <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Aumento de masa muscular</a></li>
-            <li><a class="dropdown-item" href="#">Definición / Quemar grasa</a></li>
-             <li><a class="dropdown-item" href="#">Salud y vitalidad</a></li>
-            </ul>
-         </li>
-      </ul>
-</li>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                   <li><a class="dropdown-item" href="#">Mostrar todos los productos</a></li>
+            
+                    <li class="dropdown-submenu">
+                    <a class="dropdown-item dropdown-toggle" href="#">Según tu objetivo</a>
+                    <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Aumento de masa muscular</a></li>
+                    <li><a class="dropdown-item" href="#">Definición / Quemar grasa</a></li>
+                    <li><a class="dropdown-item" href="#">Salud y vitalidad</a></li>
+                    </ul>
+                        </li>
+                    </ul>
+            
 
                      <li class="nav-item">
-                <a class="nav-link" href="{{ url('/contacto') }}">Contacto</a>
-                </li>
+                      <a class="nav-link" href="{{ url('/contacto') }}">Contacto</a>
+                     </li>
                 
+                     <li class="nav-item">
+                      <a class="nav-link" href="/comercializacion">Comercialización</a>
+                    </li>
                 </ul>
                
                    
@@ -53,7 +56,7 @@
                <ul class="dropdown-menu dropdown-menu-end">
             <li><a class="dropdown-item" href="/login" style="pointer-events: none; cursor: default;">Iniciar Sesión</a></li>
             <li><a class="dropdown-item" href="/register" style="pointer-events: none; cursor: default;">Crear Usuario</a></li> 
-          </ul>
+        </ul>
         </div>
-        </div>
-    </nav>
+    </div>
+</nav>

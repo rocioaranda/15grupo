@@ -2,6 +2,7 @@
 /* CONFIGURACIÓN GENERAL */
 html, body {
     height: 100%;
+
 }
 
 body {
@@ -224,4 +225,20 @@ p {
 .boton-bloqueado {
     pointer-events: none;
     cursor: default;
+}
+.fondo-principal {
+  background-image: url('/img/fondoPrincipal/fondo.jpeg');
+ 
+    /* Ajustes de imagen */
+    background-size: cover;           /* Cubre toda la sección */
+    background-position: center;      /* Centra la imagen */
+    background-repeat: no-repeat;
+    
+    /* Ajustes de tamaño */
+    width: 100%;
+    min-height: 100vh;                 /* Ocupa el 80% de la altura de la pantalla */
+    align-items: center;              /* Centra el contenido verticalmente */
+    
+    /* Color de fondo fallback */
+    background-color: #000;
 }
