@@ -12,6 +12,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/quienes_somos">Sobre Envolex</a>
                     </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="/terminos_condiciones">Términos y condiciones</a>
+                    </li>
+
                    <li class="nav-item dropdown">
                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Productos

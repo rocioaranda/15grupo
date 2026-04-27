@@ -9,15 +9,21 @@ Route::get('/quienes_somos', function () {
     return view('quienes_somos');
 });
 
+Route::get('/terminos_condiciones', function () {
+    return view('terminos_condiciones');
+});
+
 Route::get('/contacto', function () { 
 return view('contacto'); 
 });
 
 Route::post('/contacto', [ContactoController::class, 'procesar']);
 
+Route::get('/comercializacion', function () { 
+return view('comercializacion'); 
+});
+
 Route::get('/carrito', function () { 
     return view('construccion'); 
 });
-Route::get('/comercializacion', function () {
-    return view('comercializacion');
-});
+

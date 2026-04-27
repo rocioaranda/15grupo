@@ -1,4 +1,9 @@
-<section class="terminos-condiciones bg-black py-5"> <div class="container">
+@extends('layouts.app')
+
+@section('main')
+
+<section class="terminos-condiciones bg-black py-5"> 
+    <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-10 col-md-12">
                 
@@ -47,8 +52,32 @@
                     </ul>
                 </div>
 
-                <div class="mb-5 p-4 border border-secondary rounded bg-dark">
-                    <h3 class="text-success h4 mb-3 text-uppercase fw-bold">Sección 4 - Responsabilidad en el Consumo</h3>
+                <div class="mb-5">
+                    <h3 class="text-success h4 mb-3 text-uppercase fw-bold">Sección 4 - Devolución de envío</h3>
+                    <p class="text-white-50 mb-0 italic">
+                       Puedes optar por la devolución del producto siempre y cuando cumpla con las siguientes condiciones:
+                    </p>
+                    <ul class="list-group list-group-flush bg-transparent">
+                        <li class="list-group-item bg-transparent text-white border-secondary px-0 py-2">
+                            <i class="bi bi-check2-circle text-success me-2"></i> Producto muy golpeado o abollado.
+                        </li>
+                        <li class="list-group-item bg-transparent text-white border-secondary px-0 py-2">
+                            <i class="bi bi-check2-circle text-success me-2"></i> Producto equivocado, distinto a la compra realizada.
+                        </li>
+                        <li class="list-group-item bg-transparent text-white border-secondary px-0 py-2">
+                            <i class="bi bi-check2-circle text-success me-2"></i> Producto abierto (sello de seguridad roto o sin sello).
+                        </li>
+                         <li class="list-group-item bg-transparent text-white border-secondary px-0 py-2">
+                            <i class="bi bi-check2-circle text-success me-2"></i> Producto vencido.
+                        </li>
+                         <p class="text-white-50 mb-0 italic">
+                        Si al adquirir el producto notas que cumple con alguna de estas características, puedes optar por realizar la devolución del mismo. Tendrás 3 días hábiles para notificar la novedad del producto.
+                       </p>
+                    </ul>
+                </div>
+
+                <div class="mb-5">
+                    <h3 class="text-success h4 mb-3 text-uppercase fw-bold">Sección 5 - Responsabilidad en el Consumo</h3>
                     <p class="text-white-50 mb-0 italic">
                         En <strong>Evolvex</strong> enfatizamos que los suplementos dietarios no reemplazan una dieta equilibrada ni el consejo médico profesional. Es responsabilidad del Usuario consultar con un especialista antes de iniciar cualquier protocolo de suplementación.
                     </p>
@@ -66,4 +95,5 @@
         </div>
     </div>
 </section>
+@endsection
 
