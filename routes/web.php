@@ -13,6 +13,10 @@ Route::get('/terminos_condiciones', function () {
     return view('terminos_condiciones');
 });
 
+Route::get('/catalogo', function () {
+    return view('catalogo');
+});
+
 Route::get('/contacto', function () { 
 return view('contacto'); 
 });

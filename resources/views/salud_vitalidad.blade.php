@@ -1,5 +1,4 @@
- <div class="col">
-
+<div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center">
             <div class="col">
                 <div class="card h-100 shadow-lg border-0">
                     <img src="{{ asset('img/saludVitalidad/gold-multivitamina.webp') }}" class="card-img-top img-producto" alt="Producto 1">
@@ -286,3 +285,4 @@
                     </div>
                 </div>
             </div>
+</div>            

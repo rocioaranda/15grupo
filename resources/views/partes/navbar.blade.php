@@ -22,7 +22,7 @@
                     Productos
                   </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                   <li><a class="dropdown-item" href="#">Mostrar todos los productos</a></li>
+                   <li><a class="dropdown-item" href="{{ url('/catalogo') }}">Mostrar todos los productos</a></li>
             
                     <li class="dropdown-submenu">
                     <a class="dropdown-item dropdown-toggle" href="#">Según tu objetivo</a>
