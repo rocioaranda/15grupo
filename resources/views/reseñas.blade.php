@@ -1,4 +1,4 @@
-<section class="bg-black text-white py-5">
+<section class="bg-dark text-white py-5">
     <div class="container">
         <h2 class="text-start text-success fw-bold mb-5 shadow-sm">Reseñas</h2>
 
