@@ -36,13 +36,13 @@
             <a class="dropdown-item dropdown-toggle" href="#">Según tu objetivo </a>
 
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{{ url('/aumento_masa') }}">Aumento de masa muscular</a></li>
+                <li><a class="dropdown-item" href="{{ url('/Masa_aumento') }}">Aumento de masa muscular</a></li>
                 <li><a class="dropdown-item" href="{{ url('/quemar_grasa') }}">Defincion/Quemar grasa</a></li>
                 <li><a class="dropdown-item" href="{{ url('/salud_vitalidad') }}">Salud y vitalidad</a></li>
                  </ul>
                  </li>
                  <li>
-              <a class="dropdown-item" href="{{ url('/accesorios') }}">
+              <a class="dropdown-item" href="{{ url('/acce') }}">
                accesorios
               </a>
             </li>

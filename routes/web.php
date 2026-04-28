@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\ContactoController;
+use App\Http\Controllers\ProductoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -31,19 +32,22 @@ Route::get('/carrito', function () {
     return view('construccion'); 
 });
 
+Route::get('/catalogo', [ProductoController::class, 'catalogo']);
 
-Route::get('/aumento_masa', function () { 
-    return view('aumento_masa'); 
+// páginas por categoría
+
+Route::get('/Masa_aumento', function () { 
+return view('Masa_aumento'); 
 });
 
 Route::get('/quemar_grasa', function () { 
-    return view('quemar_grasa'); 
+ return view('quemar_grasa'); 
 });
 
-Route::get('/salud_vitalidad', function () { 
-    return view('salud_vitalidad'); 
+Route::get('/vitalidad_salud', function () { 
+  return view('vitalidad_salud'); 
 });
 
-Route::get('/accesorios', function () { 
-    return view('accesorios'); 
+Route::get('/acce', function () { 
+ return view('acce'); 
 });

@@ -17,7 +17,6 @@
 
 <body>
     @include('partes.header')
-    
     @include('partes.navbar')
     @yield('main')
 
