@@ -1,5 +1,4 @@
-<div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center">
-<div class="container mt-5 mb-5">
+
          <div class="col">
                 <div class="card h-100 shadow-lg border-0">
                     <img src="{{ asset('img/accesorios/strapNegro.jpeg') }}" class="card-img-top img-producto" alt="Producto 1">
@@ -56,7 +55,7 @@
 
               <div class="col">
                 <div class="card h-100 shadow-lg border-0">
-                    <img src="{{ asset('img/accesorios/vendas-ridollas.webp') }}" class="card-img-top img-producto" alt="Producto 6">
+                    <img src="{{ asset('img/accesorios/vendas-rodillas.webp') }}" class="card-img-top img-producto" alt="Producto 6">
                     <div class="card-body text-center">
                         <h5 class="card-title">VENDAS DE RODILLAS 250CM</h5>
                         <p class="fw-bold fs-5 text-success">$63.288</p>
@@ -141,5 +140,3 @@
                     </div>
                 </div>
             </div>
-</div>
-</div>
