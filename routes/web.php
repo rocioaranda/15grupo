@@ -51,3 +51,16 @@ Route::get('/vitalidad_salud', function () {
 Route::get('/acce', function () { 
  return view('acce'); 
 });
+Route::get('/accesorios', function () { 
+    return view('accesorios'); 
+});
+
+// Ruta para Iniciar Sesión
+Route::get('/login', function () {
+    return view('construccion');
+});
+
+// Ruta para Registro
+Route::get('/register', function () {
+    return view('construccion');
+});

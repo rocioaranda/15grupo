@@ -383,3 +383,19 @@ p {
   background-color: #00a844;
   transform: scale(1.03);
 }
+
+/*Para desactivar el buscador*/
+.buscador-desactivado {
+    /* Bloquea todos los clics, selecciones y cambios de cursor */
+    pointer-events: none; 
+    
+    /* Asegura que el cursor sea la flecha normal */
+    cursor: default !important;
+}
+
+.buscador-desactivado input, 
+.buscador-desactivado button {
+    /* Refuerza que los elementos internos tampoco cambien el cursor */
+    cursor: default !important;
+}
+

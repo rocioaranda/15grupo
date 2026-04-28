@@ -5,8 +5,7 @@
     <div class="col">
         <div class="producto-card">
             
-            <img src="{{ asset('img/accesorios/strapNegro.jpeg') }}" class="producto-img" alt="Producto">
-
+            <img src="{{ asset('img/accesorios/strapNegro.jpeg') }}" class="producto-img" alt="Producto"> 
             <div class="card-body text-center">
                 <h5 class="producto-titulo">
                     STRAP NEGRO

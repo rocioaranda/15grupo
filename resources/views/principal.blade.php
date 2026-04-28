@@ -42,7 +42,12 @@
             <img src="{{ asset('img/fondoPrincipal/4.png') }}" alt="accesorios">
         </a>
 
-</div>
+    </div>
+
+    @include('mas_vendidos')
+
+    @include('reseñas')
+    
 </main>
 </div>
 @endsection
