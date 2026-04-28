@@ -5,9 +5,11 @@
 <section class="sobre-nosotros">
      <div class="container">
         <div class="row">
-            <!-- LADO DERECHO -->
+            <!-- LADO IZQUIERDO (IMAGEN ANIMADA) -->
+            <div class="col-md-6 lado-izquierdo"></div>
+            <!-- LADO DERECHO(texto) -->
             <div class="col-md-6 lado-derecho d-flex align-items-center">
-                <div class="contenido-texto text-center">
+                <div class="contenido-texto text-center-justify">
                     
                 <h2 class="titulo-derecho">¿Quiénes somos?</h2>
 

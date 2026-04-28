@@ -23,45 +23,26 @@
             <span class="carousel-control-next-icon"></span>
         </button>
     </div>
-    <!-- 🛍️ CATÁLOGO -->
-    <div class="container mt-5 mb-5">
-        <h2 class="text-center mb-4">Nuestro Catálogo</h2>
-        
-        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center">
-            
-          <div class="col">
-                <div class="card h-100 shadow-lg border-0">
-                    <img src="{{ asset('img/whey-protein-doypack.webp') }}" class="card-img-top img-producto" alt="Producto 2">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">WHEY PROTEIN DOYPACK - 2 LBS STAR NUTRITION</h5>
-                        <p class="fw-bold fs-5 text-success">$45.000</p>
-                        <a href="#" class="btn btn-success w-100" style="pointer-events: none; cursor: default;"> Comprar </a>
-                    </div>
-                </div>
-            </div>
+    <!-- divisiones-->
+    <div class="contenedor-secciones">
 
-            <div class="col">
-                <div class="card h-100 shadow-lg border-0">
-                    <img src="{{ asset('img/WheyProtein.jpeg') }}" class="card-img-top img-producto" alt="Producto 1">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">WHEY PLATINUM 2LB - STAR NUTRITION</h5>
-                        <p class="fw-bold fs-5 text-success">$50.000</p>
-                        <a href="#" class="btn btn-success w-100">Comprar</a>
-                    </div>
-                </div>
-            </div>
+    <a class="nav-link secciones" href="{{ url('/aumento_masa') }}" style="text-decoration:none;">
+        <img src="{{ asset('img/fondoPrincipal/1.png') }}" alt="Aumento de masa">
+    </a>
 
-            <div class="col">
-                <div class="card h-100 shadow-lg border-0">
-                    <img src="{{ asset('img/GoldStandardProtein.jpeg') }}" class="card-img-top img-producto" alt="Producto 2">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">PROTEINA 100% GOLD STANDARD WHEY - OPTIMUM NUTRITION</h5>
-                        <p class="fw-bold fs-5 text-success">$85.500</p>
-                        <a href="#" class="btn btn-success w-100">Comprar</a>
-                    </div>
-                </div>
-            </div>
+    <a class="nav-link secciones" href="{{ url('/quemar_grasa') }}" style="text-decoration:none;">
+        <img src="{{ asset('img/fondoPrincipal/3.png') }}" alt="quemador de grasa">
+    </a>
 
+    <a class="nav-link secciones" href="{{ url('/salud_vitalidad') }}" style="text-decoration:none;">
+            <img src="{{ asset('img/fondoPrincipal/2.png') }}" alt="salud y vitalidad">
+        </a>
+
+     <a class="nav-link secciones" href="{{ url('/accesorios') }}" style="text-decoration:none;">
+            <img src="{{ asset('img/fondoPrincipal/4.png') }}" alt="accesorios">
+        </a>
+
+</div>
 </main>
 </div>
 @endsection

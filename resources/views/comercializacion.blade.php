@@ -9,85 +9,51 @@
 </section>
 
 
-<!-- 🛍️ PRODUCTOS -->
-<section class="py-5">
-     <div class="container">
-    <h2 class="text-center verde mb-4">Nuestros productos</h2>
-
-    <div class="row">
-
-        <div class="col-md-4 mb-4">
-            <div class="card text-center p-3">
-                <img src="{{ asset('img/prod1.jpg') }}" class="img-fluid">
-                <h5 class="mt-3">Pre-entreno</h5>
-                <p>Aumenta energía y enfoque</p>
-                <button class="btn btn-verde">Ver más</button>
-            </div>
-        </div>
-
-        <div class="col-md-4 mb-4">
-            <div class="card text-center p-3">
-                <img src="{{ asset('img/prod2.jpg') }}" class="img-fluid">
-                <h5 class="mt-3">Quemador</h5>
-                <p>Apoya la pérdida de grasa</p>
-                <button class="btn btn-verde">Ver más</button>
-            </div>
-        </div>
-
-        <div class="col-md-4 mb-4">
-            <div class="card text-center p-3">
-                <img src="{{ asset('img/prod3.jpg') }}" class="img-fluid">
-                <h5 class="mt-3">Accesorios</h5>
-                <p>Guantes, cinturones y más</p>
-                <button class="btn btn-verde">Ver más</button>
-            </div>
-        </div>
-
-    </div>
-</section>
-
 
 <!-- 💡 BENEFICIOS -->
 <section class="container text-center py-5">
     <h2 class="verde">¿Por qué elegirnos?</h2>
     <p>
-        Calidad garantizada, productos originales y asesoramiento personalizado.
+        Calidad garantizada, productos originales y asesoramiento personalizado para potenciar tu rendimiento.
     </p>
 </section>
 
+<section class="container py-5 text-center">
 
-<!-- 🚚 ENVÍOS Y DEVOLUCIONES -->
-<section class="container py-5">
-    <h2 class="text-center verde mb-4">Envíos y devoluciones</h2>
+    <h2 class="mb-3">¿Por qué elegirnos?</h2>
+    <p class="mb-5">
+        Calidad garantizada, productos originales y asesoramiento personalizado para potenciar tu rendimiento.
+    </p>
 
-    <div class="row text-center">
+    <div class="row justify-content-center">
 
-        <div class="col-md-6">
-            <h5>Envíos</h5>
+        <div class="col-md-5 mb-4">
+            <h4>🚚 Envíos</h4>
             <p>
-                Entregas en puntos físicos y envíos a todo el país.
-                También contamos con servicio de delivery.
+                Ofrecemos retiro en nuestro local y envíos a todo el país. También contamos con servicio de delivery.
             </p>
         </div>
 
-        <div class="col-md-6">
-            <h5>Devoluciones</h5>
+        <div class="col-md-5 mb-4">
+            <h4>🔁 Devoluciones</h4>
             <p>
-                Cambios dentro de los 3 días hábiles ante productos dañados,
-                incorrectos o en mal estado.
+                Aceptamos cambios dentro de los 3 días hábiles en caso de productos dañados o incorrectos.
             </p>
         </div>
 
     </div>
+
 </section>
 
 
 <!-- 📍 UBICACIÓN -->
-<section class="container py-5 text-center">
-    <h2 class="verde mb-3">Encontra el punto de venta</h2>
-    <img src="{{ asset('img/ubi.png') }}">
-    <p>Te esperamos en nuestro local para brindarte la mejor atencion personalizada y todos los productos que necesitas para tu rendimiento deportivo.</p>
-</section> 
+ <a href="https://maps.app.goo.gl/7dnuvanJA8J4AoGv7" target="_blank" style="text-decoration:none;">
+    <section class="container py-5 text-center">
+        <h2 class="verde mb-3">Visitá nuestro local</h2>
+        <img src="{{ asset('img/ubi.png') }}" class="logo-ubi">
+        <p>Te esperamos en nuestro local...</p>
+    </section>
+</a>
 
 
 <!-- 📩 CONTACTO -->

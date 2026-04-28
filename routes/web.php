@@ -31,3 +31,19 @@ Route::get('/carrito', function () {
     return view('construccion'); 
 });
 
+
+Route::get('/aumento_masa', function () { 
+    return view('aumento_masa'); 
+});
+
+Route::get('/quemar_grasa', function () { 
+    return view('quemar_grasa'); 
+});
+
+Route::get('/salud_vitalidad', function () { 
+    return view('salud_vitalidad'); 
+});
+
+Route::get('/accesorios', function () { 
+    return view('accesorios'); 
+});

@@ -84,7 +84,7 @@ h2 {
   background-position: center;
   background-repeat: no-repeat;
   color: rgb(7, 16, 8);
-  min-height: 50vh;
+   min-height: 100vh; 
   position: relative;
   animation: cambiarImagen 10s infinite;
 }
@@ -92,24 +92,25 @@ h2 {
    Se usa para efectos visuales como overlays(efectos visuales encima) */
 .lado-izquierdo::before {
   content: "";
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color:rgba(0, 0, 0, 0.5);
   z-index: 1;
 }
 
 
 @keyframes cambiarImagen {
   0% {
-    background-image: url("../img/sobreNosotros/nosotros.png");
+    background-image: url("/img/sobreNosotros/sobreNosotros.png");
   }
   50% {
-    background-image: url("../img/sobreNosotros/sobreNosotros.png");
+    background-image: url("/img/sobreNosotros/sobreNosotros1.jpeg");
   }
   100% {
-    background-image: url("../img/sobreNosotros/nosotros.png");
+    background-image: url("/img/sobreNosotros/sobreNosotros.png");
   }
 }
 /*TODO lo del texto*/
@@ -204,7 +205,6 @@ p {
   border-radius: 5px;
 }
 /*termina estilos de quienes somos*/
- /*termina estilos de quienes somos*/
 
 .contenido-texto p {
   line-height: 1.6;
@@ -241,4 +241,145 @@ p {
     
     /* Color de fondo fallback */
     background-color: #000;
+}
+ /* comercializacion */
+ .logo-ubi {
+  width: 150px;
+  max-width: 250px;
+  min-width: 100px;
+  height: auto;
+  display: block;
+  margin: 20px auto;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+.logo-ubi:hover {
+  transform: scale(1.1);
+}
+h4 {
+  margin-bottom: 10px;
+}
+
+p {
+  max-width: 500px;
+  margin: 0 auto;
+}
+/* sesiones principal */
+/* CONTENEDOR */
+.contenedor-secciones {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* BLOQUE DE CADA SECCIÓN */
+.secciones {
+  flex: 1 1 180px;
+  max-width: 220px;
+
+  display: block;
+  border-radius: 15px;
+  overflow: hidden;
+
+  transition: 
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* IMAGEN */
+.secciones img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+
+  transition: transform 0.3s ease;
+}
+
+/* HOVER GENERAL */
+.secciones:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+}
+
+/* ZOOM EN IMAGEN */
+.secciones:hover img {
+  transform: scale(1.08);
+}
+
+/* Submenú oculto */
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  margin-top: -1px;
+}
+
+/* Mostrar al hacer hover */
+.dropdown-submenu:hover .dropdown-menu {
+  display: block;
+}
+
+/* ========================= */
+/* TARJETAS DE PRODUCTOS(catalogo) */
+/* ========================= */
+
+.producto-card {
+  height: 100%;
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.producto-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Imagen */
+.producto-img {
+    width: 100%;      /* Que ocupe el ancho de la tarjeta */
+    height: 250px;    /* Altura fija para que todas las tarjetas midan lo mismo */
+    object-fit: contain; /* Evita que la imagen se estire o se deforme */
+    padding: 15px;
+    background-color: #fff; /* Opcional: fondo blanco si el producto tiene transparencia */
+}
+
+
+/* Título */
+.producto-titulo {
+  color:aliceblue;
+  font-size: 1rem;
+  font-weight: 600;
+  min-height: 50px;
+}
+
+/* Precio */
+.producto-precio {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #00c853;
+}
+
+/* Botón */
+.producto-btn {
+  background-color: #00c853;
+  color: black;
+  font-weight: bold;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.producto-btn:hover {
+  background-color: #00a844;
+  transform: scale(1.03);
 }

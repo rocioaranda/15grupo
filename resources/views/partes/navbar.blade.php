@@ -18,25 +18,38 @@
                     </li>
 
                    <li class="nav-item dropdown">
-                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Productos
-                  </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                   <li><a class="dropdown-item" href="{{ url('/catalogo') }}">Mostrar todos los productos</a></li>
-            
-                    <li class="dropdown-submenu">
-                    <a class="dropdown-item dropdown-toggle" href="#">Según tu objetivo</a>
-                    <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Aumento de masa muscular</a></li>
-                    <li><a class="dropdown-item" href="#">Definición / Quemar grasa</a></li>
-                    <li><a class="dropdown-item" href="#">Salud y vitalidad</a></li>
-                    </ul>
-                        </li>
-                    </ul>
-            
+    <a class="nav-link dropdown-toggle" href="#" id="productosDropdown" role="button" data-bs-toggle="dropdown">
+        Productos
+    </a>
+
+    <ul class="dropdown-menu">
+
+        <!-- Mostrar todos -->
+        <li>
+            <a class="dropdown-item" href="{{ url('/catalogo') }}">
+                Mostrar todos los productos
+            </a>
+        </li>
+
+        <!-- Submenú -->
+        <li class="dropdown-submenu">
+            <a class="dropdown-item dropdown-toggle" href="#">Según tu objetivo </a>
+
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{{ url('/aumento_masa') }}">Aumento de masa muscular</a></li>
+                <li><a class="dropdown-item" href="{{ url('/quemar_grasa') }}">Defincion/Quemar grasa</a></li>
+                <li><a class="dropdown-item" href="{{ url('/salud_vitalidad') }}">Salud y vitalidad</a></li>
+                 </ul>
+                 </li>
+                 <li>
+              <a class="dropdown-item" href="{{ url('/accesorios') }}">
+               accesorios
+              </a>
+            </li>
+                </ul>
 
                      <li class="nav-item">
-                      <a class="nav-link" href="{{ url('/contacto') }}">Contacto</a>
+                      <a class="nav-link" href="{{ url('/contacto') }}"> <a class="nav-link" href="{{ url('/contacto') }}">Contacto</a>
                      </li>
                 
                      <li class="nav-item">
