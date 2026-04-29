@@ -1,8 +1,13 @@
 <!-- 🛍️ CATÁLOGO -->
 
 @extends('layouts.app')
-<h2 class="text-center mb-5 text-success fw-bold">Nuestro Catálogo</h2>
 @section('main')
+
+<div class="text-center">
+    <h2 class="titulo-catalogo text-success fw-bold text-uppercase">
+        Nuestro Catálogo
+    </h2>
+</div>
 
 @include('secciones.aumento_masa')
 @include('secciones.quemar_grasa')

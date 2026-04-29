@@ -29,27 +29,14 @@ body {
 }
 
 /* CARRUSEL */
-.carousel-item {
-    width: 100%;
+#carouselExampleAutoplaying .carousel-item {
+    height: auto; /* La altura no es fija, depende de la imagen */
 }
 
-.carousel-item img {
+#carouselExampleAutoplaying .carousel-item img {
+    height: auto;
     width: 100%;
-    height: auto;       /* El alto se ajusta proporcionalmente al ancho */
-    max-height: 500px;  /* Evita que en monitores gigantes se vea inmenso */
-    object-fit: contain; 
-    display: block;
-}
-
-/* Ajuste para celulares */
-@media (max-width: 768px) {
-    .carousel-item {
-        height: auto;   /*libera el alto en celu */
-    }
-    
-    .carousel-item img {
-        max-height: 250px; /* alto en el celu */
-    }
+    object-fit: contain; /* Ajusta la imagen sin recortar nada */
 }
 
 /* CATÁLOGO DE PRODUCTOS */
@@ -74,6 +61,24 @@ body {
 h2 {
     color: white;
 }
+
+/*letra para nuestro catalogo (al mostrar todos los productos)*/
+    .titulo-catalogo {
+        /* font-size: clamp(TamañoMínimo, TamañoDeseado, TamañoMáximo) */
+        font-size: clamp(1.2rem, 3vw, 1.8rem);
+        margin-top: 2rem;
+        margin-bottom: 3rem;
+        letter-spacing: 1px; /* Un poco de espacio entre letras para el estilo Evolvex */
+    }
+
+    /* Ajuste de margen extra para móviles muy pequeños */
+    @media (max-width: 576px) {
+        .titulo-catalogo {
+            margin-bottom: 1.5rem;
+            margin-top: 1rem;
+        }
+    }
+
 
 /* ========================= */
 /* SOBRE NOSOTROS */
