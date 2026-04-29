@@ -27,7 +27,7 @@
     <!-- divisiones-->
     <div class="contenedor-secciones">
 
-    <a class="nav-link secciones" href="{{ url('/aumento_masa') }}" style="text-decoration:none;">
+    <a class="nav-link secciones" href="{{ url('/Masa_aumento') }}" style="text-decoration:none;">
         <img src="{{ asset('img/fondoPrincipal/1.png') }}" alt="Aumento de masa">
     </a>
 
@@ -35,11 +35,11 @@
         <img src="{{ asset('img/fondoPrincipal/3.png') }}" alt="quemador de grasa">
     </a>
 
-    <a class="nav-link secciones" href="{{ url('/salud_vitalidad') }}" style="text-decoration:none;">
+    <a class="nav-link secciones" href="{{ url('/vitalidad_salud') }}" style="text-decoration:none;">
             <img src="{{ asset('img/fondoPrincipal/2.png') }}" alt="salud y vitalidad">
         </a>
 
-     <a class="nav-link secciones" href="{{ url('/accesorios') }}" style="text-decoration:none;">
+     <a class="nav-link secciones" href="{{ url('/acce') }}" style="text-decoration:none;">
             <img src="{{ asset('img/fondoPrincipal/4.png') }}" alt="accesorios">
         </a>
 

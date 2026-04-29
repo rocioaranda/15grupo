@@ -402,4 +402,92 @@ p {
     /* Refuerza que los elementos internos tampoco cambien el cursor */
     cursor: default !important;
 }
+/*estilos comercializacion*/
+.icono-red {
+    color: white;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
 
+.icono-red:hover {
+    transform: scale(1.2);
+    color: #00ff88; /* verde estilo fitness */
+}
+.imagen-banner {
+    position: relative;
+}
+
+.imagen-banner::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.4);
+}
+.redes-container {
+    max-width: 400px;
+    margin: auto;
+}
+
+.red-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    background: #111;
+    padding: 15px 20px;
+    border-radius: 10px;
+
+    margin-bottom: 15px;
+
+}
+
+.red-item i {
+    font-size: 28px;
+}
+
+/* COLORES REALES DE CADA RED */
+.fa-instagram {
+    color: #E1306C;
+}
+
+.fa-facebook {
+    color: #1877F2;
+}
+
+.fa-whatsapp {
+    color: #25D366;
+}
+
+.fa-tiktok {
+    color: #ffffff;
+}
+
+/* TEXTO */
+.red-item span {
+    color: white;
+    font-size: 16px;
+}
+
+/* EFECTO HOVER */
+.red-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+}
+body {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0,0,0,0.85),
+            rgba(10,61,46,0.7),
+            rgba(0,255,136,0.15)
+        ),
+        url('/img/fonfoComer.jpeg');
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+    color: white;
+}
