@@ -382,6 +382,10 @@ p {
   font-weight: bold;
   width: 100%;
   transition: all 0.3s ease;
+  
+  /* Bloqueo de interacción */
+  cursor: default;          /* Flecha normal en lugar de mano */
+  pointer-events: none;     /* No reacciona a clics */
 }
 
 .producto-btn:hover {

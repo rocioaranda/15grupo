@@ -10,7 +10,7 @@
             <div class="card-body text-center">
                 <h5 class="producto-titulo">WHEY PROTEIN DOYPACK - 2 LBS STAR NUTRITION</h5>
                 <p class="producto-precio">$45.000</p>
-                <a href="#" class="btn producto-btn">Comprar</a>
+                <span class="btn producto-btn">Comprar</span>
             </div>
         </div>
     </div>
@@ -21,7 +21,7 @@
             <div class="card-body text-center">
                 <h5 class="producto-titulo">WHEY PLATINUM 2LB - STAR NUTRITION</h5>
                 <p class="producto-precio">$50.000</p>
-                <a href="#" class="btn producto-btn">Comprar</a>
+                <span class="btn producto-btn">Comprar</span>
             </div>
         </div>
     </div>
@@ -32,7 +32,7 @@
             <div class="card-body text-center">
                 <h5 class="producto-titulo">PROTEINA 100% GOLD STANDARD WHEY - OPTIMUM NUTRITION</h5>
                 <p class="producto-precio">$85.500</p>
-                <a href="#" class="btn producto-btn">Comprar</a>
+                <span class="btn producto-btn">Comprar</span>
             </div>
         </div>
     </div>
@@ -43,7 +43,7 @@
             <div class="card-body text-center">
                 <h5 class="producto-titulo">WHEY PROTEIN BODY ADVANCE - 907 GRS</h5>
                 <p class="producto-precio">$25.449</p>
-                <a href="#" class="btn producto-btn">Comprar</a>
+                <span class="btn producto-btn">Comprar</span>
             </div>
         </div>
     </div>
@@ -54,7 +54,7 @@
             <div class="card-body text-center">
                 <h5 class="producto-titulo">PLATINUM NITRO WHEY 2 LBS - STAR NUTRITION</h5>
                 <p class="producto-precio">$58.381</p>
-                <a href="#" class="btn producto-btn">Comprar</a>
+                <span class="btn producto-btn">Comprar</span>
             </div>
         </div>
     </div>
@@ -65,7 +65,7 @@
             <div class="card-body text-center">
                 <h5 class="producto-titulo">WHEY PROTEIN TRUE MADE ENA - 453 G</h5>
                 <p class="producto-precio">$35.583</p>
-                <a href="#" class="btn producto-btn">Comprar</a>
+                <span class="btn producto-btn">Comprar</span>
             </div>
         </div>
     </div>
@@ -76,7 +76,7 @@
             <div class="card-body text-center">
                 <h5 class="producto-titulo">VEGETAL PROTEIN ISOLATE 2 lbs - GOLD NUTRITION</h5>
                 <p class="producto-precio">$33.666</p>
-                <a href="#" class="btn producto-btn">Comprar</a>
+                <span class="btn producto-btn">Comprar</span>
             </div>
         </div>
     </div>
@@ -87,7 +87,7 @@
             <div class="card-body text-center">
                 <h5 class="producto-titulo">ISO VEGETAL PROTEIN 910 G - BODY ADVANCE</h5>
                 <p class="producto-precio">$27.498</p>
-                <a href="#" class="btn producto-btn">Comprar</a>
+                <span class="btn producto-btn">Comprar</span>
             </div>
         </div>
     </div>
@@ -98,7 +98,7 @@
             <div class="card-body text-center">
                 <h5 class="producto-titulo">CREATINA 300GR DOYPACK - STAR NUTRITION</h5>
                 <p class="producto-precio">$28.000</p>
-                <a href="#" class="btn producto-btn">Comprar</a>
+                <span class="btn producto-btn">Comprar</span>
             </div>
         </div>
     </div>
@@ -108,7 +108,7 @@
         <div class="card-body text-center">
             <h5 class="producto-titulo">DOYPACK CREATINA MICRONIZADA 300GR - NUTREMAX</h5>
             <p class="producto-precio">$25.459</p>
-            <a href="#" class="btn producto-btn">Comprar</a>
+            <span class="btn producto-btn">Comprar</span>
         </div>
     </div>
 </div>
@@ -119,7 +119,7 @@
         <div class="card-body text-center">
             <h5 class="producto-titulo">CREATINA MICRONIZADA ENA - 300GR</h5>
             <p class="producto-precio">$31.157</p>
-            <a href="#" class="btn producto-btn">Comprar</a>
+            <span class="btn producto-btn">Comprar</span>
         </div>
     </div>
 </div>
@@ -130,7 +130,7 @@
         <div class="card-body text-center">
             <h5 class="producto-titulo">CREATINA MICRONIZADA CREAPURE 200g - ENA</h5>
             <p class="producto-precio">$48.414</p>
-            <a href="#" class="btn producto-btn">Comprar</a>
+            <span class="btn producto-btn">Comprar</span>
         </div>
     </div>
 </div>
@@ -141,7 +141,7 @@
         <div class="card-body text-center">
             <h5 class="producto-titulo">CREATINE MONOHYDRATE 300 g - GOLD NUTRITION</h5>
             <p class="producto-precio">$28.565</p>
-            <a href="#" class="btn producto-btn">Comprar</a>
+            <span class="btn producto-btn">Comprar</span>
         </div>
     </div>
 </div>
@@ -152,7 +152,7 @@
         <div class="card-body text-center">
             <h5 class="producto-titulo">CREATINA GRANGER - 300 G</h5>
             <p class="producto-precio">$31.823</p>
-            <a href="#" class="btn producto-btn">Comprar</a>
+            <span class="btn producto-btn">Comprar</span>
         </div>
     </div>
 </div>
@@ -163,7 +163,7 @@
         <div class="card-body text-center">
             <h5 class="producto-titulo">CREATINA MICRONIZED POWDER 300GRS - OPTIMUM NUTRITION</h5>
             <p class="producto-precio">$39.174</p>
-            <a href="#" class="btn producto-btn">Comprar</a>
+            <span class="btn producto-btn">Comprar</span>
         </div>
     </div>
 </div>
@@ -174,7 +174,7 @@
         <div class="card-body text-center">
             <h5 class="producto-titulo">CREATINA HARDCORE 300G - INTEGRALMEDICA</h5>
             <p class="producto-precio">$39.329</p>
-            <a href="#" class="btn producto-btn">Comprar</a>
+            <span class="btn producto-btn">Comprar</span>
         </div>
     </div>
 </div>
@@ -185,7 +185,7 @@
         <div class="card-body text-center">
             <h5 class="producto-titulo">CREATINA MICRONIZADA FRUIT ENA - 300 GR</h5>
             <p class="producto-precio">$31.157</p>
-            <a href="#" class="btn producto-btn">Comprar</a>
+            <span class="btn producto-btn">Comprar</span>
         </div>
     </div>
 </div>

@@ -15,9 +15,7 @@
 
                 <p class="producto-precio">$45.000</p>
 
-                <a href="#" class="btn producto-btn">
-                    Comprar
-                </a>
+                <span class="btn producto-btn">Comprar</span>
             </div>
                  </div>
     </div>
@@ -28,7 +26,7 @@
         <div class="card-body text-center">
             <h5 class="producto-titulo">GUANTE DEPORTIVO</h5>
             <p class="producto-precio">$12.500</p>
-            <a href="#" class="btn producto-btn">Comprar</a>
+            <span class="btn producto-btn">Comprar</span>
         </div>
     </div>
 </div>
@@ -39,7 +37,7 @@
         <div class="card-body text-center">
             <h5 class="producto-titulo">TOBILLERA PARA POLEA</h5>
             <p class="producto-precio">$19.950</p>
-            <a href="#" class="btn producto-btn">Comprar</a>
+            <span class="btn producto-btn">Comprar</span>
         </div>
     </div>
 </div>
@@ -50,7 +48,7 @@
         <div class="card-body text-center">
             <h5 class="producto-titulo">TOBILLERAS NEOPRENE</h5>
             <p class="producto-precio">$23.340</p>
-            <a href="#" class="btn producto-btn">Comprar</a>
+            <span class="btn producto-btn">Comprar</span>
         </div>
     </div>
 </div>
@@ -61,7 +59,7 @@
         <div class="card-body text-center">
             <h5 class="producto-titulo">CINTURÓN DE FUERZA</h5>
             <p class="producto-precio">$57.331</p>
-            <a href="#" class="btn producto-btn">Comprar</a>
+            <span class="btn producto-btn">Comprar</span>
         </div>
     </div>
 </div>
@@ -72,7 +70,7 @@
         <div class="card-body text-center">
             <h5 class="producto-titulo">VENDAS DE RODILLAS 250CM</h5>
             <p class="producto-precio">$63.288</p>
-            <a href="#" class="btn producto-btn">Comprar</a>
+            <span class="btn producto-btn">Comprar</span>
         </div>
     </div>
 </div>
@@ -83,7 +81,7 @@
         <div class="card-body text-center">
             <h5 class="producto-titulo">MUÑEQUERA ELÁSTICA</h5>
             <p class="producto-precio">$17.590</p>
-            <a href="#" class="btn producto-btn">Comprar</a>
+            <span class="btn producto-btn">Comprar</span>
         </div>
     </div>
 </div>
@@ -94,7 +92,7 @@
         <div class="card-body text-center">
             <h5 class="producto-titulo">BANDA CON MANIJA TENSIÓN MEDIA</h5>
             <p class="producto-precio">$14.791</p>
-            <a href="#" class="btn producto-btn">Comprar</a>
+            <span class="btn producto-btn">Comprar</span>
         </div>
     </div>
 </div>
@@ -105,7 +103,7 @@
         <div class="card-body text-center">
             <h5 class="producto-titulo">BANDA FUNCIONAL TENSIÓN MEDIA</h5>
             <p class="producto-precio">$38.411</p>
-            <a href="#" class="btn producto-btn">Comprar</a>
+            <span class="btn producto-btn">Comprar</span>
         </div>
     </div>
 </div>
@@ -116,7 +114,7 @@
         <div class="card-body text-center">
             <h5 class="producto-titulo">BANDA DE ASISTENCIA 3.2</h5>
             <p class="producto-precio">$34.104</p>
-            <a href="#" class="btn producto-btn">Comprar</a>
+            <span class="btn producto-btn">Comprar</span>
         </div>
     </div>
 </div>
@@ -127,7 +125,7 @@
         <div class="card-body text-center">
             <h5 class="producto-titulo">BANDA DE ASISTENCIA 6.4</h5>
             <p class="producto-precio">$67.000</p>
-            <a href="#" class="btn producto-btn">Comprar</a>
+            <span class="btn producto-btn">Comprar</span>
         </div>
     </div>
 </div>
@@ -138,7 +136,7 @@
         <div class="card-body text-center">
             <h5 class="producto-titulo">PUSH-UP / FLEXIONES DE BRAZOS</h5>
             <p class="producto-precio">$19.744</p>
-            <a href="#" class="btn producto-btn">Comprar</a>
+            <span class="btn producto-btn">Comprar</span>
         </div>
     </div>
 </div>
@@ -149,7 +147,7 @@
         <div class="card-body text-center">
             <h5 class="producto-titulo">COLCHONETA ALTA DENSIDAD</h5>
             <p class="producto-precio">$55.566</p>
-            <a href="#" class="btn producto-btn">Comprar</a>
+            <span class="btn producto-btn">Comprar</span>
         </div>
     </div>
 </div>

@@ -25,7 +25,8 @@
                             <div class="card-body text-center d-flex flex-column p-2">
                                 <h6 class="card-title text-uppercase small fw-bold mb-2" style="min-height: 35px;">WHEY PROTEIN DOYPACK STAR NUTRITION</h6>
                                 <p class="text-success fw-bold fs-5 mb-2">$45.000</p>
-                                <a href="#" class="btn btn-success w-100 fw-bold text-black text-uppercase border-0" style="font-size: 0.8rem;">Comprar</a>
+                                <span class="btn btn-success w-100 fw-bold text-black text-uppercase border-0" 
+                                   style="font-size: 0.8rem; cursor: default; pointer-events: none;">Comprar</span>
                             </div>
                         </div>
                     </div>
@@ -38,7 +39,8 @@
                             <div class="card-body text-center d-flex flex-column p-2">
                                 <h6 class="card-title text-uppercase small fw-bold mb-2" style="min-height: 35px;">WHEY PLATINUM 2LB STAR NUTRITION</h6>
                                 <p class="text-success fw-bold fs-5 mb-2">$50.000</p>
-                                <a href="#" class="btn btn-success w-100 fw-bold text-black text-uppercase border-0" style="font-size: 0.8rem;">Comprar</a>
+                                <span class="btn btn-success w-100 fw-bold text-black text-uppercase border-0" 
+                                            style="font-size: 0.8rem; cursor: default; pointer-events: none;">Comprar</span>
                             </div>
                         </div>
                     </div>
@@ -51,7 +53,8 @@
                             <div class="card-body text-center d-flex flex-column p-2">
                                 <h6 class="card-title text-uppercase small fw-bold mb-2" style="min-height: 35px;">CREATINA 300GR STAR NUTRITION</h6>
                                 <p class="text-success fw-bold fs-5 mb-2">$28.000</p>
-                                <a href="#" class="btn btn-success w-100 fw-bold text-black text-uppercase border-0" style="font-size: 0.8rem;">Comprar</a>
+                                <span class="btn btn-success w-100 fw-bold text-black text-uppercase border-0" 
+                                             style="font-size: 0.8rem; cursor: default; pointer-events: none;">Comprar</span>
                             </div>
                         </div>
                     </div>
@@ -64,7 +67,8 @@
                             <div class="card-body text-center d-flex flex-column p-2">
                                 <h6 class="card-title text-uppercase small fw-bold mb-2" style="min-height: 35px;">CREATINA MICRONIZADA ENA 300GR</h6>
                                 <p class="text-success fw-bold fs-5 mb-2">$31.157</p>
-                                <a href="#" class="btn btn-success w-100 fw-bold text-black text-uppercase border-0" style="font-size: 0.8rem;">Comprar</a>
+                                <span class="btn btn-success w-100 fw-bold text-black text-uppercase border-0" 
+                                           style="font-size: 0.8rem; cursor: default; pointer-events: none;">Comprar</span>
                             </div>
                         </div>
                     </div>
@@ -81,7 +85,10 @@
                             <div class="card-body text-center d-flex flex-column p-2">
                                 <h6 class="card-title text-uppercase small fw-bold mb-2" style="min-height: 35px;">PANCAKE PROTEICO GRANGER</h6>
                                 <p class="text-success fw-bold fs-5 mb-2">$17.962</p>
-                                <a href="#" class="btn btn-success w-100 fw-bold text-black text-uppercase border-0" style="font-size: 0.8rem;">Comprar</a>
+                                <span class="btn btn-success w-100 fw-bold text-black text-uppercase border-0" 
+                  style="font-size: 0.8rem; cursor: default; pointer-events: none;">
+                Comprar
+            </span>
                             </div>
                         </div>
                     </div>
@@ -94,7 +101,10 @@
                             <div class="card-body text-center d-flex flex-column p-2">
                                 <h6 class="card-title text-uppercase small fw-bold mb-2" style="min-height: 35px;">CITRATO DE MAGNESIO GOLD NUTRITION</h6>
                                 <p class="text-success fw-bold fs-5 mb-2">$19.400</p>
-                                <a href="#" class="btn btn-success w-100 fw-bold text-black text-uppercase border-0" style="font-size: 0.8rem;">Comprar</a>
+                                <span class="btn btn-success w-100 fw-bold text-black text-uppercase border-0" 
+                  style="font-size: 0.8rem; cursor: default; pointer-events: none;">
+                Comprar
+            </span>
                             </div>
                         </div>
                     </div>
@@ -107,7 +117,10 @@
                             <div class="card-body text-center d-flex flex-column p-2">
                                 <h6 class="card-title text-uppercase small fw-bold mb-2" style="min-height: 35px;">VITAMINA C BODY ADVANCE</h6>
                                 <p class="text-success fw-bold fs-5 mb-2">$14.000</p>
-                                <a href="#" class="btn btn-success w-100 fw-bold text-black text-uppercase border-0" style="font-size: 0.8rem;">Comprar</a>
+                                <span class="btn btn-success w-100 fw-bold text-black text-uppercase border-0" 
+                  style="font-size: 0.8rem; cursor: default; pointer-events: none;">
+                Comprar
+            </span>
                             </div>
                         </div>
                     </div>
@@ -120,7 +133,10 @@
                             <div class="card-body text-center d-flex flex-column p-2">
                                 <h6 class="card-title text-uppercase small fw-bold mb-2" style="min-height: 35px;">VENDAS DE RODILLAS 250CM</h6>
                                 <p class="text-success fw-bold fs-5 mb-2">$63.288</p>
-                                <a href="#" class="btn btn-success w-100 fw-bold text-black text-uppercase border-0" style="font-size: 0.8rem;">Comprar</a>
+                                <span class="btn btn-success w-100 fw-bold text-black text-uppercase border-0" 
+                  style="font-size: 0.8rem; cursor: default; pointer-events: none;">
+                Comprar
+            </span>
                             </div>
                         </div>
                     </div>

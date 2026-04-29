@@ -10,7 +10,7 @@
             <div class="text-center">
                 <h5 class="producto-titulo">STAR NUTRITION THERMOFUEL 120 CAPS</h5>
                 <p class="producto-precio">$21.320</p>
-                <a href="#" class="btn producto-btn">Comprar</a>
+                <span class="btn producto-btn">Comprar</span>
             </div>
         </div>
     </div>
@@ -21,7 +21,7 @@
             <div class="text-center">
                 <h5 class="producto-titulo">THERMOGENIX S.2 HOCH SPORT - 120 COMPRIMIDOS</h5>
                 <p class="producto-precio">$27.250</p>
-                <a href="#" class="btn producto-btn">Comprar</a>
+                <span class="btn producto-btn">Comprar</span>
             </div>
         </div>
     </div>
@@ -32,7 +32,7 @@
             <div class="text-center">
                 <h5 class="producto-titulo">THERMA PRO HARDCORE X 120 CAPS - INTEGRALMEDICA</h5>
                 <p class="producto-precio">$29.904</p>
-                <a href="#" class="btn producto-btn">Comprar</a>
+                <span class="btn producto-btn">Comprar</span>
             </div>
         </div>
     </div>
@@ -43,7 +43,7 @@
             <div class="text-center">
                 <h5 class="producto-titulo">XXL THERMOGENIX PLUS 120COMP</h5>
                 <p class="producto-precio">$17.068</p>
-                <a href="#" class="btn producto-btn">Comprar</a>
+                <span class="btn producto-btn">Comprar</span>
             </div>
         </div>
     </div>
@@ -54,7 +54,7 @@
             <div class="text-center">
                 <h5 class="producto-titulo">L-CARNITINA 1000 X 60 TABLETAS - STAR NUTRITION</h5>
                 <p class="producto-precio">$12.220</p>
-                <a href="#" class="btn producto-btn">Comprar</a>
+                <span class="btn producto-btn">Comprar</span>
             </div>
         </div>
     </div>
@@ -65,7 +65,7 @@
             <div class="text-center">
                 <h5 class="producto-titulo">CARNITINA 1500 X 60 CAPS - ENA</h5>
                 <p class="producto-precio">$12.417</p>
-                <a href="#" class="btn producto-btn">Comprar</a>
+                <span class="btn producto-btn">Comprar</span>
             </div>
         </div>
     </div>
@@ -76,7 +76,7 @@
             <div class="text-center">
                 <h5 class="producto-titulo">L-CARNITINA BODY ADVANCE - 180 COMPRIMIDOS</h5>
                 <p class="producto-precio">$11.242</p>
-                <a href="#" class="btn producto-btn">Comprar</a>
+                <span class="btn producto-btn">Comprar</span>
             </div>
         </div>
     </div>
@@ -87,7 +87,7 @@
             <div class="text-center">
                 <h5 class="producto-titulo">LIPO GOLD ELITE 60 CAPS - GOLD NUTRITION</h5>
                 <p class="producto-precio">$15.302</p>
-                <a href="#" class="btn producto-btn">Comprar</a>
+                <span class="btn producto-btn">Comprar</span>
             </div>
         </div>
     </div>
@@ -98,7 +98,7 @@
             <div class="text-center">
                 <h5 class="producto-titulo">LIPOXTREME 60 COMPRIMIDOS - BODY ADVANCE</h5>
                 <p class="producto-precio">$7.324</p>
-                <a href="#" class="btn producto-btn">Comprar</a>
+                <span class="btn producto-btn">Comprar</span>
             </div>
         </div>
     </div>

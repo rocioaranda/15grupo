@@ -10,7 +10,7 @@
             <div class="card-body text-center">
                 <h5 class="producto-titulo">GOLD MULTIVITAMINICO X 30 CAPS</h5>
                 <p class="producto-precio">$21.500</p>
-                <a href="#" class="btn producto-btn">Comprar</a>
+                <span class="btn producto-btn">Comprar</span>
             </div>
         </div>
     </div>
@@ -21,7 +21,7 @@
             <div class="card-body text-center">
                 <h5 class="producto-titulo">VITAMINA X 60 CAPS - STAR NUTRITION</h5>
                 <p class="producto-precio">$2.400</p>
-                <a href="#" class="btn producto-btn">Comprar</a>
+                <span class="btn producto-btn">Comprar</span>
             </div>
         </div>
     </div>
@@ -32,7 +32,7 @@
             <div class="card-body text-center">
                 <h5 class="producto-titulo">MULTIVITAMINICO MERVICK - 120 CAPS</h5>
                 <p class="producto-precio">$17.091</p>
-                <a href="#" class="btn producto-btn">Comprar</a>
+                <span class="btn producto-btn">Comprar</span>
             </div>
         </div>
     </div>
@@ -43,7 +43,7 @@
             <div class="card-body text-center">
                 <h5 class="producto-titulo">VITAMINA C BODY ADVANCE</h5>
                 <p class="producto-precio">$14.000</p>
-                <a href="#" class="btn producto-btn">Comprar</a>
+                <span class="btn producto-btn">Comprar</span>
             </div>
         </div>
     </div>
@@ -54,7 +54,7 @@
             <div class="card-body text-center">
                 <h5 class="producto-titulo">ZMA GOLD NUTRITION X 90 CAPS</h5>
                 <p class="producto-precio">$17.900</p>
-                <a href="#" class="btn producto-btn">Comprar</a>
+                <span class="btn producto-btn">Comprar</span>
             </div>
         </div>
     </div>
@@ -65,7 +65,7 @@
             <div class="card-body text-center">
                 <h5 class="producto-titulo">ZMA STAR NUTRITION X 90 CAPS</h5>
                 <p class="producto-precio">$26.000</p>
-                <a href="#" class="btn producto-btn">Comprar</a>
+                <span class="btn producto-btn">Comprar</span>
             </div>
         </div>
     </div>
@@ -76,7 +76,7 @@
             <div class="card-body text-center">
                 <h5 class="producto-titulo">COLAGENO HIDROLIZADO 360G - ENA</h5>
                 <p class="producto-precio">$30.185</p>
-                <a href="#" class="btn producto-btn">Comprar</a>
+                <span class="btn producto-btn">Comprar</span>
             </div>
         </div>
     </div>
@@ -86,7 +86,7 @@
         <div class="card-body text-center">
             <h5 class="producto-titulo">COLAGENO BEAUTY 250 GR GRANGER</h5>
             <p class="producto-precio">$13.367</p>
-            <a href="#" class="btn producto-btn">Comprar</a>
+            <span class="btn producto-btn">Comprar</span>
         </div>
     </div>
 </div>
@@ -97,7 +97,7 @@
         <div class="card-body text-center">
             <h5 class="producto-titulo">COLAGENO SPORT 407 G - ENA</h5>
             <p class="producto-precio">$29.410</p>
-            <a href="#" class="btn producto-btn">Comprar</a>
+           <span class="btn producto-btn">Comprar</span>
         </div>
     </div>
 </div>
@@ -108,7 +108,7 @@
         <div class="card-body text-center">
             <h5 class="producto-titulo">COLAGENO EN POLVO AGE BIOLOGIQUE</h5>
             <p class="producto-precio">$32.100</p>
-            <a href="#" class="btn producto-btn">Comprar</a>
+            <span class="btn producto-btn">Comprar</span>
         </div>
     </div>
 </div>
@@ -119,7 +119,7 @@
         <div class="card-body text-center">
             <h5 class="producto-titulo">COLAGENO BODY ADVANCE</h5>
             <p class="producto-precio">$24.500</p>
-            <a href="#" class="btn producto-btn">Comprar</a>
+            <span class="btn producto-btn">Comprar</span>
         </div>
     </div>
 </div>
@@ -130,7 +130,7 @@
         <div class="card-body text-center">
             <h5 class="producto-titulo">COLAGENO HIDROLIZADO HIALURÓNICO X 60 CAPS</h5>
             <p class="producto-precio">$15.400</p>
-            <a href="#" class="btn producto-btn">Comprar</a>
+            <span class="btn producto-btn">Comprar</span>
         </div>
     </div>
 </div>
@@ -141,7 +141,7 @@
         <div class="card-body text-center">
             <h5 class="producto-titulo">OMEGA 3 MAX X 60 CAPS - INNOVANATURALS</h5>
             <p class="producto-precio">$92.169</p>
-            <a href="#" class="btn producto-btn">Comprar</a>
+            <span class="btn producto-btn">Comprar</span>
         </div>
     </div>
 </div>
@@ -152,7 +152,7 @@
         <div class="card-body text-center">
             <h5 class="producto-titulo">OMEGA 3 X 60 CAPS - ENA SPORT</h5>
             <p class="producto-precio">$27.105</p>
-            <a href="#" class="btn producto-btn">Comprar</a>
+            <span class="btn producto-btn">Comprar</span>
         </div>
     </div>
 </div>
@@ -163,7 +163,7 @@
         <div class="card-body text-center">
             <h5 class="producto-titulo">OMEGA 3 X 30 CAPS - ONE FIT NUTRITION</h5>
             <p class="producto-precio">$19.900</p>
-            <a href="#" class="btn producto-btn">Comprar</a>
+            <span class="btn producto-btn">Comprar</span>
         </div>
     </div>
 </div>
@@ -174,7 +174,7 @@
         <div class="card-body text-center">
             <h5 class="producto-titulo">OMEGA 3 MAX X 30 CAPS - GOLD NUTRITION</h5>
             <p class="producto-precio">$29.675</p>
-            <a href="#" class="btn producto-btn">Comprar</a>
+            <span class="btn producto-btn">Comprar</span>
         </div>
     </div>
 </div>
@@ -185,7 +185,7 @@
         <div class="card-body text-center">
             <h5 class="producto-titulo">OMEGA 3 MAX X 60 CAPS - STAR NUTRITION</h5>
             <p class="producto-precio">$33.280</p>
-            <a href="#" class="btn producto-btn">Comprar</a>
+            <span class="btn producto-btn">Comprar</span>
         </div>
     </div>
 </div>
@@ -207,7 +207,7 @@
         <div class="card-body text-center">
             <h5 class="producto-titulo">CITRATO DE MAGNESIO X 60 CAPS - STAR NUTRITION</h5>
             <p class="producto-precio">$24.600</p>
-            <a href="#" class="btn producto-btn">Comprar</a>
+            <span class="btn producto-btn">Comprar</span>
         </div>
     </div>
 </div>
@@ -218,7 +218,7 @@
         <div class="card-body text-center">
             <h5 class="producto-titulo">CITRATO DE MAGNESIO 500 GR - STAR NUTRITION</h5>
             <p class="producto-precio">$34.466</p>
-            <a href="#" class="btn producto-btn">Comprar</a>
+            <span class="btn producto-btn">Comprar</span>>
         </div>
     </div>
 </div>
@@ -229,7 +229,7 @@
         <div class="card-body text-center">
             <h5 class="producto-titulo">PANCAKE PROTEICO GRANGER</h5>
             <p class="producto-precio">$17.962</p>
-            <a href="#" class="btn producto-btn">Comprar</a>
+            <span class="btn producto-btn">Comprar</span>
         </div>
     </div>
 </div>
@@ -240,7 +240,7 @@
         <div class="card-body text-center">
             <h5 class="producto-titulo">CUPCAKE PROTEICO GRANGER</h5>
             <p class="producto-precio">$16.421</p>
-            <a href="#" class="btn producto-btn">Comprar</a>
+            <span class="btn producto-btn">Comprar</span>
         </div>
     </div>
 </div>
@@ -251,7 +251,7 @@
         <div class="card-body text-center">
             <h5 class="producto-titulo">OMELETTE PROTEICO GRANGER</h5>
             <p class="producto-precio">$15.916</p>
-            <a href="#" class="btn producto-btn">Comprar</a>
+            <span class="btn producto-btn">Comprar</span>
         </div>
     </div>
 </div>
@@ -262,7 +262,7 @@
         <div class="card-body text-center">
             <h5 class="producto-titulo">OMELETTE PROTEICO PULVER 500 GR</h5>
             <p class="producto-precio">$45.500</p>
-            <a href="#" class="btn producto-btn">Comprar</a>
+            <span class="btn producto-btn">Comprar</span>
         </div>
     </div>
 </div>
@@ -273,7 +273,7 @@
         <div class="card-body text-center">
             <h5 class="producto-titulo">PULVER CAPUCCINO 500 GR</h5>
             <p class="producto-precio">$40.050</p>
-            <a href="#" class="btn producto-btn">Comprar</a>
+            <span class="btn producto-btn">Comprar</span>
         </div>
     </div>
 </div>
@@ -284,7 +284,7 @@
         <div class="card-body text-center">
             <h5 class="producto-titulo">CHIA PUDDING PROTEICO</h5>
             <p class="producto-precio">$12.940</p>
-            <a href="#" class="btn producto-btn">Comprar</a>
+            <span class="btn producto-btn">Comprar</span>
         </div>
     </div>
 </div>
