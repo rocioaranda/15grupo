@@ -101,6 +101,39 @@
         </div>
     </div>
 
+       <div class="col">
+        <div class="producto-card">
+            <img src="{{ asset('img/quemarGrasa/loss-hoch.webp') }}" class="producto-img" alt="Producto">
+            <div class="text-center">
+                <h5 class="producto-titulo">LOSS WEIGHT - 120 COMPRIMIDOS - HOCH SPORT</h5>
+                <p class="producto-precio">$37.202</p>
+                <span class="btn producto-btn">Comprar</span>
+            </div>
+        </div>
+    </div>
+
+           <div class="col">
+        <div class="producto-card">
+            <img src="{{ asset('img/quemarGrasa/carnitina-nutremax.webp') }}" class="producto-img" alt="Producto">
+            <div class="text-center">
+                <h5 class="producto-titulo">CARNITINA 600 NUTREMAX - 90 COMPRIMIDOS</h5>
+                <p class="producto-precio">$18.550</p>
+                <span class="btn producto-btn">Comprar</span>
+            </div>
+        </div>
+    </div>
+
+              <div class="col">
+        <div class="producto-card">
+            <img src="{{ asset('img/quemarGrasa/ripped.webp') }}" class="producto-img" alt="Producto">
+            <div class="text-center">
+                <h5 class="producto-titulo">RIPPED X ENA - 60 COMPRIMIDOS</h5>
+                <p class="producto-precio">$12.897</p>
+                <span class="btn producto-btn">Comprar</span>
+            </div>
+        </div>
+    </div>
+
 
 </div>
  </div>

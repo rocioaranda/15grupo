@@ -68,6 +68,17 @@
         </div>
     </div>
 
+           <div class="col">
+        <div class="producto-card">
+            <img src="{{ asset('img/aumentoMasa/xtrenght-prote.webp') }}" class="producto-img">
+            <div class="card-body text-center">
+                <h5 class="producto-titulo">XTRENGHT 1KG - BEST WHEY</h5>
+                <p class="producto-precio">$60.530</p>
+                <span class="btn producto-btn">Comprar</span>
+            </div>
+        </div>
+    </div>
+
     <div class="col">
         <div class="producto-card">
             <img src="{{ asset('img/aumentoMasa/prote-vegetal.webp') }}" class="producto-img">
@@ -183,6 +194,28 @@
         <div class="card-body text-center">
             <h5 class="producto-titulo">CREATINA MICRONIZADA FRUIT ENA - 300 GR</h5>
             <p class="producto-precio">$31.157</p>
+            <span class="btn producto-btn">Comprar</span>
+        </div>
+    </div>
+</div>
+
+<div class="col">
+    <div class="producto-card">
+        <img src="{{ asset('img/aumentoMasa/creatina-nutremax.webp') }}" class="producto-img">
+        <div class="card-body text-center">
+            <h5 class="producto-titulo">CREATINA MICRONIZADA NUTREMAX  - 200 GR</h5>
+            <p class="producto-precio">$18.330</p>
+            <span class="btn producto-btn">Comprar</span>
+        </div>
+    </div>
+</div>
+
+<div class="col">
+    <div class="producto-card">
+        <img src="{{ asset('img/aumentoMasa/creatina-strenght.webp') }}" class="producto-img">
+        <div class="card-body text-center">
+            <h5 class="producto-titulo">CREATINA XTRENGHT - 250 GR</h5>
+            <p class="producto-precio">$18.500</p>
             <span class="btn producto-btn">Comprar</span>
         </div>
     </div>

@@ -286,6 +286,29 @@
         </div>
     </div>
 </div>
+
+<div class="col">
+    <div class="producto-card">
+        <img src="{{ asset('img/saludVitalidad/pancake-salado.webp') }}" class="producto-img" alt="Producto">
+        <div class="card-body text-center">
+            <h5 class="producto-titulo">PANCAKE PROTEICOS SALADO SABOR QUESO 300 gr- GRANGER</h5>
+            <p class="producto-precio">$17.951</p>
+            <span class="btn producto-btn">Comprar</span>
+        </div>
+    </div>
+</div>
+
+<div class="col">
+    <div class="producto-card">
+        <img src="{{ asset('img/saludVitalidad/pancake-vegan.webp') }}" class="producto-img" alt="Producto">
+        <div class="card-body text-center">
+            <h5 class="producto-titulo">VEGAN PANCAKES PROTEICOS SABOR CHOCOLATE 400G</h5>
+            <p class="producto-precio">$17.503</p>
+            <span class="btn producto-btn">Comprar</span>
+        </div>
+    </div>
+</div>
+
 </div>
     </div>
      

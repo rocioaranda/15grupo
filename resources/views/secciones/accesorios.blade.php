@@ -150,6 +150,41 @@
         </div>
     </div>
 </div>
+
+<div class="col">
+    <div class="producto-card">
+        <img src="{{ asset('img/accesorios/shaker.webp') }}" class="producto-img">
+        <div class="card-body text-center">
+            <h5 class="producto-titulo">SHAKER SIMPLE 600 CC - GOLD NUTRITION</h5>
+            <p class="producto-precio">$6.483</p>
+            <span class="btn producto-btn">Comprar</span>
+        </div>
+    </div>
+</div>
+
+<div class="col">
+    <div class="producto-card">
+        <img src="{{ asset('img/accesorios/shaker-project.webp') }}" class="producto-img">
+        <div class="card-body text-center">
+            <h5 class="producto-titulo">SHAKER PROTEIN PROJECT</h5>
+            <p class="producto-precio">$12.742</p>
+            <span class="btn producto-btn">Comprar</span>
+        </div>
+    </div>
+</div>
+
+<div class="col">
+    <div class="producto-card">
+        <img src="{{ asset('img/accesorios/botella.webp') }}" class="producto-img">
+        <div class="card-body text-center">
+            <h5 class="producto-titulo">BOTELLA DE ALUMINIO VONNE 750ml</h5>
+            <p class="producto-precio">$38.700</p>
+            <span class="btn producto-btn">Comprar</span>
+        </div>
+    </div>
+</div>
+
+
         </div>
     </div>
 
