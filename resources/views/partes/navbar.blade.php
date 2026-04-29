@@ -9,12 +9,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/">Inicio</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/quienes_somos">Sobre Evolvex</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/terminos_condiciones">Términos y condiciones</a>
-                </li>
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="productosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -32,13 +26,24 @@
                     </ul>
                 </li>
 
-                <li class="nav-item">
+                 <li class="nav-item">
                     <a class="nav-link" href="/contacto">Contacto</a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/quienes_somos">Sobre Evolvex</a>
+                </li>
+
+                        
                 <li class="nav-item">
                     <a class="nav-link" href="/comercializacion">Comercialización</a>
                 </li>
-            </ul>
+            
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/terminos_condiciones">Términos y condiciones</a>
+                </li>
+                </ul>
 
            //botón del buscador 
             <form class="d-flex mx-lg-3 my-2 my-lg-0 flex-grow-1 buscador-desactivado" role="search" style="max-width: 400px;">
