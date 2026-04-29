@@ -280,18 +280,27 @@ p {
 
 /* BLOQUE DE CADA SECCIÓN */
 .secciones {
-  flex: 1 1 260px;      /* antes 180px */
-  max-width: 300px;     /* antes 220px */
+    display: block;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
 
-  display: block;
-  border-radius: 15px;
-  overflow: hidden;
+.secciones:hover {
+    transform: scale(1.05); /* Efecto zoom al pasar mouse */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
 
-  transition: 
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+.secciones img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
 
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+/* Espaciado superior para que no choque con el carrusel */
+.contenedor-secciones {
+    margin-top: 2rem; 
 }
 
 /* IMAGEN */
@@ -381,7 +390,7 @@ p {
   font-weight: bold;
   width: 100%;
   transition: all 0.3s ease;
-  
+
   /* Bloqueo de interacción */
   cursor: default;          /* Flecha normal en lugar de mano */
   pointer-events: none;     /* No reacciona a clics */

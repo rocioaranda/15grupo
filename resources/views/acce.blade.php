@@ -66,7 +66,7 @@
 
 <div class="col">
     <div class="producto-card">
-        <img src="{{ asset('img/accesorios/vendas-ridollas.webp') }}" class="producto-img">
+        <img src="{{ asset('img/accesorios/vendas-rodillas.webp') }}" class="producto-img">
         <div class="card-body text-center">
             <h5 class="producto-titulo">VENDAS DE RODILLAS 250CM</h5>
             <p class="producto-precio">$63.288</p>

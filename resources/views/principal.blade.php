@@ -25,25 +25,32 @@
     </button>
 </div>
     <!-- divisiones-->
-    <div class="contenedor-secciones">
+    <div class="container-fluid py-4">
+    <div class="row g-3"> <div class="col-6 col-md-3"> <a class="secciones" href="{{ url('/Masa_aumento') }}">
+                <img src="{{ asset('img/fondoPrincipal/1.png') }}" class="img-fluid" alt="Aumento de masa">
+            </a>
+        </div>
 
-    <a class="nav-link secciones" href="{{ url('/aumento_masa') }}" style="text-decoration:none;">
-        <img src="{{ asset('img/fondoPrincipal/1.png') }}" alt="Aumento de masa">
-    </a>
+        <div class="col-6 col-md-3">
+            <a class="secciones" href="{{ url('/quemar_grasa') }}">
+                <img src="{{ asset('img/fondoPrincipal/3.png') }}" class="img-fluid" alt="quemador de grasa">
+            </a>
+        </div>
 
-    <a class="nav-link secciones" href="{{ url('/quemar_grasa') }}" style="text-decoration:none;">
-        <img src="{{ asset('img/fondoPrincipal/3.png') }}" alt="quemador de grasa">
-    </a>
+        <div class="col-6 col-md-3">
+            <a class="secciones" href="{{ url('/vitalidad_salud') }}">
+                <img src="{{ asset('img/fondoPrincipal/2.png') }}" class="img-fluid" alt="salud y vitalidad">
+            </a>
+        </div>
 
-    <a class="nav-link secciones" href="{{ url('/salud_vitalidad') }}" style="text-decoration:none;">
-            <img src="{{ asset('img/fondoPrincipal/2.png') }}" alt="salud y vitalidad">
-        </a>
-
-     <a class="nav-link secciones" href="{{ url('/accesorios') }}" style="text-decoration:none;">
-            <img src="{{ asset('img/fondoPrincipal/4.png') }}" alt="accesorios">
-        </a>
-
+        <div class="col-6 col-md-3">
+            <a class="secciones" href="{{ url('/acce') }}">
+                <img src="{{ asset('img/fondoPrincipal/4.png') }}" class="img-fluid" alt="accesorios">
+            </a>
+        </div>
+        
     </div>
+</div>
 
     @include('mas_vendidos')
 
