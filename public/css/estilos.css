@@ -271,13 +271,12 @@ p {
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
-  padding: 20px;
 }
 
 /* BLOQUE DE CADA SECCIÓN */
 .secciones {
-  flex: 1 1 180px;
-  max-width: 220px;
+  flex: 1 1 260px;      /* antes 180px */
+  max-width: 300px;     /* antes 220px */
 
   display: block;
   border-radius: 15px;
@@ -293,7 +292,7 @@ p {
 /* IMAGEN */
 .secciones img {
   width: 100%;
-  height: 150px;
+  height: 200px;        /* antes 150px */
   object-fit: cover;
 
   transition: transform 0.3s ease;
@@ -301,13 +300,13 @@ p {
 
 /* HOVER GENERAL */
 .secciones:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+  transform: translateY(-8px); /* un poco más notorio */
+  box-shadow: 0 12px 25px rgba(0,0,0,0.3);
 }
 
 /* ZOOM EN IMAGEN */
 .secciones:hover img {
-  transform: scale(1.08);
+  transform: scale(1.1); /* un poco más de zoom */
 }
 
 /* Submenú oculto */
