@@ -2,7 +2,7 @@
 
 @section('main')
 
-<!-- 🎯 PRESENTACIÓN -->
+<!-- PRESENTACIÓN -->
 <section class="text-center py-5">
     <h1 class="verde">Comercialización</h1>
     <p>Soluciones deportivas diseñadas para potenciar tu rendimiento y acompañar cada etapa de tu entrenamiento, con productos de calidad y respaldo profesional. </p>
@@ -10,7 +10,7 @@
 
 
 
-<!-- 💡 BENEFICIOS -->
+<!-- BENEFICIOS -->
 <section class="container py-5 text-center">
 
     <h2 class="mb-3">¿Por qué elegirnos?</h2>
@@ -35,8 +35,7 @@
 
     </div>
     </section>
-    <!-- 📱 REDES SOCIALES -->
-<!-- 📱 REDES SOCIALES -->
+    <!--  REDES SOCIALES -->
 <section class="container py-5">
     <h2 class="text-center mb-4">Nuestras redes</h2>
 
@@ -58,12 +57,12 @@
         </div>
     </div>
 </section>
-<!-- 🏋️ IMAGEN DESTACADA -->
+<!-- IMAGEN DESTACADA -->
 <section class="container py-4 text-center">
     <img src="{{ asset('img/comer.jpeg') }}" class="img-fluid imagen-banner">
 </section>
 
-<!-- 📍 UBICACIÓN -->
+<!-- UBICACIÓN -->
  <a href="https://maps.app.goo.gl/7dnuvanJA8J4AoGv7" target="_blank" style="text-decoration:none;">
     <section class="container py-5 text-center">
         <h2 class="verde mb-3">Visitá nuestro local</h2>

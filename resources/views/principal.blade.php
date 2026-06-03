@@ -3,7 +3,7 @@
 @section('main')
 <div class="fondo-principal">
 <main>
-     <!-- 🎠 CARRUSEL -->
+     <!-- CARRUSEL -->
 <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
     <div class="carousel-inner">
         <div class="carousel-item active">

@@ -26,43 +26,67 @@
                     </ul>
                 </li>
 
-                 <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link" href="/contacto">Contacto</a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="/quienes_somos">Sobre Evolvex</a>
                 </li>
-
                         
                 <li class="nav-item">
                     <a class="nav-link" href="/comercializacion">Comercialización</a>
                 </li>
-            
 
                 <li class="nav-item">
                     <a class="nav-link" href="/terminos_condiciones">Términos y condiciones</a>
                 </li>
-                </ul>
+            </ul>
 
-           //botón del buscador 
             <form class="d-flex mx-lg-3 my-2 my-lg-0 flex-grow-1 buscador-desactivado" role="search" style="max-width: 400px;">
-            <input class="form-control me-2 bg-dark text-white border-secondary shadow-none" type="search" placeholder="¿Qué estás buscando?" readonly> 
-            <button class="btn btn-outline-success" type="button">
-            <i class="bi bi-search"></i>
-            </button>
+                <input class="form-control me-2 bg-dark text-white border-secondary shadow-none" type="search" placeholder="¿Qué estás buscando?" readonly> 
+                <button class="btn btn-outline-success" type="button">
+                    <i class="bi bi-search"></i>
+                </button>
             </form>
+
             <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0 justify-content-center">
                 @include('carrito') 
+
                 <div class="dropdown">
-                    <button class="btn btn-outline-light border-0 p-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-person-circle fs-4"></i>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
-                         <li><a class="dropdown-item" href="/login">Iniciar Sesión</a></li>
-                          <li><a class="dropdown-item" href="/register">Crear Usuario</a></li> 
-                     </ul>
-                    </ul>
+                    @auth
+                        <button class="btn btn-outline-success dropdown-toggle fw-bold text-white border-0 p-1 d-flex align-items-center gap-2 shadow-none" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-circle text-success fs-4"></i>
+                            {{ Auth::user()->nombre_apellido }}
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="/mi-perfil">Mi Perfil</a></li>
+                            
+                            @if(Auth::user()->rol_id === 1)
+                                <li><a class="dropdown-item text-warning" href="/admin">Panel Admin</a></li>
+                            @endif
+
+                            <li><hr class="dropdown-divider border-secondary"></li>
+                            <li>
+                                <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item text-danger w-100 text-start" style="background: none; border: none;">
+                                        Cerrar Sesión
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+                    @endauth
+
+                    @guest
+                        <button class="btn btn-outline-light border-0 p-1 shadow-none" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-circle fs-4"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="/login">Iniciar Sesión</a></li>
+                            <li><a class="dropdown-item" href="/register">Crear Usuario</a></li> 
+                        </ul>
+                    @endguest
                 </div>
             </div>
         </div>
