@@ -1,5 +1,5 @@
 <?php
-use App\Http\Controllers\ContactoController;
+use App\Http\Controllers\ConsultaController;
 use App\Http\Controllers\ProductoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AutenticacionController;
@@ -20,15 +20,16 @@ Route::get('/catalogo', function () {
     return view('catalogo');
 });
 
-Route::get('/contacto', function () { 
-return view('contacto'); 
+Route::get('/consulta', function () { 
+return view('consulta'); 
 });
 
-Route::post('/contacto', [ContactoController::class, 'enviar'])->name('contacto.enviar');
+Route::post('/consulta', [ConsultaController::class, 'enviar'])
+    ->name('consulta.enviar');
 
 Route::get('/comercializacion', function () { 
 return view('comercializacion'); 
-});
+}); 
 
 Route::get('/carrito', function () { 
     return view('construccion'); 

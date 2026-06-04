@@ -9,14 +9,18 @@ class Consulta extends Model
 {
     use HasFactory;
 
-    // Le decimos a Laravel a qué tabla representa este modelo
     protected $table = 'consultas';
 
-    // Definimos qué campos se pueden llenar desde el formulario de contacto
     protected $fillable = [
         'nombre',
         'email',
+        'asunto',
         'mensaje',
-        'respondido'
+        'estado'
     ];
+
+    // 🔹 Estados posibles
+    const ESTADO_PENDIENTE = 'pendiente';
+    const ESTADO_VISTA = 'vista';
+    const ESTADO_RESPONDIDA = 'respondida';
 }

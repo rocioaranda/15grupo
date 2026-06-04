@@ -27,7 +27,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/contacto">Contacto</a>
+                    <a class="nav-link" href="/consulta">consulta</a>
                 </li>
 
                 <li class="nav-item">

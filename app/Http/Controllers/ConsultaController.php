@@ -1,36 +1,33 @@
 <?php
 
 namespace App\Http\Controllers;
+namespace App\Http\Controllers;
 
 use App\Models\Consulta;
 use Illuminate\Http\Request;
 
-class ContactoController extends Controller
+class ConsultaController extends Controller
 {
-    /**
-     * Procesa el formulario de contacto y muestra la pantalla de éxito.
-     */
     public function enviar(Request $request)
     {
-        // 1. Validamos los datos entrantes del formulario
+        // 1. Validación
         $request->validate([
             'nombre'  => 'required|string|max:255',
             'email'   => 'required|email|max:255',
+            'asunto'  => 'required|string|max:100', 
             'mensaje' => 'required|string|min:10',
         ]);
 
-        // 2. Insertamos la consulta en la base de datos
+        // 2. Guardar en base de datos (con estado)
         Consulta::create([
             'nombre'  => $request->nombre,
             'email'   => $request->email,
+            'asunto'  => $request->asunto,
             'mensaje' => $request->mensaje,
+            'estado' => Consulta::ESTADO_PENDIENTE
         ]);
 
-        // 3. Capturamos los datos para mandarlos a  vista exito.blade.php
-        $nombre = $request->nombre;
-        $email = $request->email;
-
-        // Redirigimos vista de éxito con sus datos reales
-        return view('exito', compact('nombre', 'email'));
+        // 3. Redirigir con mensaje 
+        return redirect('/consulta')->with('success', 'Consulta enviada correctamente');
     }
 }
