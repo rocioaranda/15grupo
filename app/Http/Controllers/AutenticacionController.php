@@ -28,13 +28,17 @@ class AutenticacionController extends Controller
             'password'        => 'required|min:8|confirmed',
         ]);
 
+        $rol = \App\Models\Rol::firstOrCreate(
+            ['nombre' => 'Cliente']
+        );
+
         // Guardamos al usuario y ENCRIPTAMOS su password con bcrypt()
         $usuario = Usuario::create([
             'nombre_apellido' => $request->nombre_apellido,
             'email'           => $request->email,
             'telefono'        => $request->telefono,
             'password'        => bcrypt($request->password), // <-- ENCRIPTA LA CONTRASEÑA
-            'rol_id'          => 2, // Cliente por defecto
+            'rol_id'          => $rol->id, 
         ]);
 
         Auth::login($usuario);

@@ -51,7 +51,21 @@
             </form>
 
             <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0 justify-content-center">
-                @include('carrito') 
+            <a href="{{ route('carrito.index') }}" class="btn btn-outline-light border-0 p-1 position-relative">
+                <i class="bi bi-cart3 fs-4"></i>
+                
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.6rem;">
+                    @auth
+                        {{ auth()->user()->ventas()->where('estado', 'carrito')->first() 
+                           ? auth()->user()->ventas()->where('estado', 'carrito')->first()->detalles()->sum('cantidad') 
+                           : 0 }}
+                    @endauth
+
+                    @guest
+                        0
+                    @endguest
+                </span>
+                </a>
 
                 <div class="dropdown">
                     @auth
@@ -61,6 +75,7 @@
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
                             <li><a class="dropdown-item" href="/mi-perfil">Mi Perfil</a></li>
+                            <li><a class="dropdown-item" href="{{ route('compras.historial') }}"><i class="bi bi-clock-history me-2"></i>Mis Compras</a></li>
                             
                             @if(Auth::user()->rol_id === 1)
                                 <li><a class="dropdown-item text-warning" href="/admin">Panel Admin</a></li>
