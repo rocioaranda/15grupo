@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use App\Models\VentaCabecera;
 use Illuminate\Foundation\Auth\User as Authenticatable; // OBLIGATORIO PARA LOGINS
 use Illuminate\Notifications\Notifiable;
 
@@ -33,4 +33,8 @@ class Usuario extends Authenticatable // Debe extender de Authenticatable, NO de
         ];
     }
     */
+    public function ventas()
+{
+    return $this->hasMany(VentaCabecera::class);
+}
 }
