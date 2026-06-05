@@ -89,6 +89,15 @@ Route::middleware(['auth'])->group(function () {
         // Si es admin, llamamos manualmente a la función de tu controlador
         return app(AdminController::class)->index();
     })->name('admin.dashboard');
-    
+ 
 });
+// Rutas de Consultas
+Route::get('/consulta', function () {
+    return view('consulta');
+})->name('consulta');
 
+Route::post('/consulta/enviar', [ConsultaController::class, 'enviar'])->name('consulta.enviar');
+
+// Rutas Admin - Consultas
+Route::get('/admin/consultas', [ConsultaController::class, 'index'])->name('admin.consultas');
+Route::patch('/admin/consultas/{consulta}/estado', [ConsultaController::class, 'cambiarEstado'])->name('admin.consultas.estado');
