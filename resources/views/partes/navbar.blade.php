@@ -59,7 +59,7 @@
                 </span>
                 </a>
 
-                // menu de usuario
+               
                 <div class="dropdown">
                     @auth
                         <button class="btn btn-outline-success dropdown-toggle fw-bold text-white border-0 p-1 d-flex align-items-center gap-2 shadow-none" type="button" data-bs-toggle="dropdown" aria-expanded="false">
