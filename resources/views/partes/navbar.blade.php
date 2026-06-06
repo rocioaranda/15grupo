@@ -27,7 +27,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/consulta">consulta</a>
+                    <a class="nav-link" href="/consulta">Consulta</a>
                 </li>
 
                 <li class="nav-item">
@@ -55,18 +55,11 @@
                 <i class="bi bi-cart3 fs-4"></i>
                 
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.6rem;">
-                    @auth
-                        {{ auth()->user()->ventas()->where('estado', 'carrito')->first() 
-                           ? auth()->user()->ventas()->where('estado', 'carrito')->first()->detalles()->sum('cantidad') 
-                           : 0 }}
-                    @endauth
-
-                    @guest
-                        0
-                    @endguest
+                    {{ $cantidadCarrito ?? 0 }}
                 </span>
                 </a>
 
+                // menu de usuario
                 <div class="dropdown">
                     @auth
                         <button class="btn btn-outline-success dropdown-toggle fw-bold text-white border-0 p-1 d-flex align-items-center gap-2 shadow-none" type="button" data-bs-toggle="dropdown" aria-expanded="false">

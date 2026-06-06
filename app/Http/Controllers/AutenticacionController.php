@@ -24,20 +24,18 @@ class AutenticacionController extends Controller
         $request->validate([
             'nombre_apellido' => 'required|string|max:255',
             'email'           => 'required|email|unique:usuarios,email',
-            'telefono'        => 'required|string|max:20', 
+            'telefono'        => 'required|string|max:20',
             'password'        => 'required|min:8|confirmed',
         ]);
 
-        $rol = \App\Models\Rol::firstOrCreate(
-            ['nombre' => 'Cliente']
-        );
+        // Obtener el rol Cliente 
+        $rol = \App\Models\Rol::where('nombre', 'Cliente')->firstOrFail();
 
-        // Guardamos al usuario y ENCRIPTAMOS su password con bcrypt()
         $usuario = Usuario::create([
             'nombre_apellido' => $request->nombre_apellido,
             'email'           => $request->email,
             'telefono'        => $request->telefono,
-            'password'        => bcrypt($request->password), // <-- ENCRIPTA LA CONTRASEÑA
+            'password'        => bcrypt($request->password),
             'rol_id'          => $rol->id, 
         ]);
 

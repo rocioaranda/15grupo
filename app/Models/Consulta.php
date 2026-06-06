@@ -19,7 +19,7 @@ class Consulta extends Model
         'estado'
     ];
 
-    // 🔹 Estados posibles
+    //  Estados posibles
     const ESTADO_PENDIENTE = 'pendiente';
     const ESTADO_VISTA = 'vista';
     const ESTADO_RESPONDIDA = 'respondida';

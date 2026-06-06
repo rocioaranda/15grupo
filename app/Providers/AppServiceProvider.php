@@ -19,6 +19,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        View::composer('*', function ($view) {
+            if (auth()->check()) {
+                $venta = auth()->user()->ventas()
+                    ->where('estado', 'carrito')
+                    ->withSum('detalles', 'cantidad')
+                    ->first();
+
+                $view->with('cantidadCarrito', $venta?->detalles_sum_cantidad ?? 0);
+            } else {
+                $view->with('cantidadCarrito', 0);
+            }
+        });
     }
-}

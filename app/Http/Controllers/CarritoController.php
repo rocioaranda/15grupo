@@ -97,10 +97,6 @@ class CarritoController extends Controller
     {
         $carrito = $this->obtenerCarrito();
 
-        if ($carrito->detalles()->count() === 0) {
-            return back()->with('error', 'Tu carrito está vacío.');
-        }
-
         $items = $carrito->detalles()->with('producto')->get();
         $total = $carrito->total;
         $user = Auth::user();
