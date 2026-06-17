@@ -1,125 +1,103 @@
 <?php
-use App\Http\Controllers\ConsultaController;
-use App\Http\Controllers\ProductoController;
+
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ConsultaController;
 use App\Http\Controllers\AutenticacionController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\CatalogoController;
 use App\Http\Controllers\CarritoController;
+use App\Http\Controllers\PerfilController;
+use App\Http\Controllers\ProductoController;
+use App\Models\VentaCabecera;
+use App\Http\Controllers\InicioController;
+use App\Http\Controllers\CatalogoController;
 
-Route::get('/', function () {
-    return view('principal'); // Esto busca resources/views/principal.blade.php
-});
-Route::get('/quienes_somos', function () {
-    return view('quienes_somos');
-});
 
-Route::get('/terminos_condiciones', function () {
-    return view('terminos_condiciones');
-});
+Route::get('/', [InicioController::class, 'index'])->name('inicio');
 
-Route::get('/catalogo', function () {
-    return view('catalogo');
-});
+Route::get('/quienes_somos', function () { 
+    return view('quienes_somos'); 
+})->name('quienes_somos');
 
-Route::get('/consulta', function () { 
-return view('consulta'); 
-});
-
-Route::post('/consulta', [ConsultaController::class, 'enviar'])
-    ->name('consulta.enviar');
+Route::get('/terminos_condiciones', function () { 
+    return view('terminos_condiciones'); 
+})->name('terminos_condiciones');
 
 Route::get('/comercializacion', function () { 
-return view('comercializacion'); 
-}); 
+    return view('comercializacion'); 
+})->name('comercializacion');
 
-// páginas por categoría
-Route::get('/Masa_aumento', function () { 
-return view('Masa_aumento'); 
-});
+// Catálogo
+Route::get('/catalogo/{categoria?}', [CatalogoController::class, 'index'])->name('catalogo.index');
 
-Route::get('/quemar_grasa', function () { 
- return view('quemar_grasa'); 
-});
-
-Route::get('/vitalidad_salud', function () { 
-  return view('vitalidad_salud'); 
-});
-
-Route::get('/acce', function () { 
- return view('acce'); 
-});
-Route::get('/accesorios', function () { 
-    return view('accesorios'); 
-});
-
-// ruta para catalogo
-Route::get('/catalogo', [CatalogoController::class, 'index'])->name('catalogo.index');
-// Registro de Usuarios
-Route::get('/register', [AutenticacionController::class, 'formularioRegistro'])->name('register');
-Route::post('/register', [AutenticacionController::class, 'registrar'])->name('register.store');
-
-// ruta para carrito
-
-// ualquier visitante puede ver su carrito y añadir productos
-Route::get('/carrito', [CarritoController::class, 'index'])->name('carrito.index');
-Route::post('/carrito/agregar', [CarritoController::class, 'agregar'])->name('carrito.agregar');
-Route::delete('/carrito/eliminar/{id}', [CarritoController::class, 'eliminar'])->name('carrito.eliminar');
-// para ver el historial de compras 
-Route::get('/mis-compras', [CarritoController::class, 'historial'])->name('compras.historial');
-
-// solo ingresan usuarios logueados
-Route::middleware(['auth'])->group(function () {
-    // Al presionar "Finalizar Compra", Laravel interceptará la petición y exigirá el Login
-    Route::post('/carrito/confirmar', [CarritoController::class, 'confirmar'])->name('carrito.confirmar');
-    
-    Route::get('/compra-confirmada', function () {
-        if (!session('total')) {
-            return redirect()->route('carrito.index');
-        }
-        return view('emails.cuerpo_correo');
-    })->name('compra.confirmada');
-});
-
-
-// Inicio de Sesión
-Route::get('/login', [AutenticacionController::class, 'formularioLogin'])->name('login');
-Route::post('/login', [AutenticacionController::class, 'login'])->name('login.store');
-
-// Registro de Usuarios
-Route::get('/register', [AutenticacionController::class, 'formularioRegistro'])->name('register');
-Route::post('/register', [AutenticacionController::class, 'registrar'])->name('register.store');
-
-// Cierre de Sesión
-Route::post('/logout', [AutenticacionController::class, 'logout'])->name('logout');
-
-// Para usuarios autenticados
-Route::middleware(['auth'])->group(function () {
-    
-    // Panel privado del Cliente
-    Route::get('/mi-perfil', function () {
-        return view('backend.usuarios.cliente'); 
-    })->name('perfil.cliente');
-
-    // RUTA DEL ADMINISTRADOR
-    Route::get('/admin', function () {
-       // Validación limpia antes de llamar al controlador:
-        if (Auth::user()->rol_id !== 1) {
-            return redirect('/')->with('error', 'No tenés permisos para acceder a esta sección.');
-        }
-        
-        // Si es admin, llamamos manualmente a la función de tu controlador
-        return app(AdminController::class)->index();
-    })->name('admin.dashboard');
- 
-});
-// Rutas de Consultas
-Route::get('/consulta', function () {
-    return view('consulta');
+// Consultas públicas
+Route::get('/consulta', function () { 
+    return view('consulta'); 
 })->name('consulta');
 
 Route::post('/consulta/enviar', [ConsultaController::class, 'enviar'])->name('consulta.enviar');
 
-// Rutas Admin - Consultas
-Route::get('/admin/consultas', [ConsultaController::class, 'index'])->name('admin.consultas');
-Route::patch('/admin/consultas/{consulta}/estado', [ConsultaController::class, 'cambiarEstado'])->name('admin.consultas.estado');
+
+// Autenticación
+Route::get('/register', [AutenticacionController::class, 'formularioRegistro'])->name('register');
+Route::post('/register', [AutenticacionController::class, 'registrar'])->name('register.store');
+
+Route::get('/login', [AutenticacionController::class, 'formularioLogin'])->name('login');
+Route::post('/login', [AutenticacionController::class, 'login'])->name('login.store');
+
+Route::post('/logout', [AutenticacionController::class, 'logout'])->name('logout');
+
+
+// Gestión del carrito (operaciones públicas básicas)
+Route::get('/carrito', [CarritoController::class, 'index'])->name('carrito.index');
+Route::post('/carrito/agregar', [CarritoController::class, 'agregar'])->name('carrito.agregar');
+Route::delete('/carrito/eliminar/{id}', [CarritoController::class, 'eliminar'])->name('carrito.eliminar');
+
+
+// ZONA PROTEGIDA (Solo Clientes Registrados y Autenticados)
+Route::middleware(['auth'])->group(function () {
+
+    // Finalizar y vaciar carritos
+    Route::post('/carrito/vaciar', [CarritoController::class, 'vaciar'])->name('carrito.vaciar');
+
+    // Historial de compras 
+    Route::get('/mis-compras', [CarritoController::class, 'historial'])->name('compras.historial');
+    
+    // compras
+    Route::post('/carrito/confirmar', [CarritoController::class, 'confirmar'])->name('carrito.confirmar');
+    Route::get('/compra-confirmada', [CarritoController::class, 'compraConfirmada'])->name('compra.confirmada');
+    Route::get('/compra/descargar', [CarritoController::class, 'descargarComprobante'])->name('compra.descargar');
+    Route::post('/compra/enviar-comprobante', [CarritoController::class, 'enviarComprobante'])->name('compra.enviar');
+
+    // Panel de Gestión de Perfil
+    Route::get('/mi-perfil', [PerfilController::class, 'index'])->name('perfil.index');
+    Route::put('/mi-perfil/actualizar', [PerfilController::class, 'actualizar'])->name('perfil.actualizar');
+
+
+    // CONTROL DE ACCESO ADMINISTRADOR
+    Route::middleware(['admin'])->group(function () {
+        
+        // Dashboard general
+        Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
+    
+        // CRUD de Productos
+        Route::get('/admin/productos', [ProductoController::class, 'index'])->name('admin.productos.index');
+        Route::post('/admin/productos', [ProductoController::class, 'store'])->name('admin.productos.store');
+        Route::put('/admin/productos/{id}', [ProductoController::class, 'update'])->name('admin.productos.update');
+        Route::delete('/admin/productos/{id}', [ProductoController::class, 'destroy'])->name('admin.productos.destroy');
+        Route::patch('/admin/productos/{id}/restore', [ProductoController::class, 'restore'])->name('admin.productos.restore');
+        
+        //  Visualizar y Eliminar Usuarios
+        Route::get('/admin/usuarios', [AdminController::class, 'usuariosIndex'])->name('admin.usuarios.index');
+        // Usamos el nombre 'admin.usuarios.eliminar' para que coincida perfectamente con tu formulario de la vista
+        Route::delete('/admin/usuarios/{id}', [AdminController::class, 'eliminarUsuario'])->name('admin.usuarios.eliminar');
+
+        // Ventas Realizadas
+        Route::get('/admin/ventas', [AdminController::class, 'ventasIndex'])->name('admin.ventas.index');
+
+        // Rutas Admin - Consultas recibidas
+        Route::get('/admin/consultas', [ConsultaController::class, 'index'])->name('admin.consultas');
+        Route::patch('/admin/consultas/{consulta}/estado', [ConsultaController::class, 'cambiarEstado'])->name('admin.consultas.estado');
+    });
+
+});

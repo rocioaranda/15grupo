@@ -8,15 +8,17 @@ use Illuminate\Http\Request;
 
 class CatalogoController extends Controller
 {
-    public function index()
+    public function index($categoriaId = null)
     {
-        // 1. Traemos todas las categorías para armar los botones de filtro
+        // 1. Traemos todas las categorías obligatoriamente
         $categorias = Categoria::all();
 
-        // 2. Traemos todos los productos activos con su categoría vinculada
-        $productos = Producto::where('activo', true)->with('categoria')->latest()->get();
+        // 2. Traemos SIEMPRE todos los productos activos vinculados a su categoría
+        // Quitamos el filtro 'when' de acá para que Blade tenga todo el mapa de productos disponible
+        $productos = Producto::with('categoria')->latest()->get();
 
-        // 3. Enviamos ambas variables a la vista
-        return view('catalogo', compact('productos', 'categorias'));
+        // 3. Enviamos las variables a la vista. 
+        // $categoriaId nos servirá únicamente para saber cuál pestaña dejar abierta por defecto
+        return view('catalogo', compact('productos', 'categorias', 'categoriaId'));
     }
 }

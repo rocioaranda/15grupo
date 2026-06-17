@@ -6,7 +6,7 @@
                 <ul class="list-unstyled">
                     <li class="mb-2"><a href="{{ url('/') }}" class="text-white text-decoration-none hover-green">Inicio</a></li>
                     <li class="mb-2"><a href="{{ url('/catalogo') }}" class="text-white text-decoration-none hover-green">Productos</a></li>
-                    <li class="mb-2"><a href="{{ url('/contacto') }}" class="text-white text-decoration-none hover-green">Contacto</a></li>
+                    <li class="mb-2"><a href="{{ url('/consulta') }}" class="text-white text-decoration-none hover-green">Consultas</a></li>
                     <li class="mb-2"><a href="{{ url('/quienes_somos') }}" class="text-white text-decoration-none hover-green">Sobre Evolvex</a></li>
                     <li class="mb-2"><a href="{{ url('/comercializacion') }}" class="text-white text-decoration-none hover-green">Comercialización</a></li>
                     <li class="mb-2"><a href="{{ url('/terminos_condiciones') }}" class="text-white text-decoration-none hover-green">Términos y condiciones</a></li>

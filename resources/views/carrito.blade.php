@@ -60,13 +60,18 @@
                                         ${{ number_format($item->subtotal, 2, ',', '.') }} 
                                     </td>
                                     <td class="text-end">
-                                        <form action="{{ route('carrito.eliminar', $item->id) }}" method="POST" class="d-inline"> 
-                                            @csrf
-                                            @method('DELETE') 
-                                            <button type="submit" class="btn btn-sm btn-outline-danger border-0 rounded-circle p-2 shadow-none" title="Eliminar producto">
-                                                <i class="bi bi-trash"></i>
-                                            </button>
-                                        </form> 
+                                        @auth
+                                            @if(auth()->user()->rol_id == 2)
+                                                {{-- Solo el Cliente puede remover productos individuales --}}
+                                                <form action="{{ route('carrito.eliminar', $item->id) }}" method="POST" class="d-inline"> 
+                                                    @csrf
+                                                    @method('DELETE') 
+                                                    <button type="submit" class="btn btn-sm btn-outline-danger border-0 rounded-circle p-2 shadow-none" title="Eliminar producto">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </form> 
+                                            @endif
+                                        @endauth
                                     </td>
                                 </tr>
                             @endforeach
@@ -74,10 +79,22 @@
                     </table>
                 </div>
 
-                <div class="mt-4 d-flex justify-content-between">
+                <div class="mt-4 d-flex justify-content-between align-items-center flex-wrap gap-3">
                     <a href="{{ url('/catalogo') }}" class="btn btn-outline-light rounded-pill px-4 py-2 small">
                         <i class="bi bi-arrow-left me-1"></i> Seguir Comprando
                     </a>
+
+                    @auth
+                        @if(auth()->user()->rol_id == 2)
+                            {{-- Solo el cliente puede vaciar la colección del carrito --}}
+                            <form action="{{ route('carrito.vaciar') }}" method="POST" onsubmit="return confirm('¿Estás seguro de que querés vaciar todo tu carrito de compras?');">
+                                @csrf
+                                <button type="submit" class="btn btn-outline-danger rounded-pill px-4 py-2 small shadow-none">
+                                    <i class="bi bi-cart-x me-1"></i> Vaciar Carrito
+                                </button>
+                            </form>
+                        @endif
+                    @endauth
                 </div>
             </div>
 
@@ -93,24 +110,31 @@
                     <div class="d-flex justify-content-between mb-4 fs-5 border-top border-secondary pt-3">
                         <span class="fw-bold">Total a pagar:</span>
                         <span class="fw-bold text-success">
-                            {{-- Evita errores en cascada si un invitado mira un carrito sin existir cabecera en la BD --}}
                             ${{ $carrito ? number_format($carrito->total, 2, ',', '.') : '0,00' }}
                         </span>
                     </div>
 
                     <div class="d-grid">
                         @auth
-                            {{-- Si el usuario está registrado, procesa la compra normal --}}
-                            <form action="{{ route('carrito.confirmar') }}" method="POST"> 
-                                @csrf
-                                <button type="submit" class="btn btn-success fw-bold text-uppercase py-3 rounded-pill shadow-none w-100"> 
-                                    <i class="bi bi-credit-card me-2"></i> Finalizar Compra
+                            @if(auth()->user()->rol_id == 2)
+                                {{-- CLIENTE: Procesa la compra de forma normal --}}
+                                <form action="{{ route('carrito.confirmar') }}" method="POST"> 
+                                    @csrf
+                                    <button type="submit" class="btn btn-success fw-bold text-uppercase py-3 rounded-pill shadow-none w-100"> 
+                                        <i class="bi bi-credit-card me-2"></i> Finalizar Compra
+                                    </button>
+                                </form> 
+                            @else
+                                {{-- ADMINISTRADOR: Se le bloquea la pasarela de pagos con un aviso --}}
+                                <button class="btn btn-secondary fw-bold text-uppercase py-3 rounded-pill shadow-none w-100" disabled>
+                                    <i class="bi bi-shield-lock me-2"></i> Bloqueado para Administrador
                                 </button>
-                            </form> 
+                                <small class="text-center text-muted mt-2">Los administradores de la tienda no pueden generar órdenes de compra.</small>
+                            @endif
                         @endauth
 
                         @guest
-                            {{-- Si es un visitante anónimo, el botón lo redirige al login con un aviso explícito --}}
+                            {{-- Invitado anónimo: Se le pide loguearse --}}
                             <a href="{{ route('login') }}" class="btn btn-success fw-bold text-uppercase py-3 rounded-pill shadow-none w-100 text-center text-decoration-none">
                                 <i class="bi bi-box-arrow-in-right me-2"></i> Iniciar Sesión para Comprar
                             </a>
