@@ -27,19 +27,24 @@
     <div class="container-fluid py-4">
         <div class="row g-3"> 
             
-            @forelse($categorias as $cat)
-                <div class="col-6 col-md-3"> 
-                    {{-- Envía el ID de la categoría como parámetro hacia el catálogo --}}
-                    <a class="secciones" href="{{ route('catalogo.index', ['categoria' => $cat->id]) }}">
-                        {{-- Carga de manera dinámica la imagen usando el ID correspondiente (ej: 1.png, 2.png, etc) --}}
-                        <img src="{{ asset("img/fondoPrincipal/{$cat->id}.png")}}" class="img-fluid rounded shadow-sm" alt="{{ $cat->nombre }}">
-                    </a>
-                </div>
-            @empty
-                <div class="col-12 text-center py-3">
-                    <p class="text-muted small">No hay categorías disponibles para mostrar en este momento.</p>
-                </div>
-            @endforelse
+@forelse($categorias as $cat)
+    <div class="col-6 col-md-3"> 
+        {{-- Envía el ID real de la base de datos al catálogo --}}
+        <a class="secciones" href="{{ route('catalogo.index', ['categoria' => $cat->id]) }}">
+            
+            {{-- Convertimos 'Salud y vitalidad' en 'salud-y-vitalidad' para la imagen --}}
+            @php
+                $nombreImagen = Str::slug($cat->nombre);
+            @endphp
+
+            <img src="{{ asset("img/fondoPrincipal/{$nombreImagen}.png")}}" class="img-fluid rounded shadow-sm" alt="{{ $cat->nombre }}">
+        </a>
+    </div>
+@empty
+    <div class="col-12 text-center py-3">
+        <p class="text-muted small">No hay categorías disponibles para mostrar en este momento.</p>
+    </div>
+@endforelse
             
         </div>
     </div>

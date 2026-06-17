@@ -51,9 +51,16 @@
                 </li>
             </ul>
 
-            <form class="d-flex mx-lg-3 my-2 my-lg-0 flex-grow-1 buscador-desactivado" role="search" style="max-width: 400px;">
-                <input class="form-control me-2 bg-dark text-white border-secondary shadow-none" type="search" placeholder="¿Qué estás buscando?" readonly> 
-                <button class="btn btn-outline-success" type="button">
+            <form action="{{ route('catalogo.index') }}" method="GET" class="d-flex" role="search">
+                
+                <input class="form-control me-2 bg-dark text-white border-secondary shadow-none" 
+                    type="search" 
+                    name="buscar" 
+                    value="{{ request('buscar') }}" 
+                    placeholder="¿Qué estás buscando?" 
+                    aria-label="Buscar">
+                    
+                <button class="btn btn-outline-success" type="submit">
                     <i class="bi bi-search"></i>
                 </button>
             </form>

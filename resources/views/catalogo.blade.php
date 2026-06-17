@@ -15,7 +15,12 @@
             
             <li class="nav-item" role="presentation">
                 <button class="nav-link rounded-pill fw-bold px-4 text-uppercase @if(!$categoriaId) active @endif" 
-                        id="todos-tab" data-bs-toggle="tab" data-bs-target="#tab-todos" type="button" role="tab" aria-controls="tab-todos" 
+                        id="todos-tab" 
+                        data-bs-toggle="tab" 
+                        data-bs-target="#panel-todos" 
+                        type="button" 
+                        role="tab" 
+                        aria-controls="panel-todos" 
                         aria-selected="@if(!$categoriaId) true @else false @endif">
                     Todos
                 </button>
@@ -24,7 +29,12 @@
             @foreach($categorias as $categoria)
             <li class="nav-item" role="presentation">
                 <button class="nav-link rounded-pill fw-bold px-4 text-uppercase text-white @if($categoriaId == $categoria->id) active @endif" 
-                        id="cat-{{ $categoria->id }}-tab" data-bs-toggle="tab" data-bs-target="#tab-cat-{{ $categoria->id }}" type="button" role="tab" aria-controls="tab-cat-{{ $categoria->id }}" 
+                        id="pestana-cat-{{ $categoria->id }}" 
+                        data-bs-toggle="tab" 
+                        data-bs-target="#panel-cat-{{ $categoria->id }}" 
+                        type="button" 
+                        role="tab" 
+                        aria-controls="panel-cat-{{ $categoria->id }}" 
                         aria-selected="@if($categoriaId == $categoria->id) true @else false @endif">
                     {{ $categoria->nombre }}
                 </button>
@@ -35,12 +45,11 @@
 
     <div class="tab-content" id="catalogoTabsContent">
         
-        <div class="tab-pane fade @if(!$categoriaId) show active @endif" id="tab-todos" role="tabpanel" aria-labelledby="todos-tab">
+        <div class="tab-pane fade @if(!$categoriaId) show active @endif" id="panel-todos" role="tabpanel" aria-labelledby="todos-tab">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
                 @forelse($productos as $producto)
                     <div class="col">
                         <div class="card h-100 bg-dark text-white border-secondary shadow-sm position-relative">
-                            
                             @if($producto->categoria)
                                 <span class="position-absolute top-0 start-0 m-2 badge bg-secondary text-uppercase border border-light-50" style="font-size: 0.7rem; z-index: 2;">
                                     {{ $producto->categoria->nombre }}
@@ -84,25 +93,26 @@
                     </div>
                 @empty
                     <div class="col-12 text-center py-5">
-                        <p class="text-muted fs-5">No hay productos cargados en el catálogo actualmente.</p>
+                        <p class="text-muted fs-5">No hay productos cargados actualmente.</p>
                     </div>
                 @endforelse
             </div>
         </div>
 
         @foreach($categorias as $categoria)
-        <div class="tab-pane fade @if($categoriaId == $categoria->id) show active @endif" id="tab-cat-{{ $categoria->id }}" role="tabpanel" aria-labelledby="cat-{{ $categoria->id }}-tab">
+        <div class="tab-pane fade @if($categoriaId == $categoria->id) show active @endif" 
+             id="panel-cat-{{ $categoria->id }}" 
+             role="tabpanel" 
+             aria-labelledby="pestana-cat-{{ $categoria->id }}">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
                 
                 @php
-                    // 🔥 SOLUCIÓN: Filtramos la colección de productos comparándola con el ID de la categoría actual del bucle
                     $productosFiltrados = $productos->where('categoria_id', $categoria->id);
                 @endphp
 
                 @forelse($productosFiltrados as $producto)
                     <div class="col">
                         <div class="card h-100 bg-dark text-white border-secondary shadow-sm position-relative">
-                            
                             @if($producto->categoria)
                                 <span class="position-absolute top-0 start-0 m-2 badge bg-secondary text-uppercase border border-light-50" style="font-size: 0.7rem; z-index: 2;">
                                     {{ $producto->categoria->nombre }}
@@ -157,6 +167,34 @@
     </div>
 </main>
 @endsection
+
+@push('scripts')
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Capturamos las variables del servidor
+        let categoriaId = "{{ $categoriaId }}";
+        let tieneBusqueda = "{{ request('buscar') }}";
+
+        // Si el usuario buscó algo en el navbar, nos aseguramos de que visualmente
+        // la pestaña 'Todos' esté activa por defecto si no se especificó una categoría limpia
+        if (tieneBusqueda && !categoriaId) {
+            let todosTab = document.getElementById('todos-tab');
+            let todosPanel = document.getElementById('panel-todos');
+            
+            if (todosTab && todosPanel) {
+                // Removemos activos residuales por las dudas
+                document.querySelectorAll('#catalogoTabs .nav-link').forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('#catalogoTabsContent .tab-pane').forEach(pane => pane.classList.remove('show', 'active'));
+                
+                // Forzamos el encendido de 'Todos'
+                todosTab.classList.add('active');
+                todosTab.setAttribute('aria-selected', 'true');
+                todosPanel.classList.add('show', 'active');
+            }
+        }
+    });
+</script>
+@endpush
 
 
     
