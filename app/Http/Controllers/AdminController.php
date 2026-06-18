@@ -19,22 +19,16 @@ class AdminController extends Controller
         $totalVentas = \App\Models\VentaCabecera::where('estado', 'confirmado')->sum('total') ?? 0;
         $cantidadPedidos = \App\Models\VentaCabecera::where('estado', 'confirmado')->count();
         $cantidadUsuarios = \App\Models\Usuario::count();
-        
-        //  Usamos withTrashed() al contar por si la base de datos se está actualizando
-        $cantidadProductos = \App\Models\Producto::withTrashed()->count(); 
+        $cantidadProductos = \App\Models\Producto::count(); 
 
-        // Añadimos withTrashed() en la relación del producto estrella.
-        // Si el artículo más vendido fue pausado o dado de baja, la métrica no colapsará.
+        // Obtenemos solo el primer resultado (el más vendido).
         $productoEstrella = \App\Models\VentaDetalle::select('producto_id', \DB::raw('SUM(cantidad) as total_vendido'))
             ->groupBy('producto_id')
             ->orderBy('total_vendido', 'desc')
-            ->with(['producto' => function($q) {
-                $q->withTrashed();
-            }]) 
+            ->with(['producto'])
             ->first();
 
-        // si no hay registros de ventas, evitamos que colapse pasándolo como null
-        if (!$productoEstrella || !$productoEstrella->producto) {
+        if (!$productoEstrella) {
             $productoEstrella = null;
         }
 
@@ -47,11 +41,10 @@ class AdminController extends Controller
         ));
     }
     
-    // Listar productos (Incluye los dados de baja lógica para que el admin los vea)
+    // Listar productos (Normalizado: sin funciones de SoftDeletes)
     public function productosIndex()
     {
-        // WithTrashed() trae los productos normales + los eliminados lógicamente
-        $productos = Producto::withTrashed()->orderBy('id', 'desc')->get();
+        $productos = Producto::orderBy('id', 'desc')->get();
         return view('backend.admin.productos.index', compact('productos'));
     }
 
@@ -96,7 +89,7 @@ class AdminController extends Controller
             'categoria_id' => 'nullable|integer'
         ]);
 
-        $producto = Producto::withTrashed()->findOrFail($id);
+        $producto = Producto::findOrFail($id);
         
         $datos = $request->only(['nombre', 'descripcion', 'precio', 'stock', 'categoria_id']);
 
@@ -112,27 +105,20 @@ class AdminController extends Controller
         return back()->with('exito', 'Producto actualizado correctamente.');
     }
 
-    // BAJA LÓGICA (Eliminación usando SoftDeletes)
+    // BAJA DIRECTA (Desactiva y elimina físicamente el producto)
     public function productosDestroy($id)
     {
         $producto = Producto::findOrFail($id);
         
-        $producto->update(['activo' => false]); 
+        // Opcional: Eliminar la imagen del disco antes de borrar el registro
+        if ($producto->url_imagen) {
+            Storage::disk('public')->delete($producto->url_imagen);
+        }
+
         $producto->delete(); 
 
-        return back()->with('exito', 'Producto dado de baja lógica correctamente.');
+        return back()->with('exito', 'Producto eliminado definitivamente del catálogo.');
     }
-
-    // ALTA DE NUEVO (Restaurar un producto dado de baja)
-    public function productosRestore($id)
-    {
-        $producto = Producto::onlyTrashed()->findOrFail($id);
-        $producto->update(['activo' => true]);
-        $producto->restore(); 
-
-        return back()->with('exito', 'Producto reactivado en el catálogo.');
-    }
-
 
     // Visualizar Usuarios
     public function usuariosIndex()
@@ -157,13 +143,11 @@ class AdminController extends Controller
         return back()->with('exito', 'La consulta ha sido marcada como leída.');
     }
 
-    // Visualizar Ventas Realizadas con filtros opcionales
+    // Visualizar Ventas Realizadas con filtros opcionales (CORREGIDO SIN WITHTRASHED)
     public function ventasIndex(Request $request)
     {
         $query = VentaCabecera::where('estado', 'confirmado')
-            ->with(['usuario', 'detalles.producto' => function($q) {
-                $q->withTrashed();
-            }])
+            ->with(['usuario', 'detalles.producto'])
             ->orderBy('fecha_venta', 'desc');
 
         if ($request->filled('orden_id')) {
@@ -195,7 +179,7 @@ class AdminController extends Controller
      */
     public function eliminarUsuario($id)
     {
-        // 1. Evitamos que el admin se suicide borrando su propia cuenta
+        // 1. Evitamos que el admin borre su propia cuenta en uso
         if (auth()->id() == $id) {
             return back()->with('error', 'No podés eliminar tu propia cuenta de administrador en uso.');
         }
@@ -206,7 +190,7 @@ class AdminController extends Controller
         // 3. Lo eliminamos
         $usuario->delete();
 
-        // 4. Redireccionamos con el mensaje de éxito que lee la vista
+        // 4. Redireccionamos con el mensaje de éxito
         return back()->with('exito', 'Usuario eliminado correctamente del sistema.');
     }
 }

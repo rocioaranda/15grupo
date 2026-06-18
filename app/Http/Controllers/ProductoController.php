@@ -36,8 +36,8 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        // Trae todos los productos, incluyendo las bajas lógicas (withTrashed)
-        $productos = Producto::withTrashed()->get();
+        // Trae todos los productos
+        $productos = Producto::all();
         return view('backend.admin.productos.index', compact('productos'));
     }
 

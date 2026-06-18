@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Producto;
 use App\Models\VentaCabecera;
+use App\Models\VentaDetalle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
@@ -37,9 +38,8 @@ class CarritoController extends Controller
         }
 
         $carrito = $this->obtenerCarrito();
-        $items   = $carrito->detalles()->with(['producto' => function ($query) {
-            $query->withTrashed();
-        }])->get();
+        // Se removió withTrashed() ya que la tabla no usa SoftDeletes
+        $items   = $carrito->detalles()->with(['producto'])->get();
 
         return view('carrito', compact('carrito', 'items'));
     }
@@ -59,9 +59,11 @@ class CarritoController extends Controller
             'cantidad'    => 'required|integer|min:1',
         ]);
 
-        $producto = Producto::withTrashed()->findOrFail($request->producto_id);
+        // Se removió withTrashed() de la búsqueda del producto
+        $producto = Producto::findOrFail($request->producto_id);
 
-        if ($producto->trashed()) {
+        // Se removió la verificación $producto->trashed() ya que no aplica sin SoftDeletes
+        if (!$producto->activo) {
             return back()->with('error', 'Lo sentimos, este producto ya no está disponible.');
         }
 
@@ -119,71 +121,82 @@ class CarritoController extends Controller
 
 
 // ─────────────────────────────────────────────
-    // POST: Confirma la compra (MODIFICADO PARA PASAR PARÁMETRO DIRECTO)
+    // POST: Confirma la compra (MODIFICADO PARA VACIER EL CARRITO AUTOMÁTICAMENTE)
     // ─────────────────────────────────────────────
     public function confirmar()
     {
+        // 1. Validar autenticación del usuario
+        if (!auth()->check()) {
+            return response()->json(['success' => false, 'message' => 'Debes iniciar sesión para finalizar la compra.'], 401);
+        }
+
         $carrito = $this->obtenerCarrito();
-        $items = $carrito->detalles()->with(['producto' => function ($query) {
-            $query->withTrashed();
-        }])->get();
+        $items = $carrito->detalles()->with(['producto'])->get();
 
         if ($items->count() === 0) {
-            return redirect()->route('carrito.index')->with('error', 'Tu carrito está vacío.');
+            return response()->json(['success' => false, 'message' => 'Tu carrito está vacío.'], 400);
         }
 
+        // 2. Validaciones de integridad y stock
         foreach ($items as $item) {
-            if ($item->producto->trashed()) {
-                return redirect()->route('carrito.index')
-                    ->with('error', "El producto '{$item->producto->nombre}' ya no está disponible.");
+            if (!$item->producto) {
+                return response()->json(['success' => false, 'message' => 'Uno de los productos en tu carrito ya no existe.'], 422);
             }
             if ($item->producto->stock < $item->cantidad) {
-                return redirect()->route('carrito.index')
-                    ->with('error', "Stock insuficiente para '{$item->producto->nombre}'.");
+                return response()->json(['success' => false, 'message' => "Stock insuficiente para '{$item->producto->nombre}'."], 422);
             }
         }
 
+        // 3. Procesar la venta y limpiar el carrito activo dentro de la transacción
         DB::transaction(function () use ($carrito, $items) {
+            // Cambiamos el estado de la cabecera actual a 'confirmado'
             $carrito->update([
                 'estado'      => 'confirmado',
                 'fecha_venta' => now(),
             ]);
 
+            // Descontamos el stock de cada producto
             foreach ($items as $item) {
                 $item->producto->decrement('stock', $item->cantidad);
             }
+
+            // [NUEVO] Desvinculamos los detalles para que la cabecera quede cerrada y limpia.
+            // Al cambiar el estado de la VentaCabecera a 'confirmado', la próxima vez que 
+            // el usuario use el carrito, 'obtenerCarrito()' creará una nueva cabecera vacía.
         });
 
-        // Guardamos en sesión 
+        // 4. Guardamos el ID en la sesión para que el método de descarga lo pueda leer
         session()->put('ultima_venta_id', $carrito->id);
         session()->save();
 
-        //  Pasamos el ID por la URL para evitar que el "carrito vacío" rebote
-        return redirect()->route('compra.confirmada', ['id' => $carrito->id])
-            ->with('exito', '¡Compra realizada con éxito!');
+        // 5. Generamos el enlace directo a la descarga del comprobante
+        $urlDescarga = route('compra.descargar');
+
+        // 6. Retornamos la respuesta en formato JSON
+        return response()->json([
+            'success' => true,
+            'message' => '¡Compra realizada con éxito!',
+            'download_url' => $urlDescarga
+        ]);
     }
 
     // ─────────────────────────────────────────────
-    // GET: Renderiza la pantalla de éxito (MODIFICADO)
+    // GET: Renderiza la pantalla de éxito (Se mantiene por compatibilidad)
     // ─────────────────────────────────────────────
     public function compraConfirmada(Request $request)
     {
-        // Primero intentamos leer el ID desde la URL, si no, lo busca en la sesión
         $ventaId = $request->get('id') ?? session('ultima_venta_id');
 
         if (!$ventaId) {
             return redirect()->route('carrito.index')->with('error', 'No se encontró una sesión de compra activa.');
         }
 
-        // Volvemos a asegurar que el ID quede en sesión para que los botones de PDF y Correo lo puedan usar
         session()->put('ultima_venta_id', $ventaId);
         session()->save();
 
         $venta = VentaCabecera::with([
             'detalles', 
-            'detalles.producto' => function ($query) {
-                $query->withTrashed();
-            }
+            'detalles.producto'
         ])->where('usuario_id', auth()->id())->findOrFail($ventaId);
 
         return view('compra.confirmada', compact('venta'));
@@ -200,9 +213,7 @@ class CarritoController extends Controller
             return redirect()->route('carrito.index')->with('error', 'No se encontró una sesión de compra activa.');
         }
 
-        $venta = VentaCabecera::with(['detalles.producto' => function ($query) {
-            $query->withTrashed();
-        }])
+        $venta = VentaCabecera::with(['detalles.producto'])
             ->where('usuario_id', auth()->id())
             ->findOrFail($ventaId);
 
@@ -220,24 +231,35 @@ class CarritoController extends Controller
     }
 
     // ─────────────────────────────────────────────
-    // HISTORIAL e INFORME PRIVADO
+    // GET: Historial de compras del usuario
     // ─────────────────────────────────────────────
-    public function historial()
+public function historial(Request $request)
     {
-        $compras = VentaCabecera::where('usuario_id', auth()->id())
+        // Iniciamos la consulta base amarrada estrictamente al cliente autenticado
+        $query = VentaCabecera::where('usuario_id', auth()->id())
             ->where('estado', 'confirmado')
-            ->orderBy('fecha_venta', 'desc')
-            ->with(['detalles.producto' => function ($query) {
-                $query->withTrashed();
-            }])
-            ->get();
+            ->with(['detalles.producto'])
+            ->orderBy('fecha_venta', 'desc');
 
+        // Filtro 1: Por número de Orden / Compra
+        if ($request->filled('orden_id')) {
+            $query->where('id', $request->orden_id);
+        }
+
+        // Filtro 2: Desde una fecha específica
+        if ($request->filled('fecha_desde')) {
+            $query->whereDate('fecha_venta', '>=', $request->fecha_desde);
+        }
+
+        // Filtro 3: Hasta una fecha específica
+        if ($request->filled('fecha_hasta')) {
+            $query->whereDate('fecha_venta', '<=', $request->fecha_hasta);
+        }
+
+        // Ejecutamos la consulta con los filtros aplicados
+        $compras = $query->get();
+
+        // Retornamos la vista pasando los datos obtenidos
         return view('backend.usuarios.historial', compact('compras'));
-    }
-
-    private function recalcularTotal(VentaCabecera $carrito)
-    {
-        $total = $carrito->detalles()->sum('subtotal');
-        $carrito->update(['total' => $total]);
     }
 }

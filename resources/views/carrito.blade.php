@@ -117,15 +117,25 @@
                     <div class="d-grid">
                         @auth
                             @if(auth()->user()->rol_id == 2)
-                                {{-- CLIENTE: Procesa la compra de forma normal --}}
-                                <form action="{{ route('carrito.confirmar') }}" method="POST"> 
-                                    @csrf
-                                    <button type="submit" class="btn btn-success fw-bold text-uppercase py-3 rounded-pill shadow-none w-100"> 
+                                {{-- CLIENTE: SE REEMPLAZÓ EL FORMULARIO POR UN BOTÓN CON ID + CONTENEDOR OCULTO --}}
+                                <div id="bloqueBotonCompra">
+                                    <button id="btnFinalizarCompra" class="btn btn-success fw-bold text-uppercase py-3 rounded-pill shadow-none w-100"> 
                                         <i class="bi bi-credit-card me-2"></i> Finalizar Compra
                                     </button>
-                                </form> 
+                                </div>
+
+                                {{-- Recuadro de éxito y descarga (permanece oculto inicialmente con d-none) --}}
+                                <div id="contenedorExitoDescarga" class="alert alert-success bg-dark text-center border-success p-3 rounded-4 mt-3 d-none" role="alert">
+                                    <h5 class="fw-bold text-success mb-2">
+                                        <i class="bi bi-check-circle-fill me-1"></i> ¡Compra Exitosa!
+                                    </h5>
+                                    <p class="small text-white-50 mb-3">Tu pedido ha sido procesado correctamente en Evolvex.</p>
+                                    <a id="linkDescargaDirecta" href="#" class="btn btn-primary fw-bold text-uppercase py-2 rounded-pill w-100 btn-sm" download>
+                                        <i class="bi bi-cloud-arrow-down-fill me-1"></i> Descargar Comprobante PDF
+                                    </a>
+                                </div>
                             @else
-                                {{-- ADMINISTRADOR: Se le bloquea la pasarela de pagos con un aviso --}}
+                                {{-- ADMINISTRADOR --}}
                                 <button class="btn btn-secondary fw-bold text-uppercase py-3 rounded-pill shadow-none w-100" disabled>
                                     <i class="bi bi-shield-lock me-2"></i> Bloqueado para Administrador
                                 </button>
@@ -134,7 +144,7 @@
                         @endauth
 
                         @guest
-                            {{-- Invitado anónimo: Se le pide loguearse --}}
+                            {{-- Invitado anónimo --}}
                             <a href="{{ route('login') }}" class="btn btn-success fw-bold text-uppercase py-3 rounded-pill shadow-none w-100 text-center text-decoration-none">
                                 <i class="bi bi-box-arrow-in-right me-2"></i> Iniciar Sesión para Comprar
                             </a>
@@ -158,4 +168,60 @@
     @endif
 
 </main>
+
+{{-- SCRIPT AJAX PARA PROCESAR LA COMPRA DIRECTA Y MOSTRAR EL ENLACE --}}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const btnFinalizar = document.getElementById('btnFinalizarCompra');
+    
+    if (btnFinalizar) {
+        btnFinalizar.addEventListener('click', function(e) {
+            e.preventDefault(); 
+
+            let boton = this;
+            
+            // Bloquear el botón temporalmente para que no se envíe dos veces
+            boton.disabled = true;
+            boton.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Procesando...';
+
+            // Petición asíncrona hacia el controlador
+            fetch("{{ route('carrito.confirmar') }}", {
+                method: "POST",
+                headers: {
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(err => { throw err; });
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    // 1. Ocultar el botón de compra
+                    document.getElementById('bloqueBotonCompra').classList.add('d-none');
+
+                    // 2. Adjuntar la URL devuelta al enlace de PDF
+                    const btnDescargar = document.getElementById('linkDescargaDirecta');
+                    btnDescargar.href = data.download_url;
+
+                    // 3. Revelar el cuadro de éxito y el botón de descarga
+                    document.getElementById('contenedorExitoDescarga').classList.remove('d-none');
+                }
+            })
+            .catch(error => {
+                console.error("Error en la transacción:", error);
+                alert(error.message || "Ocurrió un error inesperado al procesar la compra.");
+                
+                // Restaurar el botón original si ocurre un fallo
+                boton.disabled = false;
+                boton.innerHTML = '<i class="bi bi-credit-card me-2"></i> Finalizar Compra';
+            });
+        });
+    }
+});
+</script>
 @endsection
