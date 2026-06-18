@@ -49,7 +49,6 @@
         </div>
     </div>
 
-    @include('mas_vendidos')
 
     @include('reseñas')
     
