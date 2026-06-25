@@ -3,12 +3,27 @@
 @section('main')
 <main class="container py-5 my-5" style="background-color: #0d0f12; min-height: 80vh;">
     
-    <div class="mb-5 text-center text-md-start">
+    <div class="mb-5">
         <h2 class="text-success fw-bold text-uppercase display-6">
             <i class="bi bi-bag-check me-2"></i> Mi Historial de Compras
         </h2>
-        <p class="text-white-50">Consultá el detalle y los suplementos de tus pedidos anteriores.</p>
+        <p class="text-white-50">Consultá tus pedidos anteriores aplicando filtros por fecha.</p>
     </div>
+{{-- FORMULARIO DE FILTROS --}}
+    <form action="{{ route('compras.historial') }}" method="GET" class="row g-3 mb-5 bg-dark p-3 rounded-4 border border-secondary align-items-end">
+        <div class="col-md-4">
+            <label class="text-success small fw-bold">Fecha desde:</label>
+            <input type="date" name="fecha_desde" class="form-control bg-dark text-white border-secondary" value="{{ request('fecha_desde') }}">
+        </div>
+        <div class="col-md-4">
+            <label class="text-success small fw-bold">Fecha hasta:</label>
+            <input type="date" name="fecha_hasta" class="form-control bg-dark text-white border-secondary" value="{{ request('fecha_hasta') }}">
+        </div>
+        <div class="col-md-4">
+            <button type="submit" class="btn btn-success fw-bold w-100">Aplicar Filtros</button>
+            <a href="{{ route('compras.historial') }}" class="btn btn-outline-secondary btn-sm w-100 mt-2">Limpiar</a>
+        </div>
+    </form>
 
     @if($compras->count() > 0)
         <div class="row g-4">

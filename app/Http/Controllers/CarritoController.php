@@ -255,27 +255,17 @@ class CarritoController extends Controller
     // ─────────────────────────────────────────────
     // GET: Historial de compras del usuario
     // ─────────────────────────────────────────────
-    public function historial(Request $request)
+ public function historial(Request $request)
     {
         $query = VentaCabecera::where('usuario_id', auth()->id())
             ->where('estado', 'confirmado')
             ->with(['detalles.producto'])
             ->orderBy('fecha_venta', 'desc');
 
-        if ($request->filled('orden_id')) {
-            $query->where('id', $request->orden_id);
-        }
-
-        if ($request->filled('fecha_desde')) {
-            $query->whereDate('fecha_venta', '>=', $request->fecha_desde);
-        }
-
-        if ($request->filled('fecha_hasta')) {
-            $query->whereDate('fecha_venta', '<=', $request->fecha_hasta);
-        }
+        if ($request->filled('fecha_desde')) $query->whereDate('fecha_venta', '>=', $request->fecha_desde);
+        if ($request->filled('fecha_hasta')) $query->whereDate('fecha_venta', '<=', $request->fecha_hasta);
 
         $compras = $query->get();
-
         return view('backend.usuarios.historial', compact('compras'));
     }
 

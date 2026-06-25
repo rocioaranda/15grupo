@@ -19,7 +19,7 @@ class AdminController extends Controller
         $totalVentas = \App\Models\VentaCabecera::where('estado', 'confirmado')->sum('total') ?? 0;
         $cantidadPedidos = \App\Models\VentaCabecera::where('estado', 'confirmado')->count();
         $cantidadUsuarios = \App\Models\Usuario::count();
-        $cantidadProductos = \App\Models\Producto::count(); 
+        $cantidadProductos = \App\Models\Producto::withTrashed()->count(); 
 
         // Obtenemos solo el primer resultado (el más vendido).
         $productoEstrella = \App\Models\VentaDetalle::select('producto_id', \DB::raw('SUM(cantidad) as total_vendido'))
@@ -143,7 +143,7 @@ class AdminController extends Controller
         return back()->with('exito', 'La consulta ha sido marcada como leída.');
     }
 
-    // Visualizar Ventas Realizadas con filtros opcionales (CORREGIDO SIN WITHTRASHED)
+    // Visualizar Ventas Realizadas con filtros opcionales 
     public function ventasIndex(Request $request)
     {
         $query = VentaCabecera::where('estado', 'confirmado')

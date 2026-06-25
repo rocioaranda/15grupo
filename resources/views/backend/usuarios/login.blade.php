@@ -26,10 +26,6 @@
                            class="form-control bg-secondary text-white border-0 shadow-none" id="password" required>
                 </div>
 
-                <div class="mb-4 form-check">
-                    <input type="checkbox" name="remember" class="form-check-input" id="remember">
-                    <label class="form-check-label text-muted" for="remember">Recordar mi sesión</label>
-                </div>
 
                 <button type="submit" class="btn btn-success btn-lg w-100 fw-bold shadow-none">
                     Ingresar
