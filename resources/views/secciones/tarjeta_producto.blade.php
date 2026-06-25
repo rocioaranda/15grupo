@@ -2,7 +2,7 @@
     <div class="card h-100 bg-dark text-white border-secondary rounded-3 shadow-sm transition-hover">
         
         <div class="position-relative text-center p-3 bg-black rounded-top-3 d-flex align-items-center justify-content-center" style="height: 200px;">
-            <img src="{{ $producto->url_imagen ?? 'https://via.placeholder.com/200?text=Evolvex' }}" 
+            <img src="{{ $producto->url_imagen ? asset('storage/' . $producto->url_imagen) : 'https://via.placeholder.com/200?text=Evolvex' }}"
                  class="img-fluid max-h-100" 
                  style="max-height: 180px; object-fit: contain;" 
                  alt="{{ $producto->nombre }}">

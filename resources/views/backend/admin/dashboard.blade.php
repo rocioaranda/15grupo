@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('main')
-<div class="container-fluid py-5 text-white" style="background-color: #0d0f12; min-height: 90vh;">
+<div class="container-fluid py-5 text-white" style="background-color: #56e469; min-height: 90vh;">
     <div class="container">
         <div class="d-flex justify-content-between align-items-center mb-5 border-bottom border-secondary pb-3">
             <div>
@@ -59,62 +59,20 @@
     <div class="mb-4">
         <h6 class="text-secondary mb-3"><i class="bi bi-box-seam me-2"></i>Productos</h6>
         <div class="d-flex flex-column gap-2">
-            <button class="btn btn-success fw-bold shadow-none text-start">
-                <i class="bi bi-plus-circle me-2"></i> Agregar Producto
-            </button>
-            <button class="btn btn-outline-success fw-bold shadow-none text-start">
-                <i class="bi bi-pencil-square me-2"></i> Editar Productos
-            </button>
-            <button class="btn btn-outline-danger fw-bold shadow-none text-start">
-                <i class="bi bi-trash me-2"></i> Eliminar Productos
-            </button>
+            <a href="{{ route('admin.productos.create') }}" class="btn btn-success w-100 text-start">
+         <i class="..."></i> Agregar Producto</a>
+             <a href="{{ route('admin.productos.edit', 1) }}" 
+           class="btn btn-outline-success fw-bold shadow-none text-start">
+            <i class="bi bi-pencil-square me-2"></i> Editar Productos
+        </a>       
+        <a href="{{ route('admin.productos.eliminar') }}" 
+        class="btn btn-outline-danger fw-bold shadow-none text-start">
+            <i class="bi bi-trash me-2"></i> Eliminar Productos
+        </a>
         </div>
     </div>
 
-    {{-- Gestión de Usuarios --}}
-    <div class="mb-4">
-        <h6 class="text-secondary mb-3"><i class="bi bi-people me-2"></i>Usuarios</h6>
-        <div class="d-flex flex-column gap-2">
-            <button class="btn btn-outline-light border-secondary fw-bold shadow-none text-start">
-                <i class="bi bi-person-lines-fill me-2"></i> Ver Usuarios
-            </button>
-            <button class="btn btn-outline-warning fw-bold shadow-none text-start">
-                <i class="bi bi-person-fill-gear me-2"></i> Gestionar Roles
-            </button>
-            <button class="btn btn-outline-danger fw-bold shadow-none text-start">
-                <i class="bi bi-person-x me-2"></i> Bloquear Usuario
-            </button>
-        </div>
-    </div>
 
-    {{-- Gestión de Pedidos --}}
-    <div class="mb-4">
-        <h6 class="text-secondary mb-3"><i class="bi bi-cart-check me-2"></i>Pedidos</h6>
-        <div class="d-flex flex-column gap-2">
-            <button class="btn btn-outline-light border-secondary fw-bold shadow-none text-start">
-                <i class="bi bi-list-stars me-2"></i> Ver Órdenes
-            </button>
-            <button class="btn btn-outline-info fw-bold shadow-none text-start">
-                <i class="bi bi-truck me-2"></i> Gestionar Envíos
-            </button>
-        </div>
-    </div>
-
-    {{-- Reportes --}}
-    <div class="mb-2">
-        <h6 class="text-secondary mb-3"><i class="bi bi-bar-chart me-2"></i>Reportes</h6>
-        <div class="d-flex flex-column gap-2">
-            <button class="btn btn-outline-info fw-bold shadow-none text-start">
-                <i class="bi bi-graph-up-arrow me-2"></i> Ver Estadísticas
-            </button>
-            <button class="btn btn-outline-light border-secondary fw-bold shadow-none text-start">
-                <i class="bi bi-cash-stack me-2"></i> Ver Ingresos
-            </button>
-            <button class="btn btn-outline-warning fw-bold shadow-none text-start">
-                <i class="bi bi-tag me-2"></i> Gestionar Descuentos
-            </button>
-        </div>
-    </div>
   {{-- Gestión de Consultas --}}
 <div class="mb-4">
     <h6 class="text-secondary mb-3"><i class="bi bi-chat-dots me-2"></i>Consultas</h6>

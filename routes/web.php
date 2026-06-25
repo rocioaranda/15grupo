@@ -18,9 +18,6 @@ Route::get('/terminos_condiciones', function () {
     return view('terminos_condiciones');
 });
 
-Route::get('/catalogo', function () {
-    return view('catalogo');
-});
 
 Route::get('/consulta', function () { 
 return view('consulta'); 
@@ -58,6 +55,8 @@ Route::get('/catalogo', [CatalogoController::class, 'index'])->name('catalogo.in
 // Registro de Usuarios
 Route::get('/register', [AutenticacionController::class, 'formularioRegistro'])->name('register');
 Route::post('/register', [AutenticacionController::class, 'registrar'])->name('register.store');
+
+
 
 // ruta para carrito
 
@@ -123,3 +122,14 @@ Route::post('/consulta/enviar', [ConsultaController::class, 'enviar'])->name('co
 // Rutas Admin - Consultas
 Route::get('/admin/consultas', [ConsultaController::class, 'index'])->name('admin.consultas');
 Route::patch('/admin/consultas/{consulta}/estado', [ConsultaController::class, 'cambiarEstado'])->name('admin.consultas.estado');
+// ruta para alta producto
+Route::get('/admin/productos/create', [ProductoController::class, 'create'])->name('admin.productos.create');
+Route::post('/admin/productos', [ProductoController::class, 'store'])->name('admin.productos.store');
+ //editar un producto
+Route::get('/admin/productos/{id}/edit', [ProductoController::class, 'edit'])
+    ->name('admin.productos.edit');
+Route::put('/admin/productos/{id}', [ProductoController::class, 'update'])
+    ->name('admin.productos.update');
+    //eliminar un producto
+Route::get('/admin/productos/eliminar', [ProductoController::class, 'vistaEliminar'])->name('admin.productos.eliminar');
+Route::delete('/admin/productos/{id}', [ProductoController::class, 'destroy'])->name('admin.productos.destroy');

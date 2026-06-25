@@ -52,7 +52,7 @@
                     </div>
                     <h5 class="fw-bold text-white mb-2">¡Todavía no realizaste ninguna compra!</h5>
                     <p class="text-muted mb-4 small">Explorá nuestro catálogo y descubrí los mejores suplementos y accesorios deportivos.</p>
-                    <a href="{{ route('catalogo') }}" class="btn btn-success fw-bold px-4 shadow-none">
+                    <a href="{{ route('catalogo.index') }}" class="btn btn-success fw-bold px-4 shadow-none">
                         Ir al Catálogo <i class="bi bi-arrow-right ms-1"></i>
                     </a>
                 </div>
