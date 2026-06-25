@@ -9,9 +9,8 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-
-        public function up(): void 
-        { 
+    public function up(): void 
+    { 
         Schema::create('productos', function (Blueprint $table) { 
             $table->id(); 
             $table->string('nombre', 150); 
@@ -21,10 +20,14 @@ return new class extends Migration
             $table->string('url_imagen')->nullable(); 
             $table->boolean('activo')->default(true); 
 
+            // Relación con categorías (Se borra en cascada si se elimina la categoría padre)
             $table->foreignId('categoria_id')->constrained('categorias')->onDelete('cascade');
         
             $table->timestamps();
-    }); 
+
+            // 1. IMPORTANTE: Agregamos la columna física deleted_at para habilitar el SoftDeletes nativo
+            $table->softDeletes(); 
+        }); 
     } 
 
     /**

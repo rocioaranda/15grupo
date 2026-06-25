@@ -1,42 +1,61 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Comprobante de Compra</title>
-    <style>
-        body { font-family: sans-serif; color: #333; }
-        .header { text-align: center; border-bottom: 2px solid #28a745; padding-bottom: 10px; }
-        .total { font-size: 1.5rem; color: #28a745; text-align: right; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-        th { background-color: #f2 f2 f2; }
-    </style>
-</head>
+<html lang="es">
+
 <body>
+
     <div class="header">
-        <h1>EVOLVEX SUPLEMENTOS</h1>
-        <p>Gracias por tu compra, {{ $user->nombre_apellido }}</p>
+        <table style="width: 100%;">
+            <tr>
+                <td><span class="title">EVOLVEX</span></td>
+                <td class="text-end" style="color: #6c757d; font-size: 14px;">COMPROBANTE DE COMPRA</td>
+            </tr>
+        </table>
     </div>
-    <p>Fecha: {{ $fecha }}</p>
-    <table>
+
+    <table class="info-table">
+        <tr>
+            <td class="info-td">
+                <strong>Detalles del Cliente:</strong><br>
+                Nombre: {{ $user->nombre_apellido ?? $user->name ?? 'Cliente Evolvex' }}<br>
+                Email: {{ $user->email }}
+            </td>
+            <td class="info-td text-end">
+                <strong>Detalles del Pedido:</strong><br>
+                Fecha: {{ $fecha }}<br>
+                Estado: Abonado
+            </td>
+        </tr>
+    </table>
+
+    <table class="items-table">
         <thead>
             <tr>
                 <th>Producto</th>
-                <th>Cant.</th>
-                <th>Precio Unit.</th>
-                <th>Subtotal</th>
+                <th class="text-center" style="width: 10%;">Cant.</th>
+                <th class="text-end" style="width: 20%;">Precio</th>
+                <th class="text-end" style="width: 20%;">Subtotal</th>
             </tr>
         </thead>
         <tbody>
             @foreach($items as $item)
-            <tr>
-                <td>{{ $item->producto->nombre }}</td>
-                <td>{{ $item->cantidad }}</td>
-                <td>${{ number_format($item->precio_unitario, 2) }}</td>
-                <td>${{ number_format($item->subtotal, 2) }}</td>
-            </tr>
+                <tr>
+                    <td>{{ $item->producto ? $item->producto->nombre : 'Producto no disponible' }}</td>
+                    <td class="text-center">{{ $item->cantidad }}</td>
+                    <td class="text-end">${{ number_format($item->precio_unitario, 2, ',', '.') }}</td>
+                    <td class="text-end">${{ number_format($item->subtotal, 2, ',', '.') }}</td>
+                </tr>
             @endforeach
+            
+            <tr class="total-row">
+                <td colspan="3" class="text-end" style="color: #6c757d;">Total de la compra:</td>
+                <td class="text-end total-price">${{ number_format($total, 2, ',', '.') }}</td>
+            </tr>
         </tbody>
     </table>
-    <p class="total">Total Pagado: ${{ number_format($total, 2) }}</p>
+
+    <div class="footer">
+        Gracias por confiar en Evolvex Suplementos. Este documento sirve como comprobante oficial de tu transacción.
+    </div>
+
 </body>
 </html>

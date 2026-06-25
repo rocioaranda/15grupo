@@ -8,15 +8,27 @@ use Illuminate\Http\Request;
 
 class CatalogoController extends Controller
 {
-    public function index()
+    
+    public function index(Request $request, $categoriaId = null)
     {
-        // 1. Traemos todas las categorías para armar los botones de filtro
-        $categorias = Categoria::all();
+        // 1. Traemos las categorías ordenadas por su ID natural o el orden que prefieras
+        $categorias = Categoria::orderBy('id', 'asc')->get();
 
-        // 2. Traemos todos los productos activos con su categoría vinculada
-        $productos = Producto::where('activo', true)->with('categoria')->latest()->get();
+        // Capturamos lo que el usuario escribió en el navbar
+        $textoBuscar = $request->input('buscar');
 
-        // 3. Enviamos ambas variables a la vista
-        return view('catalogo', compact('productos', 'categorias'));
+        // 2. Armamos la consulta de productos activos
+        $query = Producto::with('categoria')->where('activo', true);
+
+        //  FILTRO DEL BUSCADOR: Si el usuario escribió algo, filtramos por nombre
+        if (!empty($textoBuscar)) {
+            $query->where('nombre', 'LIKE', '%' . $textoBuscar . '%');
+        }
+
+        // Ejecutamos la consulta trayendo los últimos registros
+        $productos = $query->latest()->get();
+
+        // 3. Enviamos las variables a la vista
+        return view('catalogo', compact('productos', 'categorias', 'categoriaId'));
     }
 }

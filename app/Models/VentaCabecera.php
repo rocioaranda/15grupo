@@ -20,8 +20,8 @@ use Illuminate\Database\Eloquent\Model;
     return $this->belongsTo(Usuario::class, 'usuario_id');
     }
     // Relación: una venta tiene muchos items
-    public function detalles()
-    {
-    return $this->hasMany(VentaDetalle::class, 'venta_id');
-    }
+public function detalles()
+{
+    return $this->hasMany(VentaDetalle::class, 'venta_id'); 
+}
 }
