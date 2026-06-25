@@ -192,22 +192,16 @@
 </div>
 
 {{-- ================= SCRIPT ================= --}}
-@push('scripts')
 <script>
+const baseUrl = "{{ url('admin/productos') }}";
 document.addEventListener('DOMContentLoaded', () => {
-    const modal = document.getElementById('modalEliminar');
-
-    modal.addEventListener('show.bs.modal', (event) => {
-        const button = event.relatedTarget;
-
-        const id = button.getAttribute('data-id');
-        const nombre = button.getAttribute('data-nombre');
-
+    document.getElementById('modalEliminar').addEventListener('show.bs.modal', (event) => {
+        const id = event.relatedTarget.getAttribute('data-id');
+        const nombre = event.relatedTarget.getAttribute('data-nombre');
         document.getElementById('modalNombreProducto').textContent = nombre;
-        document.getElementById('formEliminar').action = `/admin/productos/${id}`;
+        document.getElementById('formEliminar').action = baseUrl + '/' + id;
     });
 });
 </script>
-@endpush
 
 @endsection

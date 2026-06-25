@@ -136,10 +136,10 @@
                 {{-- ================= BOTONES ================= --}}
                 <div class="d-flex justify-content-end gap-2 mt-4">
 
-                    <a href="{{ route('admin.productos.eliminar') }}"
-                       class="btn btn-outline-secondary">
-                        Cancelar
-                    </a>
+                            <a href="{{ route('admin.productos.buscarEditar') }}"
+            class="btn btn-outline-secondary">
+                Cancelar
+</a>
 
                     <button type="submit" class="btn btn-warning">
                         Actualizar producto

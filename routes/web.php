@@ -64,11 +64,19 @@ Route::middleware(['auth'])->group(function () {
         Route::patch('/consultas/{consulta}/estado', [ConsultaController::class, 'cambiarEstado'])->name('admin.consultas.estado');
         
         // Productos Admin
-        Route::get('/productos', [ProductoController::class, 'index'])->name('admin.productos.index');
+       Route::get('/productos', [ProductoController::class, 'buscarEditar'])->name('admin.productos.index');
         Route::get('/productos/create', [ProductoController::class, 'create'])->name('admin.productos.create');
         Route::post('/productos', [ProductoController::class, 'store'])->name('admin.productos.store');
+
+        Route::get('/productos/buscar-editar', [ProductoController::class, 'buscarEditar'])
+       ->name('admin.productos.buscarEditar');
+
+        Route::get('/productos/buscar-eliminar', [ProductoController::class, 'buscarEliminar'])
+        ->name('admin.productos.eliminar');
+        
         Route::get('/productos/{id}/edit', [ProductoController::class, 'edit'])->name('admin.productos.edit');
         Route::put('/productos/{id}', [ProductoController::class, 'update'])->name('admin.productos.update');
+        
         Route::delete('/productos/{id}', [ProductoController::class, 'destroy'])->name('admin.productos.destroy');
         Route::patch('/productos/{id}/restore', [ProductoController::class, 'restore'])->name('admin.productos.restore');
     });

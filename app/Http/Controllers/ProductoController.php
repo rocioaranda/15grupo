@@ -43,7 +43,7 @@ class ProductoController extends Controller
         $datos['activo'] = $request->has('activo') ? 1 : 0;
 
         Producto::create($datos);
-        return redirect()->route('admin.productos.eliminar')->with('exito', 'Producto agregado correctamente.');
+       return redirect()->route('admin.productos.create')->with('exito', 'Producto agregado correctamente.');
     }
 
     // EDICIÓN DE PRODUCTO
@@ -53,7 +53,7 @@ class ProductoController extends Controller
         $categorias = Categoria::all();
         return view('backend.admin.productos.edit', compact('producto', 'categorias'));
     }
-
+    
     public function update(Request $request, $id)
     {
         $producto = Producto::findOrFail($id);
@@ -69,13 +69,38 @@ class ProductoController extends Controller
         }
 
         $producto->save();
-        return redirect()->route('admin.productos.eliminar')->with('exito', 'Producto actualizado correctamente.');
+        return redirect()->route('admin.productos.buscarEditar')->with('exito', 'Producto actualizado correctamente.');
     }
+   public function buscarEditar(Request $request)
+{
+    $categorias = Categoria::all();
 
+    $productos = Producto::query()
+        ->filtrar($request)
+        ->get();
+
+    return view(
+        'backend.admin.productos.buscarEditar',
+        compact('productos', 'categorias')
+    );
+}
     // BAJA LÓGICA
     public function destroy($id)
     {
         Producto::findOrFail($id)->delete();
         return redirect()->route('admin.productos.eliminar')->with('exito', 'Producto eliminado correctamente.');
     }
+    public function buscarEliminar(Request $request)
+{
+    $categorias = Categoria::all();
+    $productos = null;
+
+    if ($request->anyFilled(['id', 'nombre', 'categoria_id'])) {
+        $productos = Producto::query()
+            ->filtrar($request)
+            ->get();
+    }
+
+    return view('backend.admin.productos.eliminar', compact('productos', 'categorias'));
+}
 }

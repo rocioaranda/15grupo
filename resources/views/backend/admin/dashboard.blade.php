@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('main')
-<div class="container-fluid py-5 text-white" style="background-color: #56e469; min-height: 90vh;">
+<div class="container-fluid py-5 text-white" style="background-color: #eff4ef; min-height: 90vh;">
     <div class="container">
         
         <div class="d-flex justify-content-between align-items-center mb-5 border-bottom border-secondary pb-3">
@@ -82,19 +82,38 @@
         @endif
 
         <div class="card bg-dark text-white border-0 shadow-lg p-4">
-            <h4 class="fw-bold mb-4 text-success border-bottom border-secondary pb-2">Botonera Maestra de Navegación</h4>
+            <h4 class="fw-bold mb-4 text-success border-bottom border-secondary pb-2">Operaciones del Panel</h4>
 
             <div class="row">
                 <div class="col-12 col-md-6">
                     {{-- Gestión de Productos --}}
-                    <div class="mb-4">
-                        <h6 class="text-secondary mb-3"><i class="bi bi-box-seam me-2"></i>Catálogo de Suplementos</h6>
-                        <div class="d-flex flex-column gap-2">
-                            <a href="{{ route('admin.productos.index') }}" class="btn btn-success fw-bold shadow-none text-start">
-                                <i class="bi bi-grid-3x3-gap me-2"></i> Ingresar al CRUD de Productos (Alta, Baja Lógica, Edición)
-                            </a>
-                        </div>
-                    </div>
+                   <div class="mb-4">
+    <h6 class="text-secondary mb-3">
+        <i class="bi bi-box-seam me-2"></i> Gestión de Productos
+    </h6>
+
+    <div class="d-flex flex-column gap-2">
+
+        <!-- Alta de producto -->
+        <a href="{{ route('admin.productos.create') }}"
+           class="btn btn-success w-100 text-start">
+            <i class="bi bi-plus-circle me-2"></i>
+            Agregar Producto
+        </a>
+
+       <a href="{{ route('admin.productos.buscarEditar') }}"
+    class="btn btn-outline-warning w-100 text-start">
+        <i class="bi bi-pencil-square me-2"></i>
+        Editar Productos
+    </a>
+    <a href="{{ route('admin.productos.eliminar') }}"
+   class="btn btn-outline-danger w-100 text-start">
+    <i class="bi bi-trash me-2"></i>
+    Eliminar Productos
+</a>
+
+    </div>
+        </div>
 
                     {{-- Gestión de Ventas / Reportes --}}
                     <div class="mb-4">
