@@ -11,79 +11,54 @@ use Illuminate\Support\Facades\DB;
 
 class CarritoController extends Controller
 {
-    // ─────────────────────────────────────────────
-    // HELPER PRIVADO: obtiene o crea el carrito activo del usuario
-    // ─────────────────────────────────────────────
+    // HELPER: Obtiene el carrito activo o lo crea
     private function obtenerCarrito()
     {
         return VentaCabecera::firstOrCreate(
-            [
-                'usuario_id' => auth()->id(),
-                'estado'     => 'carrito',
-            ],
+            ['usuario_id' => auth()->id(), 'estado' => 'carrito'],
             ['total' => 0]
         );
     }
 
-    // ─────────────────────────────────────────────
-    // GET: Muestra el carrito (público para invitados)
-    // ─────────────────────────────────────────────
+    // HELPER: Recalcula el total 
+    private function recalcularTotal(VentaCabecera $carrito)
+    {
+        $total = $carrito->detalles->sum(fn($d) => $d->cantidad * $d->precio_unitario);
+        $carrito->update(['total' => $total]);
+    }
+
+    //  Mostrar carrito
     public function index()
     {
-        if (!auth()->check()) {
-            $carrito = null;
-            $items   = collect();
-            return view('carrito', compact('carrito', 'items'));
-        }
-
+        if (!auth()->check()) return view('carrito', ['carrito' => null, 'items' => collect()]);
+        
         $carrito = $this->obtenerCarrito();
-        $items   = $carrito->detalles()->with(['producto'])->get();
-
+        $items = $carrito->detalles()->with(['producto'])->get();
         return view('carrito', compact('carrito', 'items'));
     }
 
-    // ─────────────────────────────────────────────
-    // POST: Agrega un producto al carrito
-    // ─────────────────────────────────────────────
+    //  Agregar al carrito
     public function agregar(Request $request)
     {
-        if (!auth()->check()) {
-            return redirect()->route('login')
-                ->with('error', 'Debés iniciar sesión para añadir productos al carrito.');
-        }
-
-        $request->validate([
-            'producto_id' => 'required|numeric|exists:productos,id',
-            'cantidad'    => 'required|integer|min:1',
-        ]);
-
+        $request->validate(['producto_id' => 'required|exists:productos,id', 'cantidad' => 'required|integer|min:1']);
         $producto = Producto::findOrFail($request->producto_id);
 
-        if (!$producto->activo) {
-            return back()->with('error', 'Lo sentimos, este producto ya no está disponible.');
-        }
-
-        if ($producto->stock < $request->cantidad) {
-            return back()->with('error', 'No hay suficiente stock disponible.');
+        if (!$producto->activo || $producto->stock < $request->cantidad) {
+            return back()->with('error', 'Producto no disponible o sin stock suficiente.');
         }
 
         $carrito = $this->obtenerCarrito();
-        $item    = $carrito->detalles()->where('producto_id', $producto->id)->first();
+        $item = $carrito->detalles()->where('producto_id', $producto->id)->first();
 
         if ($item) {
-            if ($producto->stock < ($item->cantidad + $request->cantidad)) {
-                return back()->with('error', "No podés agregar esa cantidad. Ya tenés {$item->cantidad} unidades en tu carrito y el stock disponible es de {$producto->stock}.");
-            }
-
-            $item->cantidad += $request->cantidad;
-            $item->subtotal  = $item->cantidad * $item->precio_unitario;
-            $item->save();
+            $item->increment('cantidad', $request->cantidad);
+            $item->update(['subtotal' => $item->cantidad * $item->precio_unitario]);
         } else {
             $carrito->detalles()->create([
-                'producto_id'     => $producto->id,
-                'cantidad'        => $request->cantidad,
+                'producto_id' => $producto->id,
+                'cantidad' => $request->cantidad,
                 'precio_unitario' => $producto->precio,
-                'subtotal'        => $producto->precio * $request->cantidad,
+                'subtotal' => $producto->precio * $request->cantidad,
             ]);
         }
 
@@ -91,171 +66,8 @@ class CarritoController extends Controller
         return back()->with('exito', 'Producto añadido al carrito.');
     }
 
-    // ─────────────────────────────────────────────
-    // DELETE: Quita un ítem específico del carrito
-    // ─────────────────────────────────────────────
-    public function eliminar($id)
-    {
-        $carrito = $this->obtenerCarrito();
-        $carrito->detalles()->where('id', $id)->delete();
-
-        $this->recalcularTotal($carrito);
-        return back()->with('exito', 'Producto removido con éxito.');
-    }
-
-    // ─────────────────────────────────────────────
-    // POST: Vacía por completo el carrito activo
-    // ─────────────────────────────────────────────
-    public function vaciar()
-    {
-        $carrito = $this->obtenerCarrito();
-        $carrito->detalles()->delete();
-        $carrito->update(['total' => 0]);
-
-        return back()->with('exito', 'El carrito ha sido vaciado correctamente.');
-    }
-
-    // ─────────────────────────────────────────────
-    // POST: Confirma la compra y retorna JSON
-    // ─────────────────────────────────────────────
-    public function confirmar()
-    {
-        if (!auth()->check()) {
-            return response()->json(['success' => false, 'message' => 'Debés iniciar sesión para finalizar la compra.'], 401);
-        }
-
-        $carrito = $this->obtenerCarrito();
-        $items   = $carrito->detalles()->with(['producto'])->get();
-
-        if ($items->count() === 0) {
-            return response()->json(['success' => false, 'message' => 'Tu carrito está vacío.'], 400);
-        }
-
-        foreach ($items as $item) {
-            if (!$item->producto) {
-                return response()->json(['success' => false, 'message' => 'Uno de los productos ya no existe.'], 422);
-            }
-            if ($item->producto->stock < $item->cantidad) {
-                return response()->json(['success' => false, 'message' => "Stock insuficiente para '{$item->producto->nombre}'."], 422);
-            }
-        }
-
-        DB::transaction(function () use ($carrito, $items) {
-            $carrito->update([
-                'estado'      => 'confirmado',
-                'fecha_venta' => now(),
-            ]);
-
-            foreach ($items as $item) {
-                $item->producto->decrement('stock', $item->cantidad);
-            }
-        });
-
-        // Sesión permanente para que persista entre requests
-        session()->put('ultima_venta_id', $carrito->id);
-        session()->save();
-
-        return response()->json([
-            'success'      => true,
-            'message'      => '¡Compra realizada con éxito!',
-            'download_url' => route('compra.descargar'),
-        ]);
-    }
-
-    // ─────────────────────────────────────────────
-    // GET: Vista de compra confirmada
-    // ─────────────────────────────────────────────
-    public function compraConfirmada(Request $request)
-    {
-        $ventaId = $request->get('id') ?? session('ultima_venta_id');
-
-        if (!$ventaId) {
-            return redirect()->route('carrito.index')->with('error', 'No se encontró una sesión de compra activa.');
-        }
-
-        session()->put('ultima_venta_id', $ventaId);
-        session()->save();
-
-        $venta = VentaCabecera::with(['detalles.producto'])
-            ->where('usuario_id', auth()->id())
-            ->findOrFail($ventaId);
-
-        return view('compra.confirmada', compact('venta'));
-    }
-
-    // ─────────────────────────────────────────────
-    // GET: Genera y descarga el comprobante en PDF
-    // ─────────────────────────────────────────────
-    public function descargarComprobante()
-    {
-        $ventaId = session('ultima_venta_id');
-
-        if (!$ventaId) {
-            return redirect()->route('carrito.index')->with('error', 'No se encontró una sesión de compra activa.');
-        }
-
-        $venta = VentaCabecera::with(['detalles.producto'])
-            ->where('usuario_id', auth()->id())
-            ->findOrFail($ventaId);
-
-        $data = [
-            'user'  => Auth::user(),
-            'items' => $venta->detalles,
-            'total' => $venta->total,
-            'fecha' => $venta->fecha_venta
-                        ? $venta->fecha_venta->format('d/m/Y H:i')
-                        : now()->format('d/m/Y H:i'),
-        ];
-
-        $pdf = app('dompdf.wrapper')->loadView('emails.comprobante', $data);
-
-        return $pdf->download('comprobante_evolvex.pdf');
-    }
-
-    // ─────────────────────────────────────────────
-    // POST: Envía el comprobante PDF al correo del usuario
-    // ─────────────────────────────────────────────
-    public function enviarComprobante()
-    {
-        $ventaId = session('ultima_venta_id');
-
-        if (!$ventaId) {
-            return redirect()->route('carrito.index')->with('error', 'No se encontró una sesión de compra activa.');
-        }
-
-        $venta = VentaCabecera::with(['detalles.producto'])
-            ->where('usuario_id', auth()->id())
-            ->findOrFail($ventaId);
-
-        $user = Auth::user();
-        $data = [
-            'user'  => $user,
-            'items' => $venta->detalles,
-            'total' => $venta->total,
-            'fecha' => $venta->fecha_venta
-                        ? $venta->fecha_venta->format('d/m/Y H:i')
-                        : now()->format('d/m/Y H:i'),
-        ];
-
-        $pdf = app('dompdf.wrapper')->loadView('emails.comprobante', $data);
-
-        try {
-            Mail::send('emails.cuerpo_correo', $data, function ($message) use ($user, $pdf) {
-                $message->to($user->email, $user->nombre_apellido)
-                        ->subject('Comprobante de Compra - Evolvex')
-                        ->attachData($pdf->output(), 'comprobante_evolvex.pdf');
-            });
-
-            return back()->with('exito', "Comprobante enviado a {$user->email}");
-        } catch (\Exception $e) {
-            return back()->with('error', 'No se pudo enviar el email. Podés descargarlo manualmente.');
-        }
-    }
-
-    // ─────────────────────────────────────────────
-    // GET: Historial de compras del usuario
-    // ─────────────────────────────────────────────
- public function historial(Request $request)
+    //  Historial con filtros de fecha
+    public function historial(Request $request)
     {
         $query = VentaCabecera::where('usuario_id', auth()->id())
             ->where('estado', 'confirmado')
@@ -269,12 +81,57 @@ class CarritoController extends Controller
         return view('backend.usuarios.historial', compact('compras'));
     }
 
-    // ─────────────────────────────────────────────
-    // HELPER PRIVADO: Recalcula el total del carrito
-    // ─────────────────────────────────────────────
-    private function recalcularTotal(VentaCabecera $carrito)
+    //  Confirmar compra 
+    public function confirmar()
     {
-        $total = $carrito->detalles()->sum('subtotal');
-        $carrito->update(['total' => $total]);
+        $carrito = $this->obtenerCarrito();
+        if ($carrito->detalles->isEmpty()) return response()->json(['success' => false, 'message' => 'Carrito vacío'], 400);
+
+        DB::transaction(function () use ($carrito) {
+            foreach ($carrito->detalles as $item) {
+                $item->producto->decrement('stock', $item->cantidad);
+            }
+            $carrito->update(['estado' => 'confirmado', 'fecha_venta' => now()]);
+        });
+
+        session(['ultima_venta_id' => $carrito->id]);
+        return response()->json(['success' => true, 'download_url' => route('compra.descargar')]);
+    }
+
+    // Descargar comprobante 
+    public function descargarComprobante()
+    {
+        $ventaId = session('ultima_venta_id');
+        if (!$ventaId) return redirect()->route('carrito.index')->with('error', 'Sesión expirada.');
+
+        $venta = VentaCabecera::with(['detalles.producto'])
+            ->where('usuario_id', auth()->id())
+            ->findOrFail($ventaId);
+
+        $data = [
+            'user'  => Auth::user(),
+            'items' => $venta->detalles,
+            'total' => $venta->total,
+            'fecha' => $venta->fecha_venta ? $venta->fecha_venta->format('d/m/Y H:i') : now()->format('d/m/Y H:i'),
+        ];
+
+        $pdf = app('dompdf.wrapper')->loadView('email.comprobante', $data);
+        return $pdf->download('comprobante_evolvex.pdf');
+    }
+
+    public function eliminar($id)
+    {
+        $carrito = $this->obtenerCarrito();
+        $carrito->detalles()->where('id', $id)->delete();
+        $this->recalcularTotal($carrito);
+        return back()->with('exito', 'Producto eliminado.');
+    }
+
+    public function vaciar()
+    {
+        $carrito = $this->obtenerCarrito();
+        $carrito->detalles()->delete();
+        $carrito->update(['total' => 0]);
+        return back()->with('exito', 'Carrito vaciado.');
     }
 }
