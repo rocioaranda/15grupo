@@ -1,7 +1,7 @@
 /*M!999999\- enable the sandbox mode */ 
 -- MariaDB dump 10.19-11.7.2-MariaDB, for Win64 (AMD64)
 --
--- Host: 127.0.0.1    Database: grupo15
+-- Host: localhost    Database: grupo_15
 -- ------------------------------------------------------
 -- Server version	12.2.2-MariaDB
 
@@ -90,10 +90,10 @@ CREATE TABLE `categorias` (
 LOCK TABLES `categorias` WRITE;
 /*!40000 ALTER TABLE `categorias` DISABLE KEYS */;
 INSERT INTO `categorias` VALUES
-(1,'Aumento de masa muscular',NULL,NULL),
-(2,'Definición / Quemar grasa',NULL,NULL),
-(3,'Salud y vitalidad',NULL,NULL),
-(4,'Accesorios',NULL,NULL);
+(1,'Aumento de masa muscular','2026-06-10 04:20:49','2026-06-10 04:20:49'),
+(2,'Definición / Quemar grasa','2026-06-10 04:20:49','2026-06-10 04:20:49'),
+(3,'Salud y vitalidad','2026-06-10 04:20:49','2026-06-10 04:20:49'),
+(4,'Accesorios','2026-06-10 04:20:49','2026-06-10 04:20:49');
 /*!40000 ALTER TABLE `categorias` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -125,7 +125,7 @@ LOCK TABLES `consultas` WRITE;
 /*!40000 ALTER TABLE `consultas` DISABLE KEYS */;
 INSERT INTO `consultas` VALUES
 (1,'macarena benitez','bmacarenasolange@gmail.com','compra','hola, me gustaria realizar una compra','vista','2026-06-04 05:16:33','2026-06-05 02:34:21'),
-(2,'Ramon Gomez','ramon@gmail.com','reclamo','buenas tardes, me gustaria hacer un reclamo de un producto que me llego en mal estado.','respondida','2026-06-05 21:25:21','2026-06-05 22:05:11');
+(2,'Ramon Gomez','ramon@gmail.com','reclamo','buenas tardes, me gustaria hacer un reclamo de un producto que me llego en mal estado.','pendiente','2026-06-05 21:25:21','2026-06-25 22:47:16');
 /*!40000 ALTER TABLE `consultas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -230,7 +230,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -249,7 +249,8 @@ INSERT INTO `migrations` VALUES
 (7,'2026_06_03_184640_create_productos_table',1),
 (8,'2026_06_04_010453_create_consultas_table',2),
 (9,'2026_06_05_143044_create_ventas_cabecera_table',3),
-(10,'2026_06_05_143118_create_ventas_detalle_table',3);
+(10,'2026_06_05_143118_create_ventas_detalle_table',3),
+(11,'2026_06_25_163804_add_deleted_at_to_productos_table',4);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -295,10 +296,11 @@ CREATE TABLE `productos` (
   `categoria_id` bigint(20) unsigned NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `productos_categoria_id_foreign` (`categoria_id`),
   CONSTRAINT `productos_categoria_id_foreign` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -308,23 +310,22 @@ CREATE TABLE `productos` (
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
 INSERT INTO `productos` VALUES
-(1,'WHEY PROTEIN DOYPACK - 2 LBS STAR NUTRITION',NULL,45000.00,7,'productos/YxjNsap5xBgxDHq4aK8orqpTC5719AlOmgk7WHK0.webp',1,1,'2026-06-18 04:12:31','2026-06-18 06:36:49'),
-(2,'WHEY PLATINUM 2LB - STAR NUTRITION',NULL,50000.00,5,'productos/etJuYsPrXWbLfN41JmCbGIBs2Qbn2733v2a4WMbB.jpg',1,1,'2026-06-18 06:39:35','2026-06-18 06:39:35'),
-(3,'PROTEINA 100% GOLD STANDARD WHEY - OPTIMUM NUTRITION',NULL,85000.00,8,'productos/dcrtBu4P8hg2CNGPSmyJw4CGCTK7p7JP4QUCwKDL.jpg',1,1,'2026-06-18 06:42:14','2026-06-18 06:42:14'),
-(4,'WHEY PROTEIN BODY ADVANCE - 907 GRS',NULL,25449.00,3,'productos/7bJwMaiD2cr2FaJBWilwdJfefo0yrZCYTrOSKraH.webp',1,1,'2026-06-18 06:43:29','2026-06-18 06:43:29'),
-(5,'RIPPED X ENA - 60 COMPRIMIDOS',NULL,12897.00,9,'productos/GsAmIKQ5DM0jqK9aUsdM8DEHw5nxJyoflh0Nvkyo.webp',1,2,'2026-06-18 06:44:24','2026-06-18 06:44:24'),
-(6,'CARNITINA 600 NUTREMAX - 90 COMPRIMIDOS',NULL,18550.00,12,'productos/ML5GmjGOAtA6NjRapCmReC8Qgzud1Zd7iDCTd27x.webp',1,2,'2026-06-18 06:45:46','2026-06-18 06:45:46'),
-(7,'LOSS WEIGHT - 120 COMPRIMIDOS - HOCH SPORT',NULL,37202.00,6,'productos/zZw99NZZMRSEuh9CGiD7cleYb7yO7tLqkIzwq5Ie.webp',1,2,'2026-06-18 06:46:28','2026-06-18 06:46:28'),
-(8,'LIPOXTREME 60 COMPRIMIDOS - BODY ADVANCE',NULL,7324.00,10,'productos/7j4VByexnQFyCLT2ng2qDSSlAuHrjBCLVgKLZA3Y.webp',1,2,'2026-06-18 06:47:19','2026-06-18 06:47:19'),
-(9,'STRAP NEGRO',NULL,45000.00,10,'productos/J2EWF0YkTY9yWktZ0XoZcfsj4Oqv8o0O0qGRUTzo.jpg',1,4,'2026-06-18 06:48:09','2026-06-18 06:48:09'),
-(10,'GUANTE DEPORTIVO',NULL,12500.00,4,'productos/h4AJlC2lsLE6A2FXjgFnF5x5bZJh47t4WA7Pj6I4.jpg',1,4,'2026-06-18 06:48:43','2026-06-18 06:48:43'),
-(11,'TOBILLERA PARA POLEA',NULL,19950.00,5,'productos/f5u60ikZKPGoLx3z2EF6RQWZgRM9qBzgjQ9Y6aXS.jpg',1,4,'2026-06-18 06:49:14','2026-06-18 06:49:14'),
-(12,'TOBILLERAS NEOPRENE',NULL,23340.00,7,'productos/IPPi1FTC0sdu8H1KoxEXIPbEqvKmLV52lfNzWDAn.webp',1,4,'2026-06-18 06:49:51','2026-06-18 06:49:51'),
-(13,'PANCAKE PROTEICO GRANGER',NULL,17962.00,15,'productos/ZjLUCItYIe9nnDkagZ6juR7n4ORoRUtKNnwp2JQs.webp',1,3,'2026-06-18 06:51:49','2026-06-18 06:51:49'),
-(14,'CUPCAKE PROTEICO GRANGER',NULL,16421.00,8,'productos/xEqOASGodrwZzJg3X8WymJ0fBDPogoq3n6h5rJ2m.webp',1,3,'2026-06-18 06:52:25','2026-06-18 06:52:25'),
-(15,'CHIA PUDDING PROTEICO',NULL,12940.00,2,'productos/FafdiixyNviPYsSC8FGEdrjnHXlW3cc3JCwXz3Z5.webp',1,3,'2026-06-18 06:53:13','2026-06-18 06:53:13'),
-(16,'VITAMINA C BODY ADVANCE',NULL,14000.00,4,'productos/3tTRvUnEy0H24iYM03ZtYb8XA4hPjVFGdwctbw53.webp',1,3,'2026-06-18 06:54:19','2026-06-18 06:54:19'),
-(17,'COLAGENO HIDROLIZADO 360G - ENA',NULL,30185.00,3,'productos/AvWbIbEpZz1INxlY3ngHww60djOHDlyJIPjcHVWw.jpg',1,3,'2026-06-18 06:55:12','2026-06-18 06:55:12');
+(1,'Whey Protein 2lb Star Nutrion Blend','Whey Protein 2LB Nutrition Blend es un suplemento proteico de alta calidad formulado con una mezcla de proteínas de suero de leche. Aporta aminoácidos esenciales para favorecer la recuperación muscular y el crecimiento de masa magra. Ideal para consumir post-entrenamiento o como complemento proteico diario.',70095.00,3,'productos/YRQrgL7XzCizf2wmkr9p6V3gGcaXBOtsDA4CXvKb.png',1,1,'2026-06-10 05:08:41','2026-06-25 23:07:32',NULL),
+(5,'CREATINA 300GR DOYPACK - STAR NUTRITION',NULL,28000.00,7,'productos/acr7b6T4OA7VlKSXjxlzJzEAbwCk8eQY7fX482tX.jpg',1,1,'2026-06-10 21:41:49','2026-06-25 22:43:41','2026-06-25 22:43:41'),
+(6,'Gold Standard 100% Whey','Proteína de suero de alta calidad con 24g de proteína por porción y 5.5g de BCAAs. Ideal para la recuperación y el crecimiento muscular. Sabor Extreme Milk Chocolate. 28 porciones por envase.',950000.00,5,'productos/SAJnYWU8UkMPqIvIAWQgpGEHxFPE1YnJP2EusjcX.jpg',1,1,'2026-06-25 23:31:18','2026-06-26 00:17:46',NULL),
+(7,'Platinum Nitro Whey - Star Nutrition','Proteína de suero ultra concentrada, aislada e hidrolizada con 25g de proteína por porción. Potenciada con creatina monohidrato y creatina nitrato. Libre de gluten. Sabor Chocolate Suizo. 30 porciones por envase.',58.00,2,'productos/gJDhG5WopcsyqbBxlbVcSqWFgbuTvNJUDLEnNiJl.webp',1,1,'2026-06-25 23:33:36','2026-06-25 23:33:36',NULL),
+(8,'Vegetal Protein Isolate - Gold Nutrition','Proteína 100% vegetal aislada a base de arveja, lupino y arroz. Aporta 30g de proteína natural por porción. Fortificada con Vitamina B12, endulzada con stevia, sin azúcar, sin soja y sin TACC. Apta para veganos. Sabor Neutro. 2lb / 907g.',41.00,1,'productos/tnHFUfUP3LNzCwLVsJd9ClxnskrXrfz7rbZOI5vi.webp',1,1,'2026-06-25 23:35:35','2026-06-25 23:35:35',NULL),
+(9,'Banda de Asistencia Heavy - Proyec','Banda de asistencia para dominadas y ejercicios de fuerza. Intensidad Heavy (17kg - 42.5kg). Tecnología multicapa, 100% látex premium, bicolor amarillo y negro. Ideal para dominadas asistidas, elongación, crossfit y trabajos de fuerza de piernas y brazos.',66.80,10,'productos/UDOjyfkq8LqRmCOReJmchrkdvtewhTW8hZYNVA4d.webp',1,4,'2026-06-25 23:37:35','2026-06-25 23:37:35',NULL),
+(10,'Cinturón de Fuerza Nylon - Balboafit','Cinturón de fuerza de nylon de alta resistencia con hebilla metálica de bloqueo automático. Brinda soporte firme en abdomen y zona lumbar para entrenamientos intensos y levantamiento de pesas. Color negro. Disponible en talles XS, S, M, L, XL.',55.00,2,'productos/jtxPDMXYvC0SlqahCRS8BbAcwRqmkeoQ7O9jAFyB.webp',1,4,'2026-06-25 23:39:37','2026-06-25 23:39:37',NULL),
+(11,'Shaker Gold Nutrition 600cc','Shaker deportivo Gold Nutrition de 600cc. Material resistente y fácil de limpiar, tapa con cierre seguro dorado. Ideal para preparar proteínas, pre-entrenos y suplementos. Diseño transparente con logo dorado.',8.00,15,'productos/t9ref4uYlAbT7I6V8DrKT5xE3Tqxa22v5KY5fs4b.webp',1,4,'2026-06-25 23:42:47','2026-06-25 23:42:47',NULL),
+(12,'Straps de Agarre para Barra - SVG Sport','Cintas de agarre profesionales para levantamiento de pesas, par por unidad. Fabricadas en algodón de alta resistencia con almohadilla de protección para muñeca. 56cm de largo x 4cm de ancho, costuras reforzadas. Ideales para peso muerto, dominadas y remos. Color negro.',8.90,5,'productos/0RiX1WMWvrJYx1puuXztW0z8ADWXwnJrOzOqbMg7.jpg',1,4,'2026-06-25 23:44:38','2026-06-25 23:44:38',NULL),
+(13,'Tobillera con Peso Neoprene 1kg - Proyec','Tobilleras lastradas de neoprene, par por unidad (1kg c/u). Sujeción con velcro ajustable, rellenas con granalla y arena. Ideales para ejercicios de piernas, glúteos y cardio. Color rosa y negro.',24.90,15,'productos/hPTK89Vthu4axkp2uYgqeArEH8v6SWb6qHESenPy.webp',1,4,'2026-06-25 23:47:33','2026-06-25 23:47:33',NULL),
+(14,'L-Carnitina 2000 Tartrato - Body Advance','Suplemento dietario a base de Carnitina Tartrato 2000mg. Colabora en la resistencia durante actividades prolongadas, incrementa el uso de grasas como combustible y acompaña el descenso de peso. Sin TACC, sin lactosa, apto vegano. 180 comprimidos, 30 servicios.',14.50,9,'productos/NWscBYHbPbtH191vgLnCYNGApZUbnkPsW9CGG0ew.webp',1,2,'2026-06-25 23:49:08','2026-06-25 23:49:08',NULL),
+(15,'Carnitine 1000 - Nutrex Research','L-Carnitina pura 1000mg por dosis. Metabolizador lipídico que transporta ácidos grasos a las células para ser utilizados como energía. Sin estimulantes. 60 cápsulas, 30 servicios. Ideal para quemar grasa y mejorar el rendimiento aeróbico.',29.70,11,'productos/Qz2qHB2ik7FjXNO8mFqrtkCGx7Z7bLNGkXHM2kMD.webp',1,2,'2026-06-25 23:50:33','2026-06-25 23:50:33',NULL),
+(16,'Lipo 6 Black Ultra Concentrate - Nutrex Research','Termogénico ultra concentrado en cápsulas líquidas de rápida absorción. Elimina grasa corporal, suprime el apetito y aumenta la energía y el estado de alerta. 250mg de cafeína por servicio. Solo 1 cápsula por dosis. 60 cápsulas, 30 servicios. No apto para menores de 18 años, embarazadas ni lactantes.',65.00,2,'productos/Y7JWAwTePrssar4ajJaC8RPo1LvlXtWhMZAOKrud.webp',1,2,'2026-06-25 23:51:55','2026-06-25 23:51:55',NULL),
+(17,'Colágeno Hidrolizado 300g - Body Advance','Suplemento dietario a base de Colágeno Hidrolizado con L-Metionina, Zinc y Vitaminas. Aporta elasticidad, regeneración de articulaciones, piel, uñas y cabello. Fortalece huesos y tendones. 300g en polvo, 21 servicios. Sabor Frutilla. Industria Argentina.',22.00,8,'productos/V7OrupqVKjf7p0K4kMn9L4uJCXZCh5SDyz81DFZT.webp',1,3,'2026-06-25 23:53:39','2026-06-25 23:53:39',NULL),
+(18,'Omega 3 800EPA/400DHA - InnovaNaturals','Aceite de pescado ultrarefinado de alta concentración con 800mg EPA y 400mg DHA por dosis. Único Omega 3 en Argentina con certificaciones internacionales IFOS y GOED 5 estrellas. Libre de mercurio, metales pesados y contaminantes. Sin TACC, libre de gluten. 60 cápsulas blandas, 30 servicios.',82.00,4,'productos/OEJU4S9RqFtO0wYwpmdqT7oFIWRsTUwBjSPI1HjO.jpg',1,3,'2026-06-25 23:55:30','2026-06-25 23:55:30',NULL),
+(19,'Omelettes Proteicos Jamón y Queso - Granger Foods','Omelettes proteicos hechos con clara de huevo. 25g de proteína por porción, sin azúcar añadida. Rinde 10 omelettes. Contenido neto 350g. Sabor Jamón y Queso.',16000.00,6,'productos/S4VGf7JeS5XWHlIlkWSpXqoOWT0P4Wf9jbDMyVhi.webp',1,3,'2026-06-26 00:23:25','2026-06-26 00:23:25',NULL);
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -440,7 +441,7 @@ CREATE TABLE `usuarios` (
   UNIQUE KEY `usuarios_email_unique` (`email`),
   KEY `usuarios_rol_id_foreign` (`rol_id`),
   CONSTRAINT `usuarios_rol_id_foreign` FOREIGN KEY (`rol_id`) REFERENCES `roles` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -450,9 +451,9 @@ CREATE TABLE `usuarios` (
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
 INSERT INTO `usuarios` VALUES
+(4,'macarena','bmacarenasolange@gmail.com','379455886','$2y$12$sLtnCZ5PJxOzxOedH8R7d.kh5.iKzwZ77w3kd87U06BUU84uHlITC',2,NULL,'2026-06-05 01:11:48','2026-06-05 01:11:48',NULL),
 (5,'solangeBeni','beniwen0@gmail.com','37945586','$2y$12$ygSu6OXbHgzgb5LkUI5cveYo55859k1234yqy2pxUVjLXOt9Mlxhe',1,NULL,'2026-06-05 01:37:00','2026-06-05 01:37:00',NULL),
-(6,'Ramon Gomez','ramon@gmail.com','3795896321','$2y$12$s186CWyX8G9Eic7EGSgKrOMbkZkICGBb2jel8tmWDF9owi1bFc53.',2,NULL,'2026-06-05 21:10:40','2026-06-05 21:10:40',NULL),
-(7,'Rocio Aranda','arandarocio1@gmail.com','12345','$2y$12$/35nUAYJKAkVwX/K4Ek1Eu5Tp.ffYnIfqo6z7rR7xnb2eGKPcJ3F6',2,NULL,'2026-06-18 03:48:04','2026-06-18 03:48:04',NULL);
+(6,'Ramon Gomez','ramon@gmail.com','3795896321','$2y$12$s186CWyX8G9Eic7EGSgKrOMbkZkICGBb2jel8tmWDF9owi1bFc53.',2,NULL,'2026-06-05 21:10:40','2026-06-05 21:10:40',NULL);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -474,7 +475,7 @@ CREATE TABLE `ventas_cabecera` (
   PRIMARY KEY (`id`),
   KEY `ventas_cabecera_usuario_id_foreign` (`usuario_id`),
   CONSTRAINT `ventas_cabecera_usuario_id_foreign` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -484,9 +485,10 @@ CREATE TABLE `ventas_cabecera` (
 LOCK TABLES `ventas_cabecera` WRITE;
 /*!40000 ALTER TABLE `ventas_cabecera` DISABLE KEYS */;
 INSERT INTO `ventas_cabecera` VALUES
-(1,'2026-06-18 04:39:42',7,'confirmado',45.00,'2026-06-18 03:48:10','2026-06-18 04:39:42'),
-(2,'2026-06-18 04:55:08',7,'confirmado',45.00,'2026-06-18 04:55:00','2026-06-18 04:55:08'),
-(3,'2026-06-18 06:36:49',7,'confirmado',0.00,'2026-06-18 04:55:13','2026-06-18 06:36:49');
+(1,'2026-06-25 23:01:45',4,'confirmado',210285.00,'2026-06-05 22:52:28','2026-06-25 23:01:45'),
+(2,NULL,5,'carrito',0.00,'2026-06-10 05:32:19','2026-06-10 05:32:19'),
+(3,'2026-06-25 23:07:32',4,'confirmado',70095.00,'2026-06-25 23:07:05','2026-06-25 23:07:32'),
+(4,NULL,4,'carrito',0.00,'2026-06-25 23:07:52','2026-06-25 23:07:52');
 /*!40000 ALTER TABLE `ventas_cabecera` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -511,7 +513,7 @@ CREATE TABLE `ventas_detalle` (
   KEY `ventas_detalle_producto_id_foreign` (`producto_id`),
   CONSTRAINT `ventas_detalle_producto_id_foreign` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id`),
   CONSTRAINT `ventas_detalle_venta_id_foreign` FOREIGN KEY (`venta_id`) REFERENCES `ventas_cabecera` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -521,14 +523,13 @@ CREATE TABLE `ventas_detalle` (
 LOCK TABLES `ventas_detalle` WRITE;
 /*!40000 ALTER TABLE `ventas_detalle` DISABLE KEYS */;
 INSERT INTO `ventas_detalle` VALUES
-(1,1,1,1,45.00,45.00,'2026-06-18 04:39:36','2026-06-18 04:39:36'),
-(2,2,1,1,45.00,45.00,'2026-06-18 04:55:04','2026-06-18 04:55:04'),
-(3,3,1,1,45000.00,45000.00,'2026-06-18 06:26:02','2026-06-18 06:26:02');
+(1,1,1,3,70095.00,210285.00,'2026-06-25 22:53:58','2026-06-25 22:54:06'),
+(2,3,1,1,70095.00,70095.00,'2026-06-25 23:07:15','2026-06-25 23:07:15');
 /*!40000 ALTER TABLE `ventas_detalle` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Dumping routines for database 'grupo15'
+-- Dumping routines for database 'grupo_15'
 --
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -540,4 +541,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*M!100616 SET NOTE_VERBOSITY=@OLD_NOTE_VERBOSITY */;
 
--- Dump completed on 2026-06-18  1:04:05
+-- Dump completed on 2026-06-25 21:20:33
