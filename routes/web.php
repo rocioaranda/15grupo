@@ -32,11 +32,12 @@ Route::post('/logout', [AutenticacionController::class, 'logout'])->name('logout
 
 // Carrito (Público)
 Route::get('/carrito', [CarritoController::class, 'index'])->name('carrito.index');
-Route::post('/carrito/agregar', [CarritoController::class, 'agregar'])->name('carrito.agregar');
-Route::delete('/carrito/eliminar/{id}', [CarritoController::class, 'eliminar'])->name('carrito.eliminar');
+
 
 // --- ZONA PROTEGIDA (Auth) ---
 Route::middleware(['auth'])->group(function () {
+    Route::post('/carrito/agregar', [CarritoController::class, 'agregar'])->name('carrito.agregar');
+    Route::delete('/carrito/eliminar/{id}', [CarritoController::class, 'eliminar'])->name('carrito.eliminar');
     Route::post('/carrito/vaciar', [CarritoController::class, 'vaciar'])->name('carrito.vaciar');
     Route::get('/mis-compras', [CarritoController::class, 'historial'])->name('compras.historial');
     Route::post('/carrito/confirmar', [CarritoController::class, 'confirmar'])->name('carrito.confirmar');

@@ -22,7 +22,7 @@
                 <span class="btn producto-btn">Comprar</span>
             </div>
         </div>
-    </div>
+    </div> 
 
     <div class="col">
         <div class="producto-card">

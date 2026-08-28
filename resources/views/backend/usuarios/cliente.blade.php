@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('main')
-<main class="container py-5" style="background-color: #0d0f12; min-height: 85vh;">
+<main class="container py-5" style="background-color: #abaeaa; min-height: 85vh;">
     @if(session('exito'))
         <div class="alert alert-success alert-dismissible fade show bg-success text-white border-0 mb-4 shadow mx-auto" role="alert" style="max-width: 600px;">
             <i class="bi bi-check-circle-fill me-2"></i>{{ session('exito') }}
