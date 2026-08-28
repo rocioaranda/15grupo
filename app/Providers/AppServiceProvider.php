@@ -5,6 +5,9 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Models\Categoria;
+use Illuminate\Pagination\Paginator;
+
+Paginator::useBootstrapFive(); // para Bootstrap 5
 
 class AppServiceProvider extends ServiceProvider
 {

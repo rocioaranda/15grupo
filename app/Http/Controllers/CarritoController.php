@@ -77,7 +77,7 @@ class CarritoController extends Controller
         if ($request->filled('fecha_desde')) $query->whereDate('fecha_venta', '>=', $request->fecha_desde);
         if ($request->filled('fecha_hasta')) $query->whereDate('fecha_venta', '<=', $request->fecha_hasta);
 
-        $compras = $query->get();
+        $compras = $query->paginate(3);
         return view('backend.usuarios.historial', compact('compras'));
     }
 
