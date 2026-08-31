@@ -1,47 +1,41 @@
-<div class="table-responsive">
-    <table class="table table-dark table-hover border-secondary mb-0">
-        <thead>
-            <tr class="text-secondary border-bottom border-secondary">
-                <th>Producto</th>
-                <th class="text-center">Cant.</th>
-                <th class="text-end">Precio</th>
-                <th class="text-end">Subtotal</th>
-            </tr>
-        </thead>
-        <tbody>
-            @if(isset($venta) && $venta->detalles && $venta->detalles->count() > 0)
-                @foreach($venta->detalles as $item)
-                    <tr class="align-middle border-bottom border-secondary">
-                        <td>{{ $item->producto ? $item->producto->nombre : 'Producto no disponible' }}</td>
-                        <td class="text-center">{{ $item->cantidad ?? 0 }}</td>
-                        <td class="text-end">${{ number_format($item->precio_unitario ?? 0, 2, ',', '.') }}</td>
-                        <td class="text-end">${{ number_format($item->subtotal ?? 0, 2, ',', '.') }}</td>
-                    </tr>
-                @endforeach
-            @else
-                <tr>
-                    <td colspan="4" class="text-center text-muted py-4">No se pudieron cargar los detalles del comprobante.</td>
-                </tr>
-            @endif
-        </tbody>
-        
-        @if(isset($venta) && $venta->detalles && $venta->detalles->count() > 0)
-            <tfoot>
-                <tr class="fw-bold align-middle border-top border-secondary">
-                    <td colspan="3" class="text-end text-secondary py-3">Total de la compra:</td>
-                    <td class="text-end text-success fs-5 py-3">${{ number_format($venta->total ?? 0, 2, ',', '.') }}</td>
-                </tr>
-            </tfoot>
-        @endif
-    </table>
-</div>
+@extends('layouts.app')
 
-{{--  Contenedor con los botones de acción para el PDF y Correo --}}
-<div class="d-flex justify-content-center gap-3 mt-4">
+@section('main')
+<div class="container py-5 text-center" style="max-width: 600px;">
 
-    {{-- Botón de descarga directa (Método GET) --}}
-    <a href="{{ route('compra.descargar') }}" class="btn btn-success btn-lg px-4 fw-bold shadow-sm">
-        <i class="bi bi-file-earmark-pdf-fill me-2"></i>Descargar comprobante
+    <i class="bi bi-check-circle-fill text-success" style="font-size: 5rem;"></i>
+    <h2 class="mt-3 fw-bold text-white">¡Pedido confirmado!</h2>
+
+    @if(session('tipo_entrega') === 'retiro')
+        <div class="alert alert-secondary border-secondary text-white mt-4 text-start">
+            <i class="bi bi-envelope-check me-2 text-success fs-5"></i>
+            Te contactaremos al correo registrado para avisarte cuándo tu pedido
+            está listo para retirar en nuestra sucursal.
+        </div>
+    @else
+        <p class="text-white-50 mt-3">
+            Tu pedido fue procesado. Recibirás novedades sobre el envío en tu correo registrado.
+        </p>
+    @endif
+
+    @if(session('exito'))
+        <div class="alert alert-success mt-3">{{ session('exito') }}</div>
+    @endif
+    @if(session('error'))
+        <div class="alert alert-danger mt-3">{{ session('error') }}</div>
+    @endif
+
+    {{-- Boton de comprobante --}}
+    <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
+
+        <a href="{{ route('compra.descargar') }}" class="btn btn-success btn-lg fw-bold">
+            <i class="bi bi-file-earmark-pdf me-2"></i>Descargar comprobante PDF
+        </a>
+    </div>
+
+    <a href="{{ route('catalogo.index') }}" class="btn btn-link text-secondary mt-4 d-block">
+        Seguir comprando
     </a>
 
 </div>
+@endsection
