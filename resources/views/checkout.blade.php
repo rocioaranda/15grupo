@@ -46,7 +46,7 @@
     <form action="{{ route('checkout.confirmar') }}" method="POST" id="form-checkout" novalidate>
         @csrf
 
-        {{-- ── PASO 1: Datos del cliente ─────────────────────── --}}
+        {{-- ── PASO 1: Datos del cliente ──────────────────────────── --}}
         <div class="card bg-dark border-secondary mb-4">
             <div class="card-header text-success fw-bold border-secondary">
                 <i class="bi bi-person me-2"></i>Datos del cliente
@@ -77,7 +77,7 @@
             </div>
         </div>
 
-        {{-- ── PASO 2: Tipo de entrega ────────────────────────── --}}
+        {{-- ── PASO 2: Tipo de entrega ─────────────────────────────── --}}
         <div class="card bg-dark border-secondary mb-4">
             <div class="card-header text-success fw-bold border-secondary">
                 <i class="bi bi-truck me-2"></i>Tipo de entrega
@@ -107,7 +107,7 @@
                     <div class="text-danger small">{{ $message }}</div>
                 @enderror
 
-                {{-- Mensaje retiro en sucursal --}}
+                {{-- Mensaje retiro --}}
                 <div id="bloque-retiro" style="{{ old('tipo_entrega') === 'envio' ? 'display:none' : '' }}">
                     <div class="alert alert-secondary border-secondary text-white-50 small mb-0">
                         <i class="bi bi-info-circle me-2 text-success"></i>
@@ -169,15 +169,17 @@
             </div>
         </div>
 
-        {{-- ── PASO 3: Método de pago ──────────────────────────── --}}
+        {{-- ── PASO 3: Método de pago ──────────────────────────────── --}}
         <div class="card bg-dark border-secondary mb-4">
             <div class="card-header text-success fw-bold border-secondary">
                 <i class="bi bi-credit-card me-2"></i>Método de pago
             </div>
             <div class="card-body">
-                <div class="d-flex flex-wrap gap-3 mb-3" id="opciones-pago">
 
-                    {{-- Mercado Pago --}}
+                {{-- Opciones de método de pago --}}
+                <div class="d-flex flex-wrap gap-4 mb-3">
+
+                    {{-- Radio: Mercado Pago --}}
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="metodo_pago"
                                id="pago_mp" value="mercadopago"
@@ -188,7 +190,7 @@
                         </label>
                     </div>
 
-                    {{-- Tarjeta --}}
+                    {{-- Radio: Tarjeta --}}
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="metodo_pago"
                                id="pago_tarjeta" value="tarjeta"
@@ -199,8 +201,9 @@
                         </label>
                     </div>
 
-                    {{-- Efectivo (solo retiro) --}}
-                    <div class="form-check" id="opcion-efectivo" style="{{ old('tipo_entrega') === 'envio' ? 'display:none' : '' }}">
+                    {{-- Radio: Efectivo (solo retiro) --}}
+                    <div class="form-check" id="opcion-efectivo"
+                         style="{{ old('tipo_entrega') === 'envio' ? 'display:none' : '' }}">
                         <input class="form-check-input" type="radio" name="metodo_pago"
                                id="pago_efectivo" value="efectivo"
                                {{ old('metodo_pago') === 'efectivo' ? 'checked' : '' }}
@@ -211,26 +214,56 @@
                     </div>
 
                 </div>
+
                 @error('metodo_pago')
                     <div class="text-danger small mb-3">{{ $message }}</div>
                 @enderror
 
-                {{-- Bloque Mercado Pago --}}
+                {{-- Bloque: Mercado Pago --}}
                 <div id="bloque-mp" style="{{ old('metodo_pago') === 'mercadopago' ? '' : 'display:none' }}">
                     <div class="alert alert-secondary border-secondary text-white-50 small">
                         <i class="bi bi-whatsapp me-2 text-success fs-5"></i>
                         Para pagar por Mercado Pago, contactanos por WhatsApp y te enviamos el link de pago:
                         <a href="https://wa.me/541124096668?text=Hola%2C+quiero+pagar+mi+pedido+de+Evolvex"
-                           target="_blank"
-                           class="btn btn-success btn-sm ms-2 fw-bold">
+                           target="_blank" class="btn btn-success btn-sm ms-2 fw-bold">
                             <i class="bi bi-whatsapp me-1"></i> Ir a WhatsApp
                         </a>
                     </div>
                 </div>
 
-                {{-- Bloque Tarjeta --}}
+                {{-- Bloque: Tarjeta (se muestra cuando se selecciona el radio de tarjeta) --}}
                 <div id="bloque-tarjeta" style="{{ old('metodo_pago') === 'tarjeta' ? '' : 'display:none' }}">
                     <div class="row g-3">
+
+                        {{-- Tipo de tarjeta: débito o crédito --}}
+                        <div class="col-12">
+                            <label class="form-label text-white">Tipo de tarjeta <span class="text-danger">*</span></label>
+                            <div class="d-flex gap-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="tarjeta_tipo"
+                                           id="tarjeta_debito" value="debito"
+                                           {{ old('tarjeta_tipo') === 'debito' ? 'checked' : '' }}
+                                           onchange="toggleTipoTarjeta()">
+                                    <label class="form-check-label text-white" for="tarjeta_debito">
+                                        <i class="bi bi-credit-card me-1 text-success"></i> Débito
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="tarjeta_tipo"
+                                           id="tarjeta_credito" value="credito"
+                                           {{ old('tarjeta_tipo') === 'credito' ? 'checked' : '' }}
+                                           onchange="toggleTipoTarjeta()">
+                                    <label class="form-check-label text-white" for="tarjeta_credito">
+                                        <i class="bi bi-credit-card-2-front me-1 text-success"></i> Crédito
+                                    </label>
+                                </div>
+                            </div>
+                            @error('tarjeta_tipo')
+                                <div class="text-danger small mt-1">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        {{-- Número de tarjeta — exactamente 16 dígitos --}}
                         <div class="col-12">
                             <label class="form-label text-white">Número de tarjeta <span class="text-danger">*</span></label>
                             <input type="text" name="tarjeta_numero" inputmode="numeric"
@@ -243,6 +276,8 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
+
+                        {{-- Titular --}}
                         <div class="col-md-6">
                             <label class="form-label text-white">Nombre y Apellido del titular <span class="text-danger">*</span></label>
                             <input type="text" name="tarjeta_titular"
@@ -254,6 +289,8 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
+
+                        {{-- Vencimiento --}}
                         <div class="col-md-3">
                             <label class="form-label text-white">Vencimiento (MM/AA) <span class="text-danger">*</span></label>
                             <input type="text" name="tarjeta_vencimiento" inputmode="numeric"
@@ -266,17 +303,22 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
+
+                        {{-- CVV --}}
                         <div class="col-md-3">
                             <label class="form-label text-white">Código de seguridad <span class="text-danger">*</span></label>
                             <input type="password" name="tarjeta_cvv" inputmode="numeric"
-                                   maxlength="4"
+                                   maxlength="3"
                                    class="form-control bg-dark text-white border-secondary @error('tarjeta_cvv') is-invalid @enderror"
                                    placeholder="•••">
                             @error('tarjeta_cvv')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div class="col-md-4">
+
+                        {{-- Cuotas — solo visible para crédito --}}
+                        <div class="col-md-4" id="bloque-cuotas"
+                             style="{{ old('tarjeta_tipo') === 'credito' ? '' : 'display:none' }}">
                             <label class="form-label text-white">Cuotas <span class="text-danger">*</span></label>
                             <select name="tarjeta_cuotas"
                                     class="form-select bg-dark text-white border-secondary @error('tarjeta_cuotas') is-invalid @enderror">
@@ -291,10 +333,11 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
+
                     </div>
                 </div>
 
-                {{-- Bloque Efectivo --}}
+                {{-- Bloque: Efectivo --}}
                 <div id="bloque-efectivo" style="{{ old('metodo_pago') === 'efectivo' ? '' : 'display:none' }}">
                     <div class="alert alert-secondary border-secondary text-white-50 small mb-0">
                         <i class="bi bi-cash me-2 text-success"></i>
@@ -319,21 +362,18 @@
 </div>
 
 <script>
-    // Muestra/oculta los bloques según el tipo de entrega
     function toggleEntrega() {
-        const esEnvio  = document.getElementById('tipo_envio').checked;
-        document.getElementById('bloque-envio').style.display   = esEnvio ? 'block' : 'none';
-        document.getElementById('bloque-retiro').style.display  = esEnvio ? 'none'  : 'block';
-        document.getElementById('opcion-efectivo').style.display = esEnvio ? 'none' : '';
+        const esEnvio = document.getElementById('tipo_envio').checked;
+        document.getElementById('bloque-envio').style.display    = esEnvio ? 'block' : 'none';
+        document.getElementById('bloque-retiro').style.display   = esEnvio ? 'none'  : 'block';
+        document.getElementById('opcion-efectivo').style.display = esEnvio ? 'none'  : '';
 
-        // Si cambia a envío y tenía efectivo seleccionado, lo deselecciona
         if (esEnvio && document.getElementById('pago_efectivo').checked) {
             document.getElementById('pago_efectivo').checked = false;
             togglePago();
         }
     }
 
-    // Muestra/oculta los bloques según el método de pago
     function togglePago() {
         const pago = document.querySelector('input[name="metodo_pago"]:checked')?.value;
         document.getElementById('bloque-mp').style.display       = pago === 'mercadopago' ? 'block' : 'none';
@@ -341,13 +381,19 @@
         document.getElementById('bloque-efectivo').style.display = pago === 'efectivo'    ? 'block' : 'none';
     }
 
-    // Formatea el número de tarjeta con espacios cada 4 dígitos
+    function toggleTipoTarjeta() {
+        const esCredito = document.getElementById('tarjeta_credito').checked;
+        document.getElementById('bloque-cuotas').style.display = esCredito ? 'block' : 'none';
+        if (!esCredito) {
+            document.querySelector('select[name="tarjeta_cuotas"]').value = '';
+        }
+    }
+
     function formatarTarjeta(input) {
         let valor = input.value.replace(/\D/g, '').substring(0, 16);
         input.value = valor.replace(/(.{4})/g, '$1 ').trim();
     }
 
-    // Formatea el vencimiento como MM/AA
     function formatarVencimiento(input) {
         let valor = input.value.replace(/\D/g, '').substring(0, 4);
         if (valor.length >= 3) {
@@ -356,10 +402,10 @@
         input.value = valor;
     }
 
-    // Inicializar estado al cargar la página (por si hay old() values)
     document.addEventListener('DOMContentLoaded', function () {
         toggleEntrega();
         togglePago();
+        toggleTipoTarjeta();
     });
 </script>
 @endsection
