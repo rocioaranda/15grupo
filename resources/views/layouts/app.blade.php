@@ -21,6 +21,24 @@
 <body>
     @include('partes.header')
     @include('partes.navbar')
+
+    {{-- Bloque global para mostrar mensajes de éxito o error por stock/carrito --}}
+    <div class="container mt-3" style="max-width: 800px;">
+        @if(session('exito'))
+            <div class="alert alert-success border-0 bg-success text-dark fw-bold alert-dismissible fade show shadow-sm" role="alert">
+                <i class="bi bi-check-circle-fill me-2"></i> {{ session('exito') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
+        @if(session('error'))
+            <div class="alert alert-danger border-0 bg-danger text-white fw-bold alert-dismissible fade show shadow-sm" role="alert">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i> {{ session('error') }}
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+    </div>
+    
     @yield('main')
 
     @include('partes.footer')
