@@ -109,7 +109,7 @@
 
                 {{-- Mensaje retiro --}}
                 <div id="bloque-retiro" style="{{ old('tipo_entrega') === 'envio' ? 'display:none' : '' }}">
-                    <div class="alert alert-secondary border-secondary text-white-50 small mb-0">
+                    <div class="alert bg-black border border-secondary text-white small shadow-sm">
                         <i class="bi bi-info-circle me-2 text-success"></i>
                         Una vez confirmado el pedido, te contactaremos al email
                         <strong class="text-white">{{ $user->email }}</strong>
@@ -221,7 +221,7 @@
 
                 {{-- Bloque: Mercado Pago --}}
                 <div id="bloque-mp" style="{{ old('metodo_pago') === 'mercadopago' ? '' : 'display:none' }}">
-                    <div class="alert alert-secondary border-secondary text-white-50 small">
+                    <div class="alert bg-black border border-secondary text-white small shadow-sm">
                         <i class="bi bi-whatsapp me-2 text-success fs-5"></i>
                         Para pagar por Mercado Pago, contactanos por WhatsApp y te enviamos el link de pago:
                         <a href="https://wa.me/541124096668?text=Hola%2C+quiero+pagar+mi+pedido+de+Evolvex"
@@ -339,7 +339,7 @@
 
                 {{-- Bloque: Efectivo --}}
                 <div id="bloque-efectivo" style="{{ old('metodo_pago') === 'efectivo' ? '' : 'display:none' }}">
-                    <div class="alert alert-secondary border-secondary text-white-50 small mb-0">
+                    <div class="alert bg-black border border-secondary text-white small shadow-sm">
                         <i class="bi bi-cash me-2 text-success"></i>
                         Abonás en efectivo al momento de retirar el pedido en nuestra sucursal.
                     </div>

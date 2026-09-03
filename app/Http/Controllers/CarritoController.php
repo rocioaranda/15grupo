@@ -293,7 +293,7 @@ class CarritoController extends Controller
                         : now()->format('d/m/Y H:i'),
         ];
 
-        $pdf = app('dompdf.wrapper')->loadView('emails.comprobante', $data);
+        $pdf = app('dompdf.wrapper')->loadView('email.comprobante', $data);
         return $pdf->download('comprobante_evolvex.pdf');
     }
 
