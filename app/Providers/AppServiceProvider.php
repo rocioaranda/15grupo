@@ -7,8 +7,6 @@ use Illuminate\Support\Facades\View;
 use App\Models\Categoria;
 use Illuminate\Pagination\Paginator;
 
-Paginator::useBootstrapFive(); // para Bootstrap 5
-
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -24,6 +22,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Indica que la paginación usa Bootstrap 5 
+        Paginator::useBootstrapFive();
+
         // Usamos el View Composer para compartir datos en todas las vistas ('*')
         View::composer('*', function ($view) {
             

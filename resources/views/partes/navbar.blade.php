@@ -16,7 +16,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark border-secondary">
                         <li>
-                            <a class="dropdown-item py-2" href="{{ route('catalogo.index') }}">Mostrar todos los productos</a>
+                            <a class="dropdown-item py-2" href="{{ route('catalogo') }}">Mostrar todos los productos</a>
                         </li>
                         <li><hr class="dropdown-divider border-secondary"></li>
                         <li><h6 class="dropdown-header text-success fw-bold">CATEGORÍAS DISPONIBLES</h6></li>
@@ -24,7 +24,7 @@
                         {{-- RECORREMOS LAS CATEGORÍAS REALES DESDE LA BASE DE DATOS --}}
                         @forelse($categoriasGlobales as $categoria)
                             <li>
-                                <a class="dropdown-item text-uppercase py-2" style="font-size: 0.85rem;" href="{{ route('catalogo.index', $categoria->id) }}">
+                                <a class="dropdown-item text-uppercase py-2" style="font-size: 0.85rem;" href="{{ route('catalogo', $categoria->id) }}">
                                     {{ $categoria->nombre }}
                                 </a>
                             </li>
@@ -51,7 +51,7 @@
                 </li>
             </ul>
 
-            <form action="{{ route('catalogo.index') }}" method="GET" class="d-flex" role="search">
+            <form action="{{ route('catalogo') }}" method="GET" class="d-flex" role="search">
 
                 <div class="position-relative flex-grow-1 me-2">
                     <input class="form-control bg-dark text-white border-secondary shadow-none"
@@ -63,7 +63,7 @@
                         style="{{ request('buscar') ? 'padding-right: 2rem;' : '' }}">
 
                     @if(request('buscar'))
-                        <a href="{{ route('catalogo.index') }}"
+                        <a href="{{ route('catalogo') }}"
                            class="position-absolute top-50 end-0 translate-middle-y text-white-50 text-decoration-none pe-2"
                            style="cursor: pointer;">
                             <i class="bi bi-x-circle-fill"></i>
@@ -78,7 +78,7 @@
 
             <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0 justify-content-center">
 
-                {{--  El carrito solo se muestra si el usuario NO está logueado, o si está logueado pero NO es administrador --}}
+                {{-- El carrito solo se muestra si el usuario NO está logueado, o si está logueado pero NO es administrador --}}
                 @if(!auth()->check() || Auth::user()->rol_id !== 1)
                     <a href="{{ route('carrito.index') }}" class="btn btn-outline-light border-0 p-1 position-relative">
                         <i class="bi bi-cart3 fs-4"></i>

@@ -32,6 +32,7 @@ class AdminController extends Controller
             $productoEstrella = null;
         }
 
+
         return view('backend.admin.dashboard', compact(
             'totalVentas', 
             'cantidadPedidos', 
@@ -153,24 +154,22 @@ class AdminController extends Controller
         if ($request->filled('orden_id')) {
             $query->where('id', $request->orden_id);
         }
-
         if ($request->filled('fecha_desde')) {
             $query->whereDate('fecha_venta', '>=', $request->fecha_desde);
         }
         if ($request->filled('fecha_hasta')) {
             $query->whereDate('fecha_venta', '<=', $request->fecha_hasta);
         }
-
         if ($request->filled('cliente')) {
             $buscar = $request->cliente;
             $query->whereHas('usuario', function ($q) use ($buscar) {
                 $q->where('nombre_apellido', 'LIKE', "%{$buscar}%")
-                  ->orWhere('email', 'LIKE', "%{$buscar}%");
+                ->orWhere('email', 'LIKE', "%{$buscar}%");
             });
         }
 
-        $ventas = $query->get();
-            
+        $ventas = $query->paginate(10); 
+
         return view('backend.admin.ventas', compact('ventas'));
     }
 

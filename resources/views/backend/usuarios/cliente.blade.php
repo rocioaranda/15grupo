@@ -2,12 +2,6 @@
 
 @section('main')
 <main class="container py-5" style="background-color: #abaeaa; min-height: 85vh;">
-    @if(session('exito'))
-        <div class="alert alert-success alert-dismissible fade show bg-success text-white border-0 mb-4 shadow mx-auto" role="alert" style="max-width: 600px;">
-            <i class="bi bi-check-circle-fill me-2"></i>{{ session('exito') }}
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
 
     <div class="row mb-4 justify-content-center">
         <div class="col-12 col-md-10 col-lg-6 text-center text-md-start">

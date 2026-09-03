@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InicioController;
-use App\Http\Controllers\CatalogoController;
 use App\Http\Controllers\ConsultaController;
 use App\Http\Controllers\AutenticacionController;
 use App\Http\Controllers\CarritoController;
@@ -16,9 +15,10 @@ Route::get('/quienes_somos', fn() => view('quienes_somos'))->name('quienes_somos
 Route::get('/terminos_condiciones', fn() => view('terminos_condiciones'))->name('terminos_condiciones');
 Route::get('/comercializacion', fn() => view('comercializacion'))->name('comercializacion');
 
-// Catálogo
-Route::get('/catalogo/{categoria?}', [CatalogoController::class, 'index'])->name('catalogo.index');
-Route::get('/producto/{id}', [CatalogoController::class, 'show'])->name('producto.show');
+// Catálogo y Detalle de Producto
+Route::get('/catalogo/{categoriaId?}', [ProductoController::class, 'catalogo'])->name('catalogo');
+Route::get('/producto/{id}', [ProductoController::class, 'show'])->name('producto.show');
+
 // Consultas
 Route::get('/consulta', fn() => view('consulta'))->name('consulta');
 Route::post('/consulta/enviar', [ConsultaController::class, 'enviar'])->name('consulta.enviar');
@@ -40,15 +40,14 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/carrito/eliminar/{id}', [CarritoController::class, 'eliminar'])->name('carrito.eliminar');
     Route::post('/carrito/vaciar', [CarritoController::class, 'vaciar'])->name('carrito.vaciar');
     Route::get('/mis-compras', [CarritoController::class, 'historial'])->name('compras.historial');
-// Ruta GET para mostrar el formulario de checkout
-    Route::get('/checkout', [CarritoController::class, 'formularioCheckout'])->name('carrito.checkout');
     
-    // Ruta POST única para procesar y confirmar el checkout con los datos del formulario
+    // Checkout
+    Route::get('/checkout', [CarritoController::class, 'formularioCheckout'])->name('carrito.checkout');
     Route::post('/checkout/confirmar', [CarritoController::class, 'confirmar'])->name('checkout.confirmar');
-
     Route::get('/compra-confirmada', [CarritoController::class, 'compraConfirmada'])->name('compra.confirmada');
     Route::get('/compra/descargar', [CarritoController::class, 'descargarComprobante'])->name('compra.descargar');
 
+    // Perfil
     Route::get('/mi-perfil', [PerfilController::class, 'index'])->name('perfil.index');
     Route::put('/mi-perfil/actualizar', [PerfilController::class, 'actualizar'])->name('perfil.actualizar');
 
@@ -56,28 +55,27 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['admin'])->prefix('admin')->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
         
-        //  Visualizar y Eliminar Usuarios
-        Route::get('/admin/usuarios', [AdminController::class, 'usuariosIndex'])->name('admin.usuarios.index');
-        // Usamos el nombre 'admin.usuarios.eliminar' para que coincida perfectamente con tu formulario de la vista
-        Route::delete('/admin/usuarios/{id}', [AdminController::class, 'eliminarUsuario'])->name('admin.usuarios.eliminar');
+        // Usuarios
+        Route::get('/usuarios', [AdminController::class, 'usuariosIndex'])->name('admin.usuarios.index');
+        Route::delete('/usuarios/{id}', [AdminController::class, 'eliminarUsuario'])->name('admin.usuarios.eliminar');
 
         // Ventas Realizadas
-        Route::get('/admin/ventas', [AdminController::class, 'ventasIndex'])->name('admin.ventas.index');
+        Route::get('/ventas', [AdminController::class, 'ventasIndex'])->name('admin.ventas.index');
         
         // Consultas Admin
         Route::get('/consultas', [ConsultaController::class, 'index'])->name('admin.consultas');
         Route::patch('/consultas/{consulta}/estado', [ConsultaController::class, 'cambiarEstado'])->name('admin.consultas.estado');
         
         // Productos Admin
-       Route::get('/productos', [ProductoController::class, 'buscarEditar'])->name('admin.productos.index');
+        Route::get('/productos', [ProductoController::class, 'buscarEditar'])->name('admin.productos.index');
         Route::get('/productos/create', [ProductoController::class, 'create'])->name('admin.productos.create');
         Route::post('/productos', [ProductoController::class, 'store'])->name('admin.productos.store');
 
         Route::get('/productos/buscar-editar', [ProductoController::class, 'buscarEditar'])
-       ->name('admin.productos.buscarEditar');
+            ->name('admin.productos.buscarEditar');
 
         Route::get('/productos/buscar-eliminar', [ProductoController::class, 'buscarEliminar'])
-        ->name('admin.productos.eliminar');
+            ->name('admin.productos.eliminar');
         
         Route::get('/productos/{id}/edit', [ProductoController::class, 'edit'])->name('admin.productos.edit');
         Route::put('/productos/{id}', [ProductoController::class, 'update'])->name('admin.productos.update');

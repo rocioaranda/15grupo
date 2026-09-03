@@ -7,7 +7,6 @@
         <div class="d-flex justify-content-between align-items-center mb-4 border-bottom border-secondary pb-3">
             <div>
                 <h2 class="text-success fw-bold text-uppercase m-0"><i class="bi bi-receipt me-2"></i> Auditoría de Ventas</h2>
-                <p class="text-muted m-0 mt-1">Monitoreo y filtrado de transacciones comerciales confirmadas.</p>
             </div>
             <a href="{{ route('admin.dashboard') }}" class="btn btn-outline-light fw-bold shadow-none">
                 <i class="bi bi-arrow-left me-1"></i> Volver al Panel
@@ -96,6 +95,11 @@
                         @endforeach
                     </tbody>
                 </table>
+            </div>
+
+            {{-- Controles de Paginación --}}
+            <div class="mt-4">
+                {{ $ventas->appends(request()->query())->links() }}
             </div>
         @else
             <div class="text-center bg-dark p-5 rounded-4 border border-secondary shadow-lg my-4">

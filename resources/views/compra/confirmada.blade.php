@@ -26,18 +26,6 @@
             </p>
         @endif
 
-        @if(session('exito'))
-            <div class="alert alert-success border-0 bg-success text-dark fw-bold mt-3 py-2 small">
-                {{ session('exito') }}
-            </div>
-        @endif
-        
-        @if(session('error'))
-            <div class="alert alert-danger border-0 bg-danger text-white mt-3 py-2 small">
-                {{ session('error') }}
-            </div>
-        @endif
-
         {{-- Botón de comprobante y acciones --}}
         <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
             <a href="{{ route('compra.descargar') }}" class="btn btn-success btn-lg fw-bold px-4 shadow-sm">

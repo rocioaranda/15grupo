@@ -14,17 +14,6 @@
             </a>
         </div>
 
-        @if(session('exito'))
-            <div class="alert alert-success bg-dark text-success border-success mb-4 shadow-sm">
-                {{ session('exito') }}
-            </div>
-        @endif
-        @if(session('error'))
-            <div class="alert alert-danger bg-dark text-danger border-danger mb-4 shadow-sm">
-                {{ session('error') }}
-            </div>
-        @endif
-
         <div class="alert alert-dark border-secondary d-flex flex-column flex-sm-row align-items-center justify-content-between p-3 mb-4 shadow-sm" style="background-color: #161b22;">
             <div class="d-flex align-items-center mb-3 mb-sm-0">
                 <div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center me-3 flex-shrink-0" style="width: 45px; height: 45px;">

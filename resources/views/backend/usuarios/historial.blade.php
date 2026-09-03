@@ -30,23 +30,22 @@
             <div class="col-12">
                 @foreach($compras as $compra)
                     <div class="card bg-dark text-white border-secondary mb-4 rounded-4 shadow-lg">
-                        <div class="card-header border-secondary bg-black p-3 d-flex flex-wrap justify-content-between align-items-center">
-                            <div>
-                                <span class="text-muted small text-uppercase d-block">Pedido N°</span>
-                                <span class="fw-bold text-success">#{{ $compra->id }}</span>
-                            </div>
-                            <div>
-                                <span class="text-muted small text-uppercase d-block">Fecha de Compra</span>
-                                <span class="fw-bold text-white">
-                                    {{-- El cast datetime de tu modelo nos permite usar format() de forma directa --}}
-                                    {{ $compra->fecha_venta ? $compra->fecha_venta->format('d/m/Y H:i') : 'Sin fecha' }}
-                                </span>
-                            </div>
-                            <div class="text-md-end mt-2 mt-md-0">
-                                <span class="text-muted small text-uppercase d-block">Total Abonado</span>
-                                <span class="fw-bold text-success fs-5">${{ number_format($compra->total, 2, ',', '.') }}</span>
-                            </div>
+                    <div class="card-header border-secondary bg-dark p-3 d-flex flex-wrap justify-content-between align-items-center">
+                        <div>
+                            <span class="text-light small fw-bold text-uppercase d-block">Pedido N°</span>
+                            <span class="fw-bold text-success fs-5">#{{ $compra->id }}</span>
                         </div>
+                        <div>
+                            <span class="text-light small fw-bold text-uppercase d-block">Fecha de Compra</span>
+                            <span class="fw-bold text-white">
+                                {{ $compra->fecha_venta ? $compra->fecha_venta->format('d/m/Y H:i') : 'Sin fecha' }}
+                            </span>
+                        </div>
+                        <div class="text-md-end mt-2 mt-md-0">
+                            <span class="text-light small fw-bold text-uppercase d-block">Total Abonado</span>
+                            <span class="fw-bold text-success fs-5">${{ number_format($compra->total, 2, ',', '.') }}</span>
+                        </div>
+                    </div>
 
                         <div class="card-body p-0">
                             <div class="table-responsive">

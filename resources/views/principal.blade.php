@@ -65,7 +65,8 @@
                 @endforeach
             </div>
         </div>
-@endif
+    @endif
+
     {{-- Sección: Statement de marca --}}
    <div class="position-relative text-white my-5" style="overflow: hidden; background-color: #000;">
     <img src="{{ asset('img/fondoPrincipal/estilo_vida2.jpg') }}"
@@ -86,12 +87,13 @@
         </div>
     </div>
 </div>
+
     {{-- Sección: Categorías --}}
     <div class="container-fluid py-4">
         <div class="row g-3">
             @forelse($categorias as $cat)
                 <div class="col-6 col-md-3">
-                    <a class="secciones" href="{{ route('catalogo.index', ['categoria' => $cat->id]) }}">
+                    <a class="secciones" href="{{ route('catalogo', $cat->id) }}">
                         @php
                             $nombreImagen = Str::slug($cat->nombre);
                         @endphp
