@@ -40,10 +40,14 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/carrito/eliminar/{id}', [CarritoController::class, 'eliminar'])->name('carrito.eliminar');
     Route::post('/carrito/vaciar', [CarritoController::class, 'vaciar'])->name('carrito.vaciar');
     Route::get('/mis-compras', [CarritoController::class, 'historial'])->name('compras.historial');
-    Route::post('/carrito/confirmar', [CarritoController::class, 'confirmar'])->name('carrito.confirmar');
+// Ruta GET para mostrar el formulario de checkout
+    Route::get('/checkout', [CarritoController::class, 'formularioCheckout'])->name('carrito.checkout');
+    
+    // Ruta POST única para procesar y confirmar el checkout con los datos del formulario
+    Route::post('/checkout/confirmar', [CarritoController::class, 'confirmar'])->name('checkout.confirmar');
+
     Route::get('/compra-confirmada', [CarritoController::class, 'compraConfirmada'])->name('compra.confirmada');
     Route::get('/compra/descargar', [CarritoController::class, 'descargarComprobante'])->name('compra.descargar');
-    Route::post('/compra/enviar-comprobante', [CarritoController::class, 'enviarComprobante'])->name('compra.enviar');
 
     Route::get('/mi-perfil', [PerfilController::class, 'index'])->name('perfil.index');
     Route::put('/mi-perfil/actualizar', [PerfilController::class, 'actualizar'])->name('perfil.actualizar');
