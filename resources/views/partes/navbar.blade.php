@@ -20,7 +20,7 @@
                         </li>
                         <li><hr class="dropdown-divider border-secondary"></li>
                         <li><h6 class="dropdown-header text-success fw-bold">CATEGORÍAS DISPONIBLES</h6></li>
-                        
+
                         {{-- RECORREMOS LAS CATEGORÍAS REALES DESDE LA BASE DE DATOS --}}
                         @forelse($categoriasGlobales as $categoria)
                             <li>
@@ -41,7 +41,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('quienes_somos') }}">Sobre Evolvex</a>
                 </li>
-                        
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('comercializacion') }}">Comercialización</a>
                 </li>
@@ -52,21 +52,32 @@
             </ul>
 
             <form action="{{ route('catalogo.index') }}" method="GET" class="d-flex" role="search">
-                
-                <input class="form-control me-2 bg-dark text-white border-secondary shadow-none" 
-                    type="search" 
-                    name="buscar" 
-                    value="{{ request('buscar') }}" 
-                    placeholder="¿Qué estás buscando?" 
-                    aria-label="Buscar">
-                    
+
+                <div class="position-relative flex-grow-1 me-2">
+                    <input class="form-control bg-dark text-white border-secondary shadow-none"
+                        type="search"
+                        name="buscar"
+                        value="{{ request('buscar') }}"
+                        placeholder="¿Qué estás buscando?"
+                        aria-label="Buscar"
+                        style="{{ request('buscar') ? 'padding-right: 2rem;' : '' }}">
+
+                    @if(request('buscar'))
+                        <a href="{{ route('catalogo.index') }}"
+                           class="position-absolute top-50 end-0 translate-middle-y text-white-50 text-decoration-none pe-2"
+                           style="cursor: pointer;">
+                            <i class="bi bi-x-circle-fill"></i>
+                        </a>
+                    @endif
+                </div>
+
                 <button class="btn btn-outline-success" type="submit">
                     <i class="bi bi-search"></i>
                 </button>
             </form>
 
             <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0 justify-content-center">
-                
+
                 {{--  El carrito solo se muestra si el usuario NO está logueado, o si está logueado pero NO es administrador --}}
                 @if(!auth()->check() || Auth::user()->rol_id !== 1)
                     <a href="{{ route('carrito.index') }}" class="btn btn-outline-light border-0 p-1 position-relative">
@@ -85,7 +96,7 @@
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
                             <li><a class="dropdown-item" href="{{ route('perfil.index') }}">Mi Perfil</a></li>
-                            
+
                             {{-- Si es Administrador ve el Panel Admin, de lo contrario ve "Mis Compras" --}}
                             @if(Auth::user()->rol_id === 1)
                                 <li><a class="dropdown-item text-warning" href="{{ route('admin.dashboard') }}">Panel Admin</a></li>
@@ -111,7 +122,7 @@
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
                             <li><a class="dropdown-item" href="{{ route('login') }}">Iniciar Sesión</a></li>
-                            <li><a class="dropdown-item" href="{{ route('register') }}">Crear Usuario</a></li> 
+                            <li><a class="dropdown-item" href="{{ route('register') }}">Crear Usuario</a></li>
                         </ul>
                     @endguest
                 </div>

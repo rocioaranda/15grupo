@@ -16,6 +16,7 @@
     <h2 class="mb-3">¿Por qué elegirnos?</h2>
     <p class="mb-5">
         Trabajamos con productos originales y seleccionados bajo estrictos estándares de calidad, brindando asesoramiento personalizado para ayudarte a alcanzar tus objetivos de forma eficiente y segura.
+    </p>
 
     <div class="row justify-content-center">
 
@@ -34,8 +35,9 @@
         </div>
 
     </div>
-    </section>
-    <!--  REDES SOCIALES -->
+</section>
+
+<!--  REDES SOCIALES -->
 <section class="container py-5">
     <h2 class="text-center mb-4">Nuestras redes</h2>
 
@@ -57,13 +59,50 @@
         </div>
     </div>
 </section>
+
+<!-- MEDIOS DE PAGO -->
+<section class="container py-5 text-white">
+    <h2 class="text-center mb-4 text-white">Medios de pago</h2>
+
+    <div class="row justify-content-center g-4 text-center">
+        <div class="col-6 col-md-3">
+            <i class="bi bi-credit-card-2-front-fill text-success fs-2 d-block mb-2"></i>
+            <span class="d-block fw-bold text-white">Tarjeta de crédito</span>
+            <small class="text-white-50">Visa, Mastercard, American Express</small>
+        </div>
+
+        <div class="col-6 col-md-3">
+            <i class="bi bi-credit-card-fill text-success fs-2 d-block mb-2"></i>
+            <span class="d-block fw-bold text-white">Tarjeta de débito</span>
+            <small class="text-white-50">Visa Débito, Maestro</small>
+        </div>
+
+        <div class="col-6 col-md-3">
+            <i class="bi bi-bank text-success fs-2 d-block mb-2"></i>
+            <span class="d-block fw-bold text-white">Transferencia</span>
+            <small class="text-white-50">CBU / Alias</small>
+        </div>
+
+        <div class="col-6 col-md-3">
+            <i class="bi bi-cash-coin text-success fs-2 d-block mb-2"></i>
+            <span class="d-block fw-bold text-white">Efectivo</span>
+            <small class="text-white-50">Retiro en local</small>
+        </div>
+    </div>
+
+    <p class="text-center text-white-50 small mt-4">
+        <i class="bi bi-shield-lock-fill text-success me-1"></i>
+        Todos tus pagos están protegidos y son 100% seguros.
+    </p>
+</section>
+
 <!-- IMAGEN DESTACADA -->
 <section class="container py-4 text-center">
     <img src="{{ asset('img/comer.jpeg') }}" class="img-fluid imagen-banner">
 </section>
 
 <!-- UBICACIÓN -->
- <a href="https://maps.app.goo.gl/7dnuvanJA8J4AoGv7" target="_blank" style="text-decoration:none;">
+<a href="https://maps.app.goo.gl/7dnuvanJA8J4AoGv7" target="_blank" style="text-decoration:none;">
     <section class="container py-5 text-center">
         <h2 class="verde mb-3">Visitá nuestro local</h2>
         <img src="{{ asset('img/ubi.png') }}" class="logo-ubi">

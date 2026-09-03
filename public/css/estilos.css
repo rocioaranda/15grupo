@@ -504,3 +504,9 @@ body {
 
     color: white;
 }
+
+/* Oculta el botón "x" nativo de los inputs type="search" en navegadores basados en Chromium/WebKit */
+input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+}

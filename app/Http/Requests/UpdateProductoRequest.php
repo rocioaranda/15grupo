@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreProductoRequest extends FormRequest
+class UpdateProductoRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -20,7 +20,7 @@ class StoreProductoRequest extends FormRequest
             'stock'        => ['required', 'integer', 'min:0'],
             'categoria_id' => ['required', 'exists:categorias,id'],
             'activo'       => ['nullable', 'boolean'],
-            'imagen'       => ['required', 'image', 'mimes:jpeg,jpg,png,webp', 'max:5120'],
+            'imagen'       => ['nullable', 'image', 'mimes:jpeg,jpg,png,webp', 'max:5120'], // nullable: no siempre se cambia la foto
         ];
     }
 
@@ -47,7 +47,6 @@ class StoreProductoRequest extends FormRequest
 
             'activo.boolean'        => 'El campo activo debe ser verdadero o falso.',
 
-            'imagen.required'       => 'Debe subir una imagen del producto.',
             'imagen.image'          => 'El archivo debe ser una imagen válida.',
             'imagen.mimes'          => 'La imagen debe ser de tipo: jpeg, jpg, png o webp.',
             'imagen.max'            => 'La imagen no puede superar los 5 MB.',

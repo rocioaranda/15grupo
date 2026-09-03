@@ -25,6 +25,22 @@ class ConsultaController extends Controller
             'email'   => 'required|email|max:255',
             'asunto'  => 'required|string|max:100',
             'mensaje' => 'required|string|min:10',
+        ], [
+            'nombre.required'  => 'campo obligatorio.',
+            'nombre.string'    => 'El nombre debe ser un texto válido.',
+            'nombre.max'       => 'El nombre no puede superar los 255 caracteres.',
+
+            'email.required'   => 'El correo electrónico es obligatorio.',
+            'email.email'      => 'Ingresá un correo electrónico válido.',
+            'email.max'        => 'El correo no puede superar los 255 caracteres.',
+
+            'asunto.required'  => 'Debes seleccionar un asunto.',
+            'asunto.string'    => 'El asunto debe ser un texto válido.',
+            'asunto.max'       => 'El asunto no puede superar los 100 caracteres.',
+
+            'mensaje.required' => 'El mensaje es obligatorio.',
+            'mensaje.string'   => 'El mensaje debe ser un texto válido.',
+            'mensaje.min'      => 'El mensaje debe tener al menos 10 caracteres.',
         ]);
 
         Consulta::create([

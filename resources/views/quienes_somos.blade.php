@@ -11,7 +11,8 @@
             <div class="col-md-6 lado-derecho d-flex align-items-center">
                 <div class="contenido-texto text-center-justify">
                     
-                <h2 class="titulo-derecho">¿Quiénes somos?</h2>
+                <h1 class="titulo-derecho">¿Quiénes somos?</h1>
+                     <h2>¡Somos EVOLVEX: más que suplementos, una comunidad!</h2>
 
                     <p>
                         Más que una tienda, somos el aliado que necesitás para transformar tu cuerpo.
@@ -22,10 +23,11 @@
                     <p>
                         Somos una joven compañía enfocada en la venta y distribución de suplementación y accesorios deportivos.
                         Nuestro objetivo es llegar a cada rincón del país, brindando un servicio rápido, confiable y accesible.
+                        Ayudamos a miles de personas a transformar su cuerpo, su energía y su mentalidad, con productos de calidad y asesoramiento real.
                     </p>
                     <h3 class="origen-marca">¿Por qué EVOLVEX?</h3>
                  <p>
-                    EVOLVE representa el cambio, el progreso constante y la disciplina de superarse cada día.
+                    EVOLVEX representa el cambio, el progreso constante y la disciplina de superarse cada día.
                  La “X” simboliza el punto donde rompés tus propios límites.
 
                  EVOLVEX no es solo un nombre, es una mentalidad: evolucionar más allá de lo esperado.

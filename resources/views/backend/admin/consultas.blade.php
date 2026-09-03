@@ -54,6 +54,9 @@
                 @endforeach
             </tbody>
         </table>
+         <a href="{{ route('admin.dashboard') }}" class="btn btn-outline-light fw-bold shadow-none">
+        <i class="bi bi-arrow-left me-1"></i> Volver al Panel
+    </a>
     </div>
 </div>
 @endsection

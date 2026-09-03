@@ -121,7 +121,7 @@
             </div>
         </div>
 
-    </div> <!-- 👈 ESTE ERA EL QUE FALTABA -->
+    </div> 
 
 </main>
 

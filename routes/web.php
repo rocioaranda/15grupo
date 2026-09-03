@@ -18,7 +18,7 @@ Route::get('/comercializacion', fn() => view('comercializacion'))->name('comerci
 
 // Catálogo
 Route::get('/catalogo/{categoria?}', [CatalogoController::class, 'index'])->name('catalogo.index');
-
+Route::get('/producto/{id}', [CatalogoController::class, 'show'])->name('producto.show');
 // Consultas
 Route::get('/consulta', fn() => view('consulta'))->name('consulta');
 Route::post('/consulta/enviar', [ConsultaController::class, 'enviar'])->name('consulta.enviar');

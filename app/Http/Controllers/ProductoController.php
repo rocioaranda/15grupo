@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Producto;
 use App\Models\Categoria;
 use Illuminate\Http\Request;
+use App\Http\Requests\UpdateProductoRequest;
 use App\Http\Requests\StoreProductoRequest; 
 
 class ProductoController extends Controller
@@ -53,24 +54,25 @@ class ProductoController extends Controller
         $categorias = Categoria::all();
         return view('backend.admin.productos.edit', compact('producto', 'categorias'));
     }
-    
-    public function update(Request $request, $id)
-    {
-        $producto = Producto::findOrFail($id);
-        $producto->nombre = $request->nombre;
-        $producto->categoria_id = $request->categoria_id;
-        $producto->descripcion = $request->descripcion;
-        $producto->precio = $request->precio;
-        $producto->stock = $request->stock;
-        $producto->activo = $request->has('activo') ? 1 : 0;
+public function update(UpdateProductoRequest $request, $id)
+{
+    $producto = Producto::findOrFail($id);
+    $datos = $request->validated();
 
-        if ($request->hasFile('imagen')) {
-            $producto->url_imagen = $request->file('imagen')->store('productos', 'public');
-        }
+    $producto->nombre = $datos['nombre'];
+    $producto->categoria_id = $datos['categoria_id'];
+    $producto->descripcion = $datos['descripcion'];
+    $producto->precio = $datos['precio'];
+    $producto->stock = $datos['stock'];
+    $producto->activo = $request->has('activo') ? 1 : 0;
 
-        $producto->save();
-        return redirect()->route('admin.productos.buscarEditar')->with('exito', 'Producto actualizado correctamente.');
+    if ($request->hasFile('imagen')) {
+        $producto->url_imagen = $request->file('imagen')->store('productos', 'public');
     }
+
+    $producto->save();
+    return redirect()->route('admin.productos.buscarEditar')->with('exito', 'Producto actualizado correctamente.');
+}
    public function buscarEditar(Request $request)
 {
     $categorias = Categoria::all();

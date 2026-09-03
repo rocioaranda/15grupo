@@ -12,18 +12,15 @@
             </span>
         </div>
         
-        <div class="card-body d-flex flex-column justify-content-between">
-            <div>
-                <h5 class="card-title fw-bold text-white mb-2 fs-6 text-uppercase">{{ $producto->nombre }}</h5>
-                <p class="card-text text-white-50 small mb-3" style="font-size: 0.85rem;">
-                    {{ Str::limit($producto->descripcion, 75, '...') }}
-                </p>
-            </div>
-            
-            <div>
-                <h3 class="fw-bold text-success mb-3">${{ number_format($producto->precio, 2, ',', '.') }}</h3>
-            </div>
-        </div>
+       <div class="card-body d-flex flex-column justify-content-between">
+    <div>
+        <a href="{{ route('producto.show', $producto->id) }}" class="text-decoration-none">
+            <h5 class="card-title fw-bold text-white mb-2 fs-6 text-uppercase">{{ $producto->nombre }}</h5>
+        </a>
+        <p class="card-text text-white-50 small mb-3" style="font-size: 0.85rem;">
+            {{ Str::limit($producto->descripcion, 75, '...') }}
+        </p>
+    </div>
 
         <div class="card-footer border-top-0 bg-transparent pb-3">
             @if($producto->stock > 0)
@@ -48,15 +45,16 @@
                 @else
                     {{-- INVITADO ANÓNIMO: Redirección al Login --}}
                     <a href="{{ route('login') }}" class="btn btn-outline-success w-100 fw-bold rounded-pill text-uppercase py-2 text-decoration-none text-center" style="font-size: 0.85rem;">
-                        <i class="bi bi-box-arrow-in-right me-1"></i> Loguearse para comprar
+                        <i class="bi bi-box-arrow-in-right me-1"></i> comprar
                     </a>
                 @endauth
             @else
                 {{-- PRODUCTO SIN STOCK --}}
                 <button class="btn btn-outline-danger w-100 disabled rounded-pill text-uppercase py-2" style="font-size: 0.85rem;">
-                    <i class="bi bi-dash-circle me-1"></i> Agotado
+                    <i class="bi bi-dash-circle me-1"></i> Sin stock
                 </button>
             @endif
         </div>
     </div>
+</div>
 </div>
