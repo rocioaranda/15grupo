@@ -7,7 +7,6 @@
         <div class="d-flex justify-content-between align-items-center mb-4 border-bottom border-secondary pb-3">
             <div>
                 <h1 class="fw-bold text-info m-0">Padrón de Usuarios</h1>
-                <p class="text-muted m-0 mt-1">Control y visualización de cuentas registradas en el sistema</p>
             </div>
             <a href="{{ route('admin.dashboard') }}" class="btn btn-outline-light btn-sm shadow-none">
                 <i class="bi bi-arrow-left me-1"></i> Volver al Panel
@@ -19,10 +18,10 @@
                 <div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center me-3 flex-shrink-0" style="width: 45px; height: 45px;">
                     <i class="bi bi-person-gear text-info fs-4"></i>
                 </div>
-                <div>
-                    <h6 class="fw-bold text-white mb-0">¿Querés modificar tus propios datos de Administrador?</h6>
-                    <p class="text-muted small mb-0">Tu cuenta actual ({{ auth()->user()->email }}) se gestiona de forma segura desde tu perfil privado.</p>
-                </div>
+        <div>
+            <h6 class="fw-bold text-white mb-0">¿Querés modificar tus propios datos de Administrador?</h6>
+            <p class="text-light small mb-0">Tu cuenta actual ({{ auth()->user()->email }}) se gestiona de forma segura desde tu perfil privado.</p>
+        </div>
             </div>
             <a href="{{ route('perfil.index') }}" class="btn btn-info btn-sm fw-bold text-dark px-3 shadow-none">
                 <i class="bi bi-sliders me-1"></i> Gestionar Mi Cuenta
